@@ -12,11 +12,64 @@ document.addEventListener('DOMContentLoaded', async () => {
       });
       if (res.ok) return await res.json();
       const err = await res.json();
-      return { error: err.error || 'Failed' };
+      return { error: err.error || 'Failed', status: res.status };
     } catch (e) {
       console.error(e);
-      return { error: 'Network error' };
+      return { error: 'Network error', status: 0 };
     }
+  };
+
+  const loadMarketSnapshot = async () => {
+    const snapshotContainer = document.getElementById('mi-snapshot-container');
+    if (!snapshotContainer) return;
+
+    const meRes = await fetchApi('/api/auth/me');
+    if (!meRes || !meRes.user || !meRes.user.farmerProfile) {
+      snapshotContainer.innerHTML = '<div class="col-span-full p-space-sm text-center"><p class="text-on-surface-variant text-sm">Please update your profile location to view snapshots.</p></div>';
+      return;
+    }
+    
+    const state = meRes.user.farmerProfile.state;
+    const city = meRes.user.farmerProfile.city;
+    if (!state || !city) {
+      snapshotContainer.innerHTML = '<div class="col-span-full p-space-sm text-center"><p class="text-on-surface-variant text-sm">Please update your profile location to view snapshots.</p></div>';
+      return;
+    }
+
+    const snapshotItems = ['Wheat', 'Chana', 'Onion', 'Soyabean', 'Cotton', 'Maize', 'Mustard', 'Tomato'];
+    let html = '';
+
+    for (const item of snapshotItems) {
+      try {
+        let url = `/api/market-prices?state=${encodeURIComponent(state)}&district=${encodeURIComponent(city)}&commodity=${encodeURIComponent(item)}`;
+        let res = await fetchApi(url);
+        
+        if (res && !res.error && res.markets && res.markets.length > 0) {
+          // Calculate max modal price for snapshot
+          let maxPrice = 0;
+          let latestDate = res.markets[0]?.priceDate || '';
+          res.markets.forEach(m => {
+            const modal = parseFloat(m.modalPrice);
+            if (modal > maxPrice) maxPrice = modal;
+          });
+          
+          html += `
+            <div class="bg-white border border-emerald-900/10 rounded-lg p-space-xs text-center shadow-sm flex flex-col justify-center min-h-[65px]">
+              <span class="font-label-md text-label-md font-semibold text-primary">${item}</span>
+              <span class="font-metric-mono text-[14px] text-secondary font-bold">₹${maxPrice}<span class="text-[10px] text-on-surface-variant font-medium">/Q</span></span>
+              ${latestDate ? `<span class="text-[9px] text-on-surface-variant mt-0.5">${latestDate}</span>` : ''}
+            </div>
+          `;
+        }
+      } catch(e) {
+        // Skip on error
+      }
+    }
+    
+    if (html === '') {
+       html = '<div class="col-span-full p-space-sm text-center"><p class="text-on-surface-variant text-sm">No government mandi data is currently available for the selected region.</p></div>';
+    }
+    snapshotContainer.innerHTML = html;
   };
 
   const loadMarketData = async (commodity) => {
@@ -42,6 +95,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     
     if (pricesContainer) pricesContainer.innerHTML = '<p class="text-on-surface-variant text-sm">Fetching live data...</p>';
     if (insightContainer) insightContainer.innerHTML = '<p class="text-on-surface-variant text-sm">Calculating insights...</p>';
+    
+    // Format current date: DD MMM YYYY (e.g. 19 Sep 2026)
+    const currentDateStr = new Date().toLocaleDateString('en-GB', { day: '2-digit', month: 'short', year: 'numeric' });
     
     let url = `/api/market-prices?state=${encodeURIComponent(state)}&district=${encodeURIComponent(city)}&commodity=${encodeURIComponent(commodity)}`;
     let mandiRes = await fetchApi(url);
@@ -131,14 +187,39 @@ document.addEventListener('DOMContentLoaded', async () => {
       `;
       if (insightContainer) insightContainer.innerHTML = insightHtml;
       
+    } else if (mandiRes && mandiRes.error) {
+      let emptyHtml = '';
+      
+      if (mandiRes.status === 502 || mandiRes.error.includes('temporarily unavailable') || mandiRes.error === 'Network error' || mandiRes.error === 'Failed') {
+        emptyHtml = `
+          <div class="p-space-lg text-center flex flex-col items-center justify-center bg-white rounded-xl border border-emerald-900/10 shadow-sm min-h-[250px]">
+            <span class="material-symbols-outlined text-[48px] text-orange-400 mb-space-sm">cloud_off</span>
+            <p class="font-title-md text-title-md text-primary font-semibold mb-1">Government mandi data is temporarily unavailable.</p>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Please try again shortly.</p>
+          </div>
+        `;
+      } else {
+        // 404 No records
+        const locDisplay = isFallback ? state : `${city}, ${state}`;
+        emptyHtml = `
+          <div class="p-space-lg text-center flex flex-col items-center justify-center bg-white rounded-xl border border-emerald-900/10 shadow-sm min-h-[250px]">
+            <span class="material-symbols-outlined text-[48px] text-emerald-900/20 mb-space-sm">info</span>
+            <p class="font-title-md text-title-md text-primary font-semibold mb-1">No government mandi data available for ${commodity} in ${locDisplay} for ${currentDateStr}.</p>
+            <p class="font-body-sm text-body-sm text-on-surface-variant">Try another commodity or check the latest available market data.</p>
+          </div>
+        `;
+      }
+      
+      if (pricesContainer) pricesContainer.innerHTML = emptyHtml;
+      if (insightContainer) insightContainer.innerHTML = '';
     } else {
       let emptyHtml = `
-        <div class="p-space-sm text-center">
-          <p class="font-body-sm text-body-sm text-on-surface-variant">No government market records available for the selected commodity/location.</p>
+        <div class="p-space-lg text-center flex flex-col items-center justify-center bg-white rounded-xl border border-emerald-900/10 shadow-sm min-h-[250px]">
+          <p class="font-body-sm text-body-sm text-on-surface-variant">Unexpected error loading market records.</p>
         </div>
       `;
       if (pricesContainer) pricesContainer.innerHTML = emptyHtml;
-      if (insightContainer) insightContainer.innerHTML = emptyHtml;
+      if (insightContainer) insightContainer.innerHTML = '';
     }
   };
 
@@ -268,6 +349,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Initial load
     loadMarketData(cropSelect.value);
   }
+  
+  // Load snapshot independently
+  loadMarketSnapshot();
 
   window.addEventListener('commoditiesLoaded', () => {
     if (cropSelect && !cropSelect.value) {
