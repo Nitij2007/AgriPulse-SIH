@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base{html,body{margin:0;padding:0;}body{overscroll-behavior:none;}main>:first-child{margin-top:0!important;}main>:last-child{margin-bottom:0!important;}}::-webkit-scrollbar{display:none;}</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config={darkMode:"class",theme:{extend:{colors:{"surface-bright":"#f9f9ff","surface-container-low":"#f1f3ff","on-secondary-fixed":"#002114","outline":"#717975","surface-tint":"#3f6658","on-primary-fixed-variant":"#274e41","tertiary-container":"#4f2700","tertiary-fixed":"#ffdcc3","tertiary":"#301600","inverse-on-surface":"#edf0ff","surface-container-highest":"#dce2f7","on-secondary-container":"#187050","on-error-container":"#93000a","secondary-fixed":"#a2f3cb","on-surface":"#141b2b","on-tertiary":"#ffffff","surface-container":"#e9edff","error-container":"#ffdad6","surface-variant":"#dce2f7","secondary-fixed-dim":"#86d7b0","primary":"#002218","tertiary-fixed-dim":"#ffb77d","secondary":"#116b4c","on-primary-container":"#79a292","background":"#f9f9ff","primary-container":"#0f382c","on-background":"#141b2b","surface-container-high":"#e1e8fd","on-secondary":"#ffffff","primary-fixed":"#c1ecda","outline-variant":"#c1c8c3","secondary-container":"#9ff1c9","on-tertiary-fixed":"#2f1500","surface":"#f9f9ff","inverse-surface":"#293040","primary-fixed-dim":"#a6d0be","on-error":"#ffffff","inverse-primary":"#a6d0be","on-secondary-fixed-variant":"#005138","surface-dim":"#d3daef","on-surface-variant":"#414845","surface-container-lowest":"#ffffff","on-primary-fixed":"#002117","on-tertiary-fixed-variant":"#6e3900","on-tertiary-container":"#e48015","on-primary":"#ffffff","error":"#ba1a1a"},borderRadius:{DEFAULT:"0.25rem",lg:"0.5rem",xl:"0.75rem",full:"9999px"},spacing:{"space-2xs":"0.25rem","space-xs":"0.5rem","grid-margin-desktop":"2rem","grid-gutter":"1.25rem","space-lg":"1.5rem","space-3xs":"0.125rem","space-3xl":"4rem","space-xl":"2rem","space-sm":"0.75rem","space-2xl":"3rem","space-md":"1rem","grid-margin-mobile":"1rem"},fontFamily:{"headline-md":["Plus Jakarta Sans"],"display-lg":["Plus Jakarta Sans"],"body-md":["Inter"],"headline-lg-mobile":["Plus Jakarta Sans"],"title-lg":["Inter"],"label-sm":["Inter"],"metric-mono":["Inter"],"body-lg":["Inter"],"body-sm":["Inter"],"headline-sm":["Plus Jakarta Sans"],"title-md":["Inter"],"headline-lg":["Plus Jakarta Sans"],"label-md":["Inter"]},fontSize:{"headline-md":["24px",{lineHeight:"32px",letterSpacing:"-0.015em",fontWeight:"600"}],"display-lg":["48px",{lineHeight:"56px",letterSpacing:"-0.025em",fontWeight:"700"}],"body-md":["14px",{lineHeight:"20px",fontWeight:"400"}],"headline-lg-mobile":["26px",{lineHeight:"34px",letterSpacing:"-0.015em",fontWeight:"600"}],"title-lg":["18px",{lineHeight:"26px",letterSpacing:"-0.01em",fontWeight:"600"}],"label-sm":["11px",{lineHeight:"14px",letterSpacing:"0.04em",fontWeight:"600"}],"metric-mono":["15px",{lineHeight:"20px",fontWeight:"500"}],"body-lg":["16px",{lineHeight:"24px",fontWeight:"400"}],"body-sm":["12px",{lineHeight:"16px",fontWeight:"400"}],"headline-sm":["20px",{lineHeight:"28px",letterSpacing:"-0.01em",fontWeight:"600"}],"title-md":["16px",{lineHeight:"24px",letterSpacing:"-0.005em",fontWeight:"600"}],"headline-lg":["32px",{lineHeight:"40px",letterSpacing:"-0.02em",fontWeight:"600"}],"label-md":["13px",{lineHeight:"18px",fontWeight:"500"}]}}}};</script><link href="../assets/css/shared.css" rel="stylesheet"/></head><body class="min-h-screen flex flex-col bg-surface font-body-md text-body-md text-on-surface pt-16">
+<!-- Fixed Top Header -->
+<header class="fixed top-0 left-0 right-0 h-16 w-full bg-surface-container-lowest/90 backdrop-blur-xl shadow-[0_1px_8px_rgba(0,0,0,0.04)] z-50"><a class="w-full h-16 px-space-xl flex items-center justify-between gap-space-md cursor-pointer hover:opacity-90 transition" href="../index.html"><div class="w-full h-16 px-space-xl flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><div class="w-8 h-8 rounded-lg bg-[#0f382c] flex items-center justify-center text-[#22c55e]"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg></div><span class="font-headline-sm text-headline-sm text-primary tracking-tight font-semibold">AgriPulse</span></div><span class="inline-flex items-center px-space-xs py-space-3xs rounded-full font-label-sm text-label-sm bg-secondary-container text-on-secondary-container font-medium">BUYER PORTAL</span></div><div class="hidden md:flex items-center gap-space-sm"><div class="inline-flex items-center gap-space-xs px-space-sm py-space-3xs rounded-full bg-surface-container-low text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-md text-label-md font-medium text-on-surface">Market Network Connected</span></div><div class="inline-flex items-center gap-space-xs px-space-sm py-space-3xs rounded-full bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-secondary">hub</span><span class="font-label-md text-label-md font-medium text-on-surface">Region Central</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm text-right"><div class="flex flex-col items-end"><span class="font-title-md text-title-md text-on-surface leading-tight font-semibold buyer-display-name">User</span><div class="inline-flex items-center gap-space-3xs text-secondary"><span class="font-label-sm text-label-sm font-medium text-secondary">Buyer</span></div></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-sm ring-1 ring-surface-container-high" src="../assets/images/buyer-avatar.jpg"/></div></div></div></a></header>
+<!-- Content Wrapper: Left Sidebar + Main Content -->
+<div class="flex-1 flex flex-row w-full">
+<!-- Left Sidebar -->
+<aside class="w-72 shrink-0 bg-surface-container-low flex flex-col justify-between p-space-md border-r border-slate-200/60 shadow-[0_1px_8px_rgba(0,0,0,0.04)]">
+<div class="flex flex-col gap-space-xs">
+<div class="px-space-sm py-space-2xs font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider">Procurement Gateway</div>
+<nav class="flex flex-col gap-space-2xs" data-active-classes="bg-primary-container text-on-primary font-title-md rounded-lg shadow-[0_2px_6px_rgba(0,0,0,0.08)]">
+<a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-title-md text-title-md" data-path="dashboard" href="dashboard.html"><span class="material-symbols-outlined text-[20px]">space_dashboard</span><span class="">Dashboard</span></a>
+<a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-title-md text-title-md" data-path="requirements" href="procurement-requirements.html"><span class="material-symbols-outlined text-[20px]">assignment_add</span><span class="">Requirements</span></a>
+<a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-title-md text-title-md" data-path="matching-lots" href="matching-lots.html"><span class="material-symbols-outlined text-[20px]">swap_calls</span><span class="">Matching Lots</span></a>
+<a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-title-md text-title-md" data-path="offers-and-transactions" href="offers-transactions.html"><span class="material-symbols-outlined text-[20px]">handshake</span><span class="">Offers &amp; Transactions</span></a>
+<a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-title-md text-title-md" data-path="logistics-and-storage" href="logistics-storage.html"><span class="material-symbols-outlined text-[20px]">local_shipping</span><span class="">Logistics &amp; Storage</span></a>
+<a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg bg-primary-container text-on-primary font-title-md text-title-md shadow-sm" data-path="payments" href="payments.html"><span class="material-symbols-outlined text-[20px]">account_balance_wallet</span><span class="">Payments</span></a>
+<a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-rose-600 hover:bg-rose-50/80 hover:text-rose-800 transition-all duration-200 ease-in-out cursor-pointer mt-4 border-t border-rose-100" onclick="window.logout()">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</nav>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 min-w-0 px-8 py-8 pb-16 bg-surface">
+<div class="flex flex-col w-full">
+
+<!-- Page Header & Action Bar -->
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-md pb-space-lg">
+<div class="flex flex-col">
+<div class="flex items-center gap-space-xs text-secondary mb-space-3xs font-label-sm text-label-sm uppercase tracking-wider">
+<span class="material-symbols-outlined text-[16px]">verified_user</span>
+<span class="">Platform Settlement Records</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight font-bold">Payments &amp; Settlement Tracking</h1>
+<p class="font-body-md text-body-md text-on-surface-variant mt-space-3xs">
+        Track payment status, transaction values, and settlement records for your agricultural purchases.
+      </p>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<button class="px-space-md py-space-sm bg-surface-container-low hover:bg-surface-container-high text-on-surface font-title-md text-title-md rounded-lg transition-colors flex items-center gap-space-xs shadow-sm" onclick="window.location.hash='#settlement-breakdown'">
+<span class="material-symbols-outlined text-[20px]">analytics</span>
+<span class="">Audit Analytics</span>
+</button>
+<a class="px-space-lg py-space-sm bg-primary-container hover:bg-primary text-on-primary font-title-md text-title-md rounded-lg transition-colors flex items-center gap-space-xs shadow-sm" data-path="offers-and-transactions" href="offers-transactions.html">
+<span class="material-symbols-outlined text-[20px]">receipt_long</span>
+<span class="">View Transactions</span>
+</a>
+</div>
+</div>
+<!-- 4 Summary Metric Cards -->
+<div class="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-space-md pb-space-xl">
+<!-- Total Purchase Value -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-3 -top-3 w-20 h-20 bg-primary/5 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Total Purchase Value</span>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">payments</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-headline-lg text-primary font-bold tracking-tight" id="kpi-total-purchase">₹0</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-space-3xs flex items-center gap-space-3xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">sync_alt</span>
+<span class="">Across active and completed transactions</span>
+</div>
+</div>
+</div>
+<!-- Paid -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-3 -top-3 w-20 h-20 bg-secondary-container/20 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Paid</span>
+<div class="w-10 h-10 rounded-lg bg-secondary-container/40 flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]">check_circle</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-headline-lg text-secondary font-bold tracking-tight" id="kpi-paid">₹0</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-space-3xs flex items-center gap-space-3xs">
+<span class="material-symbols-outlined text-secondary text-[16px]">verified</span>
+<span class="">Successfully settled</span>
+</div>
+</div>
+</div>
+<!-- Pending -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-3 -top-3 w-20 h-20 bg-tertiary-fixed/30 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Pending</span>
+<div class="w-10 h-10 rounded-lg bg-tertiary-fixed/40 flex items-center justify-center text-on-tertiary-container">
+<span class="material-symbols-outlined text-[22px]">schedule</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-headline-lg text-primary font-bold tracking-tight" id="kpi-pending">₹0</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-space-3xs flex items-center gap-space-3xs">
+<span class="material-symbols-outlined text-on-tertiary-container text-[16px]">hourglass_top</span>
+<span class="">Awaiting settlement</span>
+</div>
+</div>
+</div>
+<!-- Transactions Recorded -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between relative overflow-hidden">
+<div class="absolute -right-3 -top-3 w-20 h-20 bg-surface-container-high/40 rounded-full blur-xl pointer-events-none"></div>
+<div class="flex items-center justify-between">
+<span class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider font-semibold">Transactions</span>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">folder_open</span>
+</div>
+</div>
+<div class="mt-space-md">
+<div class="font-headline-lg text-headline-lg text-primary font-bold tracking-tight" id="kpi-transactions">0</div>
+<div class="font-body-sm text-body-sm text-on-surface-variant mt-space-3xs flex items-center gap-space-3xs">
+<span class="material-symbols-outlined text-on-surface-variant text-[16px]">library_books</span>
+<span class="">Recorded purchases</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Status Conditions & Workflow (SIH Purpose Architecture) -->
+<div class="mb-space-xl bg-surface-container-lowest p-space-lg rounded-xl shadow-sm">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-xs mb-space-md">
+<div>
+<div class="font-label-sm text-label-sm uppercase tracking-wider text-secondary font-bold">Settlement Workflow</div>
+<h2 class="font-title-lg text-title-lg text-primary font-bold">Transaction Payment Workflow</h2>
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-4 gap-space-md">
+<div class="bg-surface-container-low p-space-md rounded-lg relative">
+<div class="flex items-center gap-space-xs text-primary font-title-md text-title-md font-semibold mb-space-2xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm">1</span>
+<span class="">Transaction Accepted</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Accepted purchase terms are recorded on the platform.</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg relative">
+<div class="flex items-center gap-space-xs text-primary font-title-md text-title-md font-semibold mb-space-2xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm">2</span>
+<span class="">Produce Movement</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Logistics status can be tracked for the transaction.</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg relative">
+<div class="flex items-center gap-space-xs text-primary font-title-md text-title-md font-semibold mb-space-2xs">
+<span class="w-6 h-6 rounded-full bg-primary text-on-primary flex items-center justify-center font-label-sm text-label-sm">3</span>
+<span class="">Delivery Confirmation</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Delivery information can be updated when available.</p>
+</div>
+<div class="bg-surface-container-low p-space-md rounded-lg relative">
+<div class="flex items-center gap-space-xs text-secondary font-title-md text-title-md font-semibold mb-space-2xs">
+<span class="w-6 h-6 rounded-full bg-secondary-container text-on-secondary-container flex items-center justify-center font-label-sm text-label-sm font-bold">4</span>
+<span class="">Payment Settlement</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Payment status is recorded through the platform's simulated settlement workflow.</p>
+</div>
+</div>
+</div>
+<!-- Main Payment Records Section with Tabs & Filters -->
+<div class="bg-surface-container-lowest rounded-xl shadow-sm p-space-lg mb-space-xl">
+<div class="flex flex-col lg:flex-row lg:items-center justify-between gap-space-md pb-space-md">
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-bold tracking-tight">Payment Records</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">View payment information linked to your agricultural transactions.</p>
+</div>
+<!-- Status Tabs -->
+<div class="flex flex-wrap items-center gap-space-2xs bg-surface-container-low p-space-2xs rounded-lg" id="statusTabs">
+<button class="tab-btn px-space-md py-space-2xs rounded-md font-label-md text-label-md bg-primary-container text-on-primary transition-all" onclick="setActiveTab(this, 'all')">All</button>
+<button class="tab-btn px-space-md py-space-2xs rounded-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" onclick="setActiveTab(this, 'pending')">Pending</button>
+<button class="tab-btn px-space-md py-space-2xs rounded-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" onclick="setActiveTab(this, 'processing')">Processing</button>
+<button class="tab-btn px-space-md py-space-2xs rounded-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" onclick="setActiveTab(this, 'paid')">Paid</button>
+<button class="tab-btn px-space-md py-space-2xs rounded-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all" onclick="setActiveTab(this, 'failed')">Failed</button>
+</div>
+</div>
+<!-- Multi-parameter Filter Toolbar -->
+<div class="bg-surface-container-low/60 p-space-md rounded-xl mb-space-lg flex flex-col gap-space-sm">
+<div class="w-full relative">
+<span class="material-symbols-outlined absolute left-space-md top-1/2 -translate-y-1/2 text-on-surface-variant text-[20px]">search</span>
+<input class="w-full bg-surface-container-lowest text-on-surface placeholder:text-on-surface-variant pl-11 pr-space-md py-space-xs rounded-lg font-body-md text-body-md shadow-sm outline-none focus:ring-2 focus:ring-secondary/40 transition-all" id="paymentSearchInput" placeholder="Search by transaction ID, payment ID, lot ID, crop, or seller..." type="text"/>
+</div>
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-space-xs pt-space-3xs">
+<div class="flex flex-col">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-space-3xs">Produce</label>
+<select class="contextual-produce-filter bg-surface-container-lowest text-on-surface font-body-sm text-body-sm px-space-sm py-space-xs rounded-lg outline-none shadow-sm cursor-pointer" id="filterProduce"><option value="">All Produce</option></select>
+</div>
+<div class="flex flex-col">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-space-3xs">Status</label>
+<select class="bg-surface-container-lowest text-on-surface font-body-sm text-body-sm px-space-sm py-space-xs rounded-lg outline-none shadow-sm cursor-pointer" id="filterStatus">
+<option value="">All Statuses</option>
+<option value="pending">Pending</option>
+<option value="processing">Processing</option>
+<option value="paid">Paid</option>
+<option value="failed">Failed</option>
+</select>
+</div>
+<div class="flex flex-col">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-space-3xs">Date</label>
+<select class="bg-surface-container-lowest text-on-surface font-body-sm text-body-sm px-space-sm py-space-xs rounded-lg outline-none shadow-sm cursor-pointer" id="filterDate">
+<option value="all">All Dates</option>
+<option value="7">Last 7 Days</option>
+<option value="30">Last 30 Days</option>
+<option value="90">Last 90 Days</option>
+</select>
+</div>
+<div class="flex flex-col">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-space-3xs">Amount</label>
+<select class="bg-surface-container-lowest text-on-surface font-body-sm text-body-sm px-space-sm py-space-xs rounded-lg outline-none shadow-sm cursor-pointer" id="filterAmount">
+<option value="all">Any Amount</option>
+<option value="sub1">Below ₹1L</option>
+<option value="1to5">₹1L – ₹5L</option>
+<option value="above5">Above ₹5L</option>
+</select>
+</div>
+<div class="flex flex-col">
+<label class="font-label-sm text-label-sm text-on-surface-variant uppercase tracking-wider mb-space-3xs">Sort</label>
+<select class="bg-surface-container-lowest text-on-surface font-body-sm text-body-sm px-space-sm py-space-xs rounded-lg outline-none shadow-sm cursor-pointer" id="filterSort">
+<option value="newest">Newest</option>
+<option value="highest">Highest Amount</option>
+<option value="lowest">Lowest Amount</option>
+<option value="updated">Recently Updated</option>
+</select>
+</div>
+<div class="flex flex-col justify-end">
+<button class="w-full bg-surface-container hover:bg-surface-container-high text-on-surface font-title-md text-title-md py-space-xs rounded-lg transition-colors flex items-center justify-center gap-space-3xs shadow-sm" onclick="resetFilters()">
+<span class="material-symbols-outlined text-[18px]">filter_alt_off</span>
+<span class="">Clear Filters</span>
+</button>
+</div>
+</div>
+</div>
+<!-- Data Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left" id="paymentsTable">
+<thead>
+<tr class="bg-surface-container-low text-on-surface-variant font-label-sm text-label-sm uppercase tracking-wider">
+<th class="py-space-sm px-space-md rounded-l-lg">Payment ID</th>
+<th class="py-space-sm px-space-md">Transaction ID</th>
+<th class="py-space-sm px-space-md">Produce</th>
+<th class="py-space-sm px-space-md">Seller / FPO</th>
+<th class="py-space-sm px-space-md">Quantity</th>
+<th class="py-space-sm px-space-md text-right">Amount</th>
+<th class="py-space-sm px-space-md">Due Date</th>
+<th class="py-space-sm px-space-md">Status</th>
+<th class="py-space-sm px-space-md text-center rounded-r-lg">Action</th>
+</tr>
+</thead>
+<tbody id="paymentsTableBody" class="divide-y divide-surface-container-low font-body-md text-body-md text-on-surface">
+</tbody>
+</table>
+</div>
+</div>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Client-side Interactive Filtering Script -->
+<script>
+    function setActiveTab(button, status) {
+      document.querySelectorAll('#statusTabs .tab-btn').forEach(btn => {
+        btn.className = 'tab-btn px-space-md py-space-2xs rounded-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all';
+      });
+      button.className = 'tab-btn px-space-md py-space-2xs rounded-md font-label-md text-label-md bg-primary-container text-on-primary transition-all';
+      
+      const filterSelect = document.getElementById('filterStatus');
+      if (filterSelect) {
+        filterSelect.value = (status === 'all') ? '' : status;
+        applyFilters();
+      }
+    }
+
+    function resetFilters() {
+      document.getElementById('paymentSearchInput').value = '';
+      document.getElementById('filterProduce').value = '';
+      document.getElementById('filterStatus').value = '';
+      document.getElementById('filterDate').value = 'all';
+      document.getElementById('filterAmount').value = 'all';
+      document.getElementById('filterSort').value = 'newest';
+
+      const firstTab = document.querySelector('#statusTabs .tab-btn');
+      if (firstTab) {
+        document.querySelectorAll('#statusTabs .tab-btn').forEach(btn => {
+          btn.className = 'tab-btn px-space-md py-space-2xs rounded-md font-label-md text-label-md text-on-surface-variant hover:text-on-surface transition-all';
+        });
+        firstTab.className = 'tab-btn px-space-md py-space-2xs rounded-md font-label-md text-label-md bg-primary-container text-on-primary transition-all';
+      }
+
+      applyFilters();
+    }
+
+    function applyFilters() {
+      const searchVal = document.getElementById('paymentSearchInput').value.toLowerCase();
+      const cropVal = document.getElementById('filterProduce').value.toLowerCase();
+      const statusVal = document.getElementById('filterStatus').value.toLowerCase();
+
+      const table = document.getElementById('paymentsTable');
+      if (!table) return;
+      const rows = table.querySelectorAll('tbody tr');
+
+      rows.forEach(row => {
+        const text = row.innerText.toLowerCase();
+        let matchesSearch = text.includes(searchVal);
+        let matchesCrop = cropVal === '' || text.includes(cropVal);
+        let matchesStatus = statusVal === '' || text.includes(statusVal);
+
+        if (matchesSearch && matchesCrop && matchesStatus) {
+          row.style.display = '';
+        } else {
+          row.style.display = 'none';
+        }
+      });
+    }
+
+    document.getElementById('paymentSearchInput')?.addEventListener('input', applyFilters);
+    document.getElementById('filterProduce')?.addEventListener('change', applyFilters);
+    document.getElementById('filterStatus')?.addEventListener('change', applyFilters);
+
+    function scrollToAudit(id) {
+      const el = document.getElementById('activeAuditCard');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.add('ring-2', 'ring-secondary');
+        setTimeout(() => el.classList.remove('ring-2', 'ring-secondary'), 1600);
+      }
+    }
+
+    function scrollToPaidRecord() {
+      const el = document.getElementById('paidSampleCard');
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        el.classList.add('ring-2', 'ring-secondary');
+        setTimeout(() => el.classList.remove('ring-2', 'ring-secondary'), 1600);
+      }
+    }
+
+    function downloadRegistryAudit() {
+      showToast('Generating payment ledger CSV..', 'info');
+    }
+  </script>
+</div>
+</main>
+</div>
+<!-- Master Footer: Below both sidebar and main content -->
+<footer class="w-full bg-[#0a1f18] text-white border-t border-emerald-900/30 py-space-xl px-grid-margin-desktop mt-auto"><div class="w-full flex flex-col gap-space-xl"><div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg"><div class="flex flex-col gap-space-xs max-w-md"><div class="flex items-center gap-space-xs"><div class="w-9 h-9 rounded-lg bg-[#0f382c] flex items-center justify-center shadow-sm border border-emerald-800/40"><span class="material-symbols-outlined text-primary-fixed">eco</span></div><div class="flex items-center"><span class="font-headline-sm text-headline-sm font-bold text-white tracking-tight">Agri</span><span class="font-headline-sm text-headline-sm font-bold text-emerald-400 tracking-tight">Pulse</span></div></div><p class="font-body-sm text-body-sm text-emerald-100/70">Connecting farmers with markets and transparent price discovery.</p></div><div class="flex flex-wrap items-center gap-x-space-lg gap-y-space-xs font-label-md text-label-md text-emerald-100/80"><a class="hover:text-emerald-400 transition-colors" href="../farmer/market-intelligence.html">Price Discovery</a><a class="hover:text-emerald-400 transition-colors" href="../index.html#how-it-works">How It Works</a><a class="hover:text-emerald-400 transition-colors" href="../farmer/market-intelligence.html">Mandi Intelligence</a><a class="hover:text-emerald-400 transition-colors text-emerald-400 font-semibold" href="dashboard.html">Buyer Portal</a><a class="hover:text-emerald-400 transition-colors" href="../farmer/dashboard.html">Farmer Portal</a><a class="hover:text-emerald-400 transition-colors" href="../login.html">Login</a></div></div><div class="w-full h-px bg-emerald-900/40"></div><div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm font-label-sm text-label-sm text-emerald-200/60"><div class="flex flex-wrap items-center gap-x-space-xs gap-y-space-3xs"><span class="">© 2026 AgriPulse. All rights reserved.</span><span class="">•</span><span class="">SIH26132 Mandi Gateway Architecture</span></div><div class="flex flex-wrap items-center gap-x-space-md gap-y-space-3xs text-emerald-300/80"><span class="inline-flex items-center gap-space-3xs"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Market data connection</span><span class="mx-1">•</span><span class="inline-flex items-center gap-space-3xs"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Procurement Framework</span></div></div></div></footer>
+<script src="../assets/js/app.js"></script><script src="../assets/js/dynamic-data.js"></script><script src="../assets/js/buyer-payments-dynamic.js"></script></body></html>

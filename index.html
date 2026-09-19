@@ -1,0 +1,1324 @@
+<!DOCTYPE html>
+
+<html class="scroll-smooth" lang="en"><svg aria-hidden="true" class="inline-defs-container" style="position:absolute;width:0;height:0;overflow:hidden"></svg>
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgriPulse | Market Linkages &amp; Transparent Price Discovery</title>
+<!-- Google Fonts: Plus Jakarta Sans & Inter -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700;800&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS v3 with Plugins -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            brand: {
+              950: '#041712',
+              900: '#08281f',
+              850: '#0c3529',
+              800: '#0f382c',
+              700: '#144c3c',
+              600: '#185343',
+              500: '#1e6b56',
+              400: '#2b8f74',
+              accent: '#10b981',
+              emerald: '#059669',
+              mint: '#34d399',
+              light: '#ecfdf5',
+              surface: '#f6f9f7',
+              border: '#e2eae5'
+            }
+          },
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            heading: ['Plus Jakarta Sans', 'sans-serif']
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    @keyframes marqueeScroll {
+      0% {
+        transform: translateX(0);
+      }
+
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+
+    .animate-ticker {
+      display: flex;
+      width: max-content;
+      animation: marqueeScroll 36s linear infinite;
+    }
+
+    .animate-ticker:hover {
+      animation-play-state: paused;
+    }
+
+    .grid-pattern {
+      background-size: 32px 32px;
+      background-image:
+        linear-gradient(to right, rgba(15, 56, 44, 0.04) 1px, transparent 1px),
+        linear-gradient(to bottom, rgba(15, 56, 44, 0.04) 1px, transparent 1px);
+    }
+
+    .contour-radial {
+      background: radial-gradient(ellipse 75% 60% at 75% 35%, rgba(16, 185, 129, 0.12), rgba(15, 56, 44, 0.04) 45%, transparent 75%);
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #f1f5f3;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: #cbd5e1;
+      border-radius: 9999px;
+    }
+
+    ::-webkit-scrollbar-thumb:hover {
+      background: #94a3b8;
+    }
+  </style>
+<link href="assets/css/shared.css" rel="stylesheet"/>
+</head>
+<body class="bg-brand-surface text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-brand-mint/30 selection:text-brand-900" data-mode="connect">
+<!-- ========================================================================= -->
+<!-- 1. SLIDE-OUT NAVIGATION DRAWER & OVERLAY -->
+<!-- ========================================================================= -->
+<div class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm z-[90] transition-opacity duration-300 opacity-0 pointer-events-none" id="drawerOverlay"></div>
+<aside aria-label="Main Navigation Drawer" class="fixed top-0 left-0 w-84 max-w-[85vw] h-full bg-white z-[100] transform transition-transform duration-300 ease-out shadow-2xl flex flex-col justify-between border-r border-brand-border -translate-x-full" id="sideDrawer">
+<div class="flex flex-col h-full min-h-0">
+<!-- Drawer Header -->
+<div class="p-5 border-b border-brand-border flex items-center justify-between bg-brand-surface">
+<div class="flex items-center space-x-3">
+<div class="w-9 h-9 rounded-xl bg-brand-800 flex items-center justify-center text-brand-mint shadow-sm shadow-brand-900/20">
+<span class="material-symbols-outlined text-[20px] text-white">eco</span></div>
+<div>
+<div class="font-heading font-bold text-brand-800 text-lg leading-tight tracking-tight">Agri<span class="text-brand-emerald">Pulse</span></div>
+<div class="text-[10px] font-semibold tracking-wider text-emerald-800 uppercase">SIH26132 Mandi Gateway
+            </div>
+</div>
+</div>
+<button aria-label="Close navigation drawer" class="p-1.5 rounded-lg text-slate-500 hover:text-slate-800 hover:bg-slate-100 transition cursor-pointer" id="drawerCloseBtn">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M6 18L18 6M6 6l12 12" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+</div>
+<!-- Drawer Content -->
+<div class="flex-1 overflow-y-auto p-5 space-y-6">
+<!-- Role-Based Portals Quick Access -->
+<div class="">
+<div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2.5">Trading Portals</div>
+<div class="space-y-2">
+<a class="flex items-center justify-between p-3 rounded-xl border border-brand-border hover:border-brand-emerald bg-white hover:bg-brand-light/50 transition group" href="farmer-login.html">
+<div class="flex items-center space-x-3">
+<div class="w-9 h-9 rounded-lg bg-emerald-100 text-brand-800 flex items-center justify-center group-hover:bg-brand-800 group-hover:text-brand-mint transition">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<div class="text-sm font-bold text-brand-800">Farmer / FPO Portal</div>
+<div class="text-[11px] text-slate-500">Sell lots &amp; discover mandi bids</div>
+</div>
+</div>
+<svg class="w-4 h-4 text-slate-400 group-hover:text-brand-emerald group-hover:translate-x-0.5 transition" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path class="" d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+<a class="flex items-center justify-between p-3 rounded-xl border border-brand-border hover:border-brand-emerald bg-white hover:bg-brand-light/50 transition group" href="buyer-login.html">
+<div class="flex items-center space-x-3">
+<div class="w-9 h-9 rounded-lg bg-teal-100 text-brand-800 flex items-center justify-center group-hover:bg-brand-800 group-hover:text-teal-300 transition">
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<div>
+<div class="text-sm font-bold text-brand-800">Buyer Procurement</div>
+<div class="text-[11px] text-slate-500">Source assayed bulk produce</div>
+</div>
+</div>
+<svg class="w-4 h-4 text-slate-400 group-hover:text-brand-emerald group-hover:translate-x-0.5 transition" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path>
+</svg>
+</a>
+</div>
+</div>
+<!-- Navigation Links -->
+<div>
+<div class="text-[11px] font-bold text-slate-400 uppercase tracking-widest mb-2.5">Platform Navigation</div>
+<ul class="space-y-1 text-sm font-medium text-slate-700">
+<li class="">
+<a class="drawer-link flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-brand-light hover:text-brand-800 transition" href="#market-intelligence">
+<span class="">Price Discovery</span>
+<span class="text-xs bg-emerald-100 text-emerald-800 font-semibold px-2 py-0.5 rounded">Live</span>
+</a>
+</li>
+<li class="">
+<a class="drawer-link flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-brand-light hover:text-brand-800 transition" href="#how-it-works">
+<span class="">How It Works</span>
+</a>
+</li>
+<li class="">
+<a class="drawer-link flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-brand-light hover:text-brand-800 transition" href="#market-intelligence">
+<span class="">Market Intelligence</span>
+</a>
+</li>
+<li class="">
+<a class="drawer-link flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-brand-light hover:text-brand-800 transition" href="login.html">
+<span class="">Buyer &amp; Farmer Portals</span>
+</a>
+</li>
+<li class="">
+<a class="drawer-link flex items-center justify-between px-3 py-2.5 rounded-lg hover:bg-brand-light hover:text-brand-800 transition font-semibold text-brand-800" href="./login.html">
+<span class="">Login</span>
+<svg class="w-4 h-4 text-brand-emerald" fill="none" stroke="currentColor" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+</path>
+</svg>
+</a>
+</li>
+</ul>
+</div>
+<!-- Mandi Linkage Badge in Drawer -->
+<div class="p-3.5 bg-brand-surface rounded-xl border border-brand-border">
+<div class="flex items-center space-x-2 text-xs font-bold text-brand-800">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="">APMC Mandi Linkage Active</span>
+</div>
+<p class="text-[11px] text-slate-500 mt-1 leading-relaxed">
+            Connected to real-time agricultural markets across MP &amp; Gujarat trading zones.
+          </p>
+</div>
+</div>
+<!-- Drawer Footer -->
+<div class="p-4 bg-slate-50 border-t border-brand-border text-center text-xs text-slate-500">
+<span class="font-semibold text-brand-800">SIH 2026 Procurement Gateway</span>
+<div class="text-[11px] text-slate-400 mt-0.5">Problem Statement SIH26132</div>
+</div>
+</div>
+</aside>
+<!-- ========================================================================= -->
+<!-- 2. HEADER & TOP NAVIGATION -->
+<!-- ========================================================================= -->
+<header class="sticky top-0 z-40 backdrop-blur-md bg-white/90 border-b border-emerald-950/10 transition-shadow duration-200">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 h-18 py-3 flex items-center justify-between">
+<!-- Far Left: Dedicated Hamburger + Brand Logo -->
+<div class="flex items-center space-x-4 sm:space-x-5">
+<!-- Extreme Far-Left Dedicated Hamburger Button -->
+<button aria-expanded="false" aria-label="Open navigation drawer" class="p-2 -ml-2 rounded-lg text-slate-700 hover:text-brand-800 hover:bg-brand-surface transition focus:outline-none focus:ring-2 focus:ring-brand-800 cursor-pointer flex items-center justify-center" id="drawerToggleBtn">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="M4 6h16M4 12h16M4 18h16" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</button>
+<!-- Brand Logo with Breathing Room -->
+<a class="flex items-center space-x-3 group" href="index.html">
+<div class="w-8 h-8 rounded-lg bg-[#0f382c] flex items-center justify-center text-white shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-[20px] text-[#22c55e]">eco</span></div>
+<div class="flex flex-col">
+<div class="flex items-center space-x-1.5"><span class="text-xl font-bold tracking-tight text-[#0f382c]">Agri<span class="text-[#22c55e]">Pulse</span></span><span class="hidden sm:inline-block text-[9px] font-bold tracking-wider uppercase px-1.5 py-0.5 rounded bg-emerald-100 text-emerald-800">SIH26132</span>
+</div><span class="hidden md:block text-[10px] font-medium text-slate-500 -mt-0.5 tracking-wide">Market
+              Linkages &amp; Transparent Price Discovery</span>
+</div>
+</a>
+</div>
+<!-- Right Side: Live Mandi Status Pill & Prominent Solid Emerald Login Button -->
+<div class="flex items-center space-x-3 sm:space-x-5">
+<!-- Live Status Pill -->
+<div class="hidden sm:inline-flex items-center space-x-2 text-xs font-semibold text-emerald-800 bg-emerald-50 px-3 py-1.5 rounded-full border border-emerald-200">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="">Market data connection</span>
+</div>
+<!-- Prominent Moderately Rounded Login Button -->
+<a class="inline-flex items-center justify-center px-5 sm:px-6 py-2.5 rounded-lg bg-[#0f382c] hover:bg-[#185343] text-white text-sm font-semibold tracking-wide shadow-md shadow-brand-900/15 hover:shadow-lg transition-all duration-200 transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-brand-800 focus:ring-offset-2" href="./login.html">
+          Login
+        </a>
+</div>
+</div>
+</header>
+<!-- ========================================================================= -->
+<!-- 3. LIVE MARKET COMMODITY TICKER / MARQUEE -->
+<!-- ========================================================================= -->
+<section class="bg-brand-950 border-b border-brand-900 text-white overflow-hidden py-2.5 relative z-30" data-purpose="live-ticker">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8 flex items-center">
+<!-- Fixed Left Label Badge -->
+<div class="flex-shrink-0 bg-emerald-600/90 text-white px-2.5 py-1 text-[11px] font-bold tracking-wider uppercase rounded flex items-center space-x-1.5 shadow-sm mr-3">
+<span class="w-2 h-2 rounded-full bg-brand-mint animate-ping"></span>
+<span class="">Live Mandis</span>
+</div>
+<!-- Continuous Infinite Horizontal Marquee -->
+<div class="overflow-hidden flex-1 relative whitespace-nowrap">
+<div class="animate-ticker text-xs tracking-wide">
+<!-- Item Set 1 -->
+<div class="flex items-center space-x-6 px-4">
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🧅 Onion (Nashik Red)</span>
+<span class="text-slate-400">• Vadodara</span>
+<span class="text-white font-bold">₹2,850/Q</span>
+<span class="text-emerald-400 font-semibold flex items-center">▲ +8.4%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🌾 Sharbati Wheat (Grade A)</span>
+<span class="text-slate-400">• Indore</span>
+<span class="text-white font-bold">₹2,480/Q</span>
+<span class="text-emerald-400 font-semibold flex items-center">▲ +5.6%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🍅 Tomato (Hybrid)</span>
+<span class="text-slate-400">• Anand</span>
+<span class="text-white font-bold">₹2,100/Q</span>
+<span class="text-rose-400 font-semibold flex items-center">▼ -2.1%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🌾 Basmati Rice (1121)</span>
+<span class="text-slate-400">• Ahmedabad</span>
+<span class="text-white font-bold">₹3,420/Q</span>
+<span class="text-emerald-400 font-semibold flex items-center">▲ +1.8%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🌽 Yellow Maize</span>
+<span class="text-slate-400">• Anand APMC</span>
+<span class="text-white font-bold">₹2,240/Q</span>
+<span class="text-emerald-400 font-semibold flex items-center">▲ +3.2%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🌱 Desi Chana</span>
+<span class="text-slate-400">• Navsari</span>
+<span class="text-white font-bold">₹5,400/Q</span>
+<span class="text-emerald-400 font-semibold flex items-center">▲ +1.2%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🌼 Mustard (Black Bold)</span>
+<span class="text-slate-400">• Central Mills</span>
+<span class="text-white font-bold">₹5,650/Q</span>
+<span class="text-emerald-400 font-semibold flex items-center">▲ +0.9%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🥔 Potato</span>
+<span class="text-slate-400">• Anand</span>
+<span class="text-white font-bold">₹1,850/Q</span>
+<span class="text-rose-400 font-semibold flex items-center">▼ -0.8%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">☁️ Cotton (Medium Staple)</span>
+<span class="text-slate-400">• Rajkot Yard</span>
+<span class="text-white font-bold">₹6,820/Q</span>
+<span class="text-emerald-400 font-semibold flex items-center">▲ +4.1%</span>
+</span>
+</div>
+<!-- Duplicate Set for Smooth Seamless Infinite Loop -->
+<div class="flex items-center space-x-6 px-4">
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🧅 Onion (Nashik Red)</span>
+<span class="text-slate-400">• Vadodara</span>
+<span class="text-white font-bold">₹2,850/Q</span>
+<span class="text-emerald-400 font-semibold flex items-center">▲ +8.4%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🌾 Sharbati Wheat (Grade A)</span>
+<span class="text-slate-400">• Indore</span>
+<span class="text-white font-bold">₹2,480/Q</span>
+<span class="text-emerald-400 font-semibold flex items-center">▲ +5.6%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🍅 Tomato (Hybrid)</span>
+<span class="text-slate-400">• Anand</span>
+<span class="text-white font-bold">₹2,100/Q</span>
+<span class="text-rose-400 font-semibold flex items-center">▼ -2.1%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🌾 Basmati Rice (1121)</span>
+<span class="text-slate-400">• Ahmedabad</span>
+<span class="text-white font-bold">₹3,420/Q</span>
+<span class="text-emerald-400 font-semibold flex items-center">▲ +1.8%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🌽 Yellow Maize</span>
+<span class="text-slate-400">• Anand APMC</span>
+<span class="text-white font-bold">₹2,240/Q</span>
+<span class="text-emerald-400 font-semibold flex items-center">▲ +3.2%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🌱 Desi Chana</span>
+<span class="text-slate-400">• Navsari</span>
+<span class="text-white font-bold">₹5,400/Q</span>
+<span class="text-emerald-400 font-semibold flex items-center">▲ +1.2%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🌼 Mustard (Black Bold)</span>
+<span class="text-slate-400">• Central Mills</span>
+<span class="text-white font-bold">₹5,650/Q</span>
+<span class="text-emerald-400 font-semibold flex items-center">▲ +0.9%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">🥔 Potato</span>
+<span class="text-slate-400">• Anand</span>
+<span class="text-white font-bold">₹1,850/Q</span>
+<span class="text-rose-400 font-semibold flex items-center">▼ -0.8%</span>
+</span>
+<span class="text-slate-700">|</span>
+<span class="inline-flex items-center space-x-1.5">
+<span class="text-slate-300 font-medium">☁️ Cotton (Medium Staple)</span>
+<span class="text-slate-400">• Rajkot Yard</span>
+<span class="text-white font-bold">₹6,820/Q</span>
+<span class="text-emerald-400 font-semibold flex items-center">▲ +4.1%</span>
+</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 4. HERO SECTION (MAIN WOW MOMENT - MODERN TECH-FORWARD ATMOSPHERE) -->
+<!-- ========================================================================= -->
+<section class="relative min-h-[580px] lg:min-h-[78vh] lg:max-h-[86vh] flex items-center justify-center overflow-hidden" id="hero" style='background-image: linear-gradient(135deg, rgba(8, 40, 31, 0.84) 0%, rgba(15, 56, 44, 0.76) 50%, rgba(4, 23, 18, 0.88) 100%), url("assets/images/hero_bg.jpg"); background-size: cover; background-position: center center; background-repeat: no-repeat;'>
+<!-- Fine SVG Contour / Geometry Line Background Overlay -->
+<div class="absolute inset-0 pointer-events-none opacity-40">
+<svg class="w-full h-full" fill="none" viewbox="0 0 1440 900" xmlns="http://www.w3.org/2000/svg">
+<path d="M-100 200 C 300 150, 700 380, 1100 240 C 1300 170, 1500 280, 1600 320" opacity="0.3" stroke="#0f382c" stroke-dasharray="4 8" stroke-width="1.2"></path>
+<path d="M-50 350 C 350 280, 650 520, 1050 400 C 1350 310, 1550 440, 1650 480" opacity="0.35" stroke="#10b981" stroke-dasharray="6 6" stroke-width="1"></path>
+<path d="M-80 500 C 400 420, 800 660, 1200 520 C 1400 450, 1580 560, 1680 600" opacity="0.25" stroke="#0f382c" stroke-dasharray="3 9" stroke-width="1.2"></path>
+<circle cx="1020" cy="380" opacity="0.25" r="160" stroke="#10b981" stroke-dasharray="3 5" stroke-width="1">
+</circle>
+<circle cx="1020" cy="380" opacity="0.15" r="240" stroke="#0f382c" stroke-dasharray="4 8" stroke-width="1">
+</circle>
+</svg>
+</div>
+<!-- Hero Content Container -->
+<div class="relative z-10 max-w-[1440px] w-full mx-auto px-4 sm:px-6 lg:px-8 py-16 lg:py-20">
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+<!-- Left Column: Copy & CTAs -->
+<div class="lg:col-span-7 max-w-2xl"><!-- SIH Innovation Tag -->
+<div class="inline-flex items-center space-x-2 bg-emerald-950/60 backdrop-blur-sm border border-emerald-400/40 px-3.5 py-1.5 rounded-full text-emerald-200 text-xs font-semibold mb-6 shadow-sm">
+<span class="w-2 h-2 rounded-full bg-brand-mint animate-pulse"></span>
+<span class="">SIH 2026 APMC Problem Statement SIH26132</span>
+</div>
+<!-- Main Headline -->
+<h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight leading-[1.12] mb-6 text-white">
+<span class="">Better Markets.</span><br/>
+<span class="text-transparent bg-clip-text bg-gradient-to-r from-emerald-300 via-brand-mint to-teal-200">
+              Better Prices.
+            </span><br/>
+<span class="text-white">Better Opportunities.</span>
+</h1>
+<!-- Subtitle -->
+<p class="text-base sm:text-lg text-emerald-50/90 font-normal leading-relaxed mb-8 max-w-xl">
+            AgriPulse connects farmers, FPOs, and certified institutional buyers through algorithmic price discovery,
+            verified assay matching, and escrow-guaranteed transparent settlements from farm gate to factory.
+          </p>
+<!-- Action CTAs -->
+<div class="flex flex-wrap items-center gap-4 mb-10">
+<a class="inline-flex items-center space-x-2.5 bg-brand-mint hover:bg-emerald-400 text-brand-950 px-7 py-3.5 rounded-lg font-bold text-base shadow-lg shadow-black/25 hover:shadow-xl transition-all transform hover:-translate-y-0.5" href="./login.html">
+<span class="">Explore Market Opportunities</span>
+<svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.3" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<a class="inline-flex items-center space-x-2 px-6 py-3.5 rounded-lg border border-emerald-300/40 hover:border-white bg-white/10 hover:bg-white/20 backdrop-blur-sm text-white font-semibold text-base transition-colors shadow-xs" href="#how-it-works">
+<svg class="w-5 h-5 text-brand-mint" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<circle cx="12" cy="12" r="9"></circle>
+<polygon fill="currentColor" points="10,8 16,12 10,16"></polygon>
+</svg>
+<span class="">How AgriPulse Works</span>
+</a>
+</div>
+<!-- Trust Metrics Strip with Glassmorphic Translucency -->
+<div class="grid grid-cols-2 sm:grid-cols-4 gap-3 sm:gap-4 pt-6 border-t border-white/20">
+<div class="bg-white/15 backdrop-blur-md border border-white/20 p-3.5 rounded-xl shadow-sm">
+<div class="font-heading text-2xl lg:text-3xl font-extrabold text-white tracking-tight">₹42 Cr+</div>
+<div class="text-[11px] font-medium text-emerald-100/80 mt-0.5">Verified Trade Volume</div>
+</div>
+<div class="bg-white/15 backdrop-blur-md border border-white/20 p-3.5 rounded-xl shadow-sm">
+<div class="font-heading text-2xl lg:text-3xl font-extrabold text-brand-mint tracking-tight">48+</div>
+<div class="text-[11px] font-medium text-emerald-100/80 mt-0.5">APMC Mandis Linked</div>
+</div>
+<div class="bg-white/15 backdrop-blur-md border border-white/20 p-3.5 rounded-xl shadow-sm">
+<div class="font-heading text-2xl lg:text-3xl font-extrabold text-white tracking-tight">98.4%</div>
+<div class="text-[11px] font-medium text-emerald-100/80 mt-0.5">On-Time Settlement</div>
+</div>
+<div class="bg-white/15 backdrop-blur-md border border-white/20 p-3.5 rounded-xl shadow-sm">
+<div class="font-heading text-2xl lg:text-3xl font-extrabold text-emerald-300 tracking-tight">0%</div>
+<div class="text-[11px] font-medium text-emerald-100/80 mt-0.5">Middleman Markups</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Interactive Tech-Visual Showcase with Floating Cards -->
+<div class="lg:col-span-5 relative">
+<!-- Ambient Glow Backdrop -->
+<div class="absolute -inset-4 bg-gradient-to-tr from-brand-800/10 via-brand-emerald/15 to-transparent rounded-3xl blur-2xl pointer-events-none">
+</div>
+<!-- Central Multi-Mandi Matching Engine Canvas -->
+<div class="relative rounded-2xl bg-white/95 backdrop-blur-md p-6 border border-white/60 shadow-xl max-w-sm w-full space-y-4">
+<div class="flex items-center justify-between">
+<div class="inline-flex items-center space-x-2 bg-emerald-50 text-emerald-800 border border-emerald-200 px-2.5 py-1 rounded-full text-[11px] font-bold tracking-wider uppercase">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="">Better Price Opportunity</span>
+</div>
+<span class="text-[11px] font-semibold text-emerald-700 bg-emerald-100/60 px-2 py-0.5 rounded-md">Live
+                Mandi</span>
+</div>
+<div>
+<div class="flex items-center justify-between mb-1">
+<span class="text-xs font-semibold text-slate-500 uppercase tracking-wide">Commodity Alert</span>
+<span class="text-[11px] font-semibold text-emerald-800 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">🧅
+                  Grade A Assayed</span>
+</div>
+<h3 class="text-xl font-heading font-extrabold text-brand-800">Onion (Nashik Red)</h3>
+</div>
+<div class="p-3.5 bg-brand-surface rounded-xl border border-brand-border flex items-baseline justify-between">
+<div>
+<div class="flex items-baseline space-x-1.5">
+<span class="text-3xl font-heading font-black text-brand-800 tracking-tight">₹2,850</span>
+<span class="text-xs font-medium text-slate-500">/ quintal</span>
+</div>
+<div class="text-[11px] text-slate-500 mt-0.5 flex items-center space-x-1">
+<svg class="w-3.5 h-3.5 text-slate-400" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+<path d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">Vadodara APMC Market</span>
+</div>
+</div>
+<span class="inline-flex items-center text-xs font-bold text-emerald-700 bg-emerald-100 px-2.5 py-1 rounded-lg shadow-2xs">
+                ▲ +8.4%
+              </span>
+</div>
+<div class="w-full h-12 relative overflow-hidden">
+<svg class="w-full h-full overflow-visible" fill="none" viewbox="0 0 280 48">
+<defs>
+<lineargradient id="sparkGlow" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#10b981" stop-opacity="0.3"></stop>
+<stop offset="100%" stop-color="#10b981" stop-opacity="0.0"></stop>
+</lineargradient>
+</defs>
+<path d="M 0 38 Q 70 34, 140 22 T 280 8 L 280 48 L 0 48 Z" fill="url(#sparkGlow)"></path>
+<path d="M 0 38 Q 70 34, 140 22 T 280 8" stroke="#10b981" stroke-linecap="round" stroke-width="2.5">
+</path>
+<circle cx="280" cy="8" fill="#0f382c" r="3.5" stroke="#ffffff" stroke-width="2"></circle>
+</svg>
+</div>
+<div class="flex items-center justify-between pt-2 border-t border-slate-100 text-xs">
+<div class="flex items-center space-x-1.5 text-emerald-800 font-bold">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+<span class="">+₹180/Q vs local gate rate</span>
+</div>
+<span class="text-[11px] font-semibold text-slate-500">Secure Platform</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 5. SECTION 1: THE AGRICULTURAL MARKET PROBLEM -->
+<!-- ========================================================================= -->
+<section class="py-20 bg-white border-y border-brand-border" id="problem" style="background-color: #f2f7f2; background-image: radial-gradient(rgba(15, 56, 44, 0.08) 1px, transparent 1px); background-size: 24px 24px;">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="text-xs font-bold uppercase tracking-widest text-emerald-700">The Structural Bottleneck</span>
+<h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-800 mt-1">
+          The Challenge Across Traditional Mandis
+        </h2>
+<p class="text-slate-600 text-sm sm:text-base mt-3">
+          Smallholders and FPOs bear the burden of opaque intermediaries, fragmented quotes, and delayed settlements.
+        </p>
+</div>
+<!-- 4 Problem Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Challenge 1 -->
+<div class="bg-white/90 backdrop-blur-xs rounded-2xl p-6 border border-emerald-950/10 hover:border-rose-400 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="w-11 h-11 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M13 17h8m0 0V9m0 8l-8-8-4 4-6-6" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<h3 class="text-lg font-bold text-brand-800 mb-2">Unclear Price Discovery</h3>
+<p class="text-slate-600 text-sm leading-relaxed">
+              Fragmented modal rates and arbitrary middleman markups hide true real-time commodity value from farmers.
+            </p>
+</div>
+<div class="mt-4 pt-3 border-t border-slate-200/80 text-[11px] font-semibold text-rose-600 flex items-center space-x-1">
+<span class="">● Up to 18% margin lost</span>
+</div>
+</div>
+<!-- Challenge 2 -->
+<div class="bg-white/90 backdrop-blur-xs rounded-2xl p-6 border border-emerald-950/10 hover:border-amber-400 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<h3 class="text-lg font-bold text-brand-800 mb-2">Fragmented Buyer Linkages</h3>
+<p class="text-slate-600 text-sm leading-relaxed">
+              Smallholder farmers &amp; FPOs lack direct channels to reach corporate flour mills, maltsters, and food
+              processors.
+            </p>
+</div>
+<div class="mt-4 pt-3 border-t border-slate-200/80 text-[11px] font-semibold text-amber-700 flex items-center space-x-1">
+<span class="">● Limited buyer reach</span>
+</div>
+</div>
+<!-- Challenge 3 -->
+<div class="bg-white/90 backdrop-blur-xs rounded-2xl p-6 border border-emerald-950/10 hover:border-rose-400 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="w-11 h-11 rounded-xl bg-rose-100 text-rose-700 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<h3 class="text-lg font-bold text-brand-800 mb-2">Limited Bargaining Power</h3>
+<p class="text-slate-600 text-sm leading-relaxed">
+              Inability to compare neighboring APMC terminal prices forces distress selling at the immediate local gate.
+            </p>
+</div>
+<div class="mt-4 pt-3 border-t border-slate-200/80 text-[11px] font-semibold text-rose-600 flex items-center space-x-1">
+<span class="">● Distress sales at gate</span>
+</div>
+</div>
+<!-- Challenge 4 -->
+<div class="bg-brand-surface rounded-2xl p-6 border border-brand-border hover:border-amber-400 hover:shadow-lg transition-all duration-300 flex flex-col justify-between group">
+<div>
+<div class="w-11 h-11 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center mb-4 group-hover:scale-105 transition-transform">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" stroke-linecap="round" stroke-linejoin="round">
+</path>
+</svg>
+</div>
+<h3 class="text-lg font-bold text-brand-800 mb-2">Logistics &amp; Settlement Risk</h3>
+<p class="text-slate-600 text-sm leading-relaxed">
+              Delayed weighment slips, transit disputes, and indefinite payment cycles without escrow guarantees.
+            </p>
+</div>
+<div class="mt-4 pt-3 border-t border-slate-200/80 text-[11px] font-semibold text-amber-700 flex items-center space-x-1">
+<span class="">● 15–45 day payment lags</span>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 6. SECTION 2: HOW AGRIPULSE WORKS (THE 3-STEP FLOW) -->
+<!-- ========================================================================= -->
+<section class="py-20 bg-brand-surface" id="how-it-works" style="background-color: #fbfdfa;">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="text-xs font-bold uppercase tracking-widest text-emerald-700">Streamlined Architecture</span>
+<h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-800 mt-1">
+          How AgriPulse Powers Better Market Outcomes
+        </h2>
+<p class="text-slate-600 text-sm sm:text-base mt-3">
+          A synchronized, transparent 3-step engine engineered for zero intermediary friction.
+        </p>
+</div>
+<!-- 3 Connected Milestone Cards Grid -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
+<!-- Step 1: Discover -->
+<div class="relative bg-white rounded-2xl p-8 border border-brand-border hover:border-brand-emerald shadow-sm hover:shadow-xl transition-all duration-300">
+<div class="flex items-center justify-between mb-6">
+<span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded">
+              Phase 01
+            </span>
+<span class="w-9 h-9 rounded-xl bg-brand-800 text-white font-heading font-bold flex items-center justify-center text-sm shadow-sm">
+              1
+            </span>
+</div>
+<h3 class="font-heading text-xl font-bold text-brand-800 mb-3">Discover</h3>
+<p class="text-slate-600 text-sm leading-relaxed mb-6">
+            Real-time modal prices across 48+ mandis, predictive arrival volumes, and historical price parity radar at
+            your fingertips.
+          </p>
+<div class="p-3 bg-brand-surface rounded-xl border border-brand-border text-xs text-slate-600 space-y-1.5">
+<div class="flex justify-between font-medium">
+<span class="">Multi-Mandi Radar:</span>
+<span class="text-brand-800 font-bold">48 APMC Hubs</span>
+</div>
+<div class="flex justify-between font-medium">
+<span class="">Price Trend Signals:</span>
+<span class="text-emerald-700 font-bold">Modal Index</span>
+</div>
+</div>
+</div>
+<!-- Step 2: Match -->
+<div class="relative bg-white rounded-2xl p-8 border border-brand-border hover:border-brand-emerald shadow-sm hover:shadow-xl transition-all duration-300">
+<div class="flex items-center justify-between mb-6">
+<span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded">
+              Phase 02
+            </span>
+<span class="w-9 h-9 rounded-xl bg-brand-800 text-white font-heading font-bold flex items-center justify-center text-sm shadow-sm">
+              2
+            </span>
+</div>
+<h3 class="font-heading text-xl font-bold text-brand-800 mb-3">Match</h3>
+<p class="text-slate-600 text-sm leading-relaxed mb-6">
+            Algorithmically pair assayed produce lots with verified institutional buyer mandates by grade, volume, and
+            transport distance.
+          </p>
+<div class="p-3 bg-brand-surface rounded-xl border border-brand-border text-xs text-slate-600 space-y-1.5">
+<div class="flex justify-between font-medium">
+<span class="">Lot Compatibility:</span>
+<span class="text-brand-800 font-bold">Grade A / B Assayed</span>
+</div>
+<div class="flex justify-between font-medium">
+<span class="">Counterparty:</span>
+<span class="text-emerald-700 font-bold">100% KYC Verified</span>
+</div>
+</div>
+</div>
+<!-- Step 3: Sell Smarter -->
+<div class="relative bg-white rounded-2xl p-8 border border-brand-border hover:border-brand-emerald shadow-sm hover:shadow-xl transition-all duration-300">
+<div class="flex items-center justify-between mb-6">
+<span class="text-xs font-bold uppercase tracking-wider text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded">
+              Phase 03
+            </span>
+<span class="w-9 h-9 rounded-xl bg-brand-800 text-white font-heading font-bold flex items-center justify-center text-sm shadow-sm">
+              3
+            </span>
+</div>
+<h3 class="font-heading text-xl font-bold text-brand-800 mb-3">Sell Smarter</h3>
+<p class="text-slate-600 text-sm leading-relaxed mb-6">
+            Lock binding counter-offers with escrow-backed bank settlement, digital weighment slips, and scheduled
+            farm-gate dispatch.
+          </p>
+<div class="p-3 bg-brand-surface rounded-xl border border-brand-border text-xs text-slate-600 space-y-1.5">
+<div class="flex justify-between font-medium">
+<span class="">Settlement Guarantee:</span>
+<span class="text-brand-800 font-bold">Escrow Funded</span>
+</div>
+<div class="flex justify-between font-medium">
+<span class="">Transit &amp; Weight:</span>
+<span class="text-emerald-700 font-bold">Digital APMC Slip</span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 7. SECTION 3: LIVE MARKET INTELLIGENCE PREVIEW (HIGH-FIDELITY SHOWCASE) -->
+<!-- ========================================================================= -->
+<section class="py-20 bg-white" id="market-intelligence" style="background-color: #ecf3ec; background-image: linear-gradient(to right, rgba(15, 56, 44, 0.04) 1px, transparent 1px), linear-gradient(to bottom, rgba(15, 56, 44, 0.04) 1px, transparent 1px); background-size: 28px 28px;">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row md:items-end justify-between mb-10">
+<div>
+<span class="text-xs font-bold uppercase tracking-widest text-emerald-700">Analytical Clarity</span>
+<h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-800 mt-1">
+            Real-Time Market Intelligence
+          </h2>
+<p class="text-slate-600 text-sm sm:text-base mt-2">
+            Comprehensive mandi comparisons, price volatility signals, and verified arrival telemetry.
+          </p>
+</div>
+<div class="mt-4 md:mt-0 flex items-center space-x-2 text-xs font-semibold text-emerald-900 bg-emerald-50 px-3.5 py-2 rounded-lg border border-emerald-200">
+<span class="w-2 h-2 rounded-full bg-emerald-500 animate-pulse"></span>
+<span class="">Gujarat &amp; MP Central APMC Corridor • Live Telemetry</span>
+</div>
+</div>
+<!-- Main Intelligence Canvas Container -->
+<div class="bg-brand-surface rounded-3xl p-6 sm:p-8 border border-brand-border shadow-sm space-y-6">
+<!-- Filter Bar with Commodity Selector Pills -->
+<div class="flex flex-wrap items-center justify-between gap-4 pb-6 border-b border-brand-border">
+<div class="flex flex-wrap items-center gap-2" id="commodityPills">
+<span class="text-xs font-bold text-slate-400 mr-2 uppercase">Select Commodity:</span>
+<button class="commodity-pill active px-4 py-1.5 rounded-lg text-xs font-semibold bg-brand-800 text-white shadow-xs transition" data-crop="wheat">
+              Sharbati Wheat (Grade A)
+            </button>
+<button class="commodity-pill px-4 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition" data-crop="rice">
+              Basmati Rice (1121)
+            </button>
+<button class="commodity-pill px-4 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition" data-crop="maize">
+              Yellow Maize
+            </button>
+<button class="commodity-pill px-4 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition" data-crop="onion">
+              Nashik Onion
+            </button>
+<button class="commodity-pill px-4 py-1.5 rounded-lg text-xs font-semibold bg-white text-slate-700 hover:bg-slate-100 border border-slate-200 transition" data-crop="chana">
+              Desi Chana
+            </button>
+</div>
+<div class="text-xs text-slate-500 font-medium">
+            Refreshed 12m ago • Terminal Grade 01
+          </div>
+</div>
+<!-- 4 Fast Metrics KPIs -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+<div class="bg-white border border-brand-border p-4 rounded-xl shadow-2xs">
+<div class="text-xs text-slate-500 font-medium">Regional Modal Benchmark</div>
+<div class="text-2xl font-black text-brand-800 mt-1" id="kpiModalPrice">₹2,480 / Q</div>
+<div class="text-xs font-semibold text-emerald-600 mt-1">▲ +5.6% vs last week (Bullish)</div>
+</div>
+<div class="bg-white border border-brand-border p-4 rounded-xl shadow-2xs">
+<div class="text-xs text-slate-500 font-medium">Buyer Procurement Demand</div>
+<div class="text-2xl font-black text-brand-800 mt-1">88 / 100</div>
+<div class="text-xs font-semibold text-emerald-700 mt-1">42 Active Purchase Inquiries</div>
+</div>
+<div class="bg-white border border-brand-border p-4 rounded-xl shadow-2xs">
+<div class="text-xs text-slate-500 font-medium">Daily Corridor Inflow</div>
+<div class="text-2xl font-black text-brand-800 mt-1">4,020 MT</div>
+<div class="text-xs font-semibold text-slate-600 mt-1">Moderate Daily Inflow Rate</div>
+</div>
+<div class="bg-emerald-50 border border-emerald-200 p-4 rounded-xl shadow-2xs">
+<div class="text-xs text-emerald-800 font-bold uppercase">Assayed Premium</div>
+<div class="text-2xl font-black text-brand-800 mt-1">+₹140 / Q</div>
+<div class="text-xs font-semibold text-emerald-700 mt-1">Farm Gate Direct Dispatch</div>
+</div>
+</div>
+<!-- Visual Trend Graph & Multi-Mandi Comparison Table Grid -->
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-6 pt-2">
+<!-- Left: Real-time Price Chart & Modal Projection Graph (7 cols) -->
+<div class="lg:col-span-7 bg-white border border-brand-border rounded-2xl p-5 shadow-2xs">
+<div class="flex items-center justify-between mb-4">
+<div>
+<h4 class="text-sm font-bold text-brand-800">30-Day Historical vs AI-Predicted Arrival Parity</h4>
+<p class="text-[11px] text-slate-500">Vadodara &amp; Central Mandi Corridor (₹ per Quintal)</p>
+</div>
+<div class="flex items-center space-x-3 text-[11px] font-semibold text-slate-600">
+<span class="flex items-center space-x-1">
+<span class="w-3 h-0.5 bg-brand-800 inline-block"></span>
+<span class="">Actual</span>
+</span>
+<span class="flex items-center space-x-1">
+<span class="w-3 h-0.5 bg-emerald-500 border-t border-dashed inline-block"></span>
+<span class="">AI Forecast</span>
+</span>
+</div>
+</div>
+<!-- SVG Smooth Projection Curve -->
+<div class="w-full h-52 sm:h-56 relative">
+<svg class="w-full h-full overflow-visible" viewbox="0 0 520 190">
+<!-- Horizontal Grid Lines -->
+<line stroke="#e2e8f0" stroke-dasharray="3 3" x1="0" x2="520" y1="30" y2="30"></line>
+<line stroke="#e2e8f0" stroke-dasharray="3 3" x1="0" x2="520" y1="80" y2="80"></line>
+<line stroke="#e2e8f0" stroke-dasharray="3 3" x1="0" x2="520" y1="130" y2="130"></line>
+<line stroke="#cbd5e1" x1="0" x2="520" y1="180" y2="180"></line>
+<!-- Gradient Fill Under Actual Curve -->
+<defs>
+<lineargradient id="chartGlow" x1="0" x2="0" y1="0" y2="1">
+<stop offset="0%" stop-color="#10b981" stop-opacity="0.25"></stop>
+<stop offset="100%" stop-color="#ffffff" stop-opacity="0"></stop>
+</lineargradient>
+</defs>
+<path d="M 15 145 Q 140 125, 240 95 T 380 65 L 380 180 L 15 180 Z" fill="url(#chartGlow)"></path>
+<!-- Actual Curve -->
+<path d="M 15 145 Q 140 125, 240 95 T 380 65" fill="none" stroke="#0f382c" stroke-linecap="round" stroke-width="3"></path>
+<!-- Predicted Curve -->
+<path d="M 380 65 Q 440 50, 505 40" fill="none" stroke="#10b981" stroke-dasharray="4 4" stroke-linecap="round" stroke-width="2.5"></path>
+<!-- Data Points -->
+<circle cx="15" cy="145" fill="#0f382c" r="4"></circle>
+<circle cx="140" cy="120" fill="#0f382c" r="4"></circle>
+<circle cx="260" cy="90" fill="#0f382c" r="4"></circle>
+<circle cx="380" cy="65" fill="#10b981" r="5" stroke="#ffffff" stroke-width="2"></circle>
+<circle cx="505" cy="40" fill="#10b981" r="4"></circle>
+<!-- Interactive Floating Tooltip Annotation on Current Point -->
+<g transform="translate(325, 18)">
+<rect fill="#0f382c" filter="drop-shadow(0 2px 4px rgba(0,0,0,0.15))" height="36" rx="6" width="110">
+</rect>
+<text fill="#a7f3d0" font-size="9" font-weight="bold" text-anchor="middle" x="55" y="15">TODAY'S
+                    RATE</text>
+<text fill="#ffffff" font-size="11" font-weight="bold" text-anchor="middle" x="55" y="29">₹2,480 / Q
+                    (+5.6%)</text>
+</g>
+</svg>
+</div>
+<!-- X-axis Labels -->
+<div class="flex justify-between text-[11px] text-slate-500 font-medium px-2 mt-2">
+<span class="">Day 1 (₹2,290)</span>
+<span class="">Day 10 (₹2,340)</span>
+<span class="">Day 20 (₹2,410)</span>
+<span class="text-brand-800 font-bold">Today (₹2,480)</span>
+<span class="text-emerald-700 font-bold">Day 30 Est. (₹2,540)</span>
+</div>
+</div>
+<!-- Right: Multi-Mandi Price Comparison Table (5 cols) -->
+<div class="lg:col-span-5 bg-white border border-brand-border rounded-2xl p-5 shadow-2xs flex flex-col justify-between">
+<div>
+<div class="flex items-center justify-between mb-3.5">
+<h4 class="text-sm font-bold text-brand-800">Multi-Mandi Price Comparison</h4>
+<span class="text-[10px] bg-slate-100 text-slate-700 px-2 py-0.5 rounded font-semibold border border-slate-200">
+                  50km Corridor
+                </span>
+</div>
+<!-- Comparison Rows -->
+<div class="space-y-2.5 text-xs">
+<!-- Mandi 1: Vadodara -->
+<div class="p-3 bg-emerald-50/50 rounded-xl border border-emerald-300 flex justify-between items-center">
+<div>
+<div class="flex items-center space-x-1.5">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="font-bold text-brand-800">Vadodara Mandi (Primary)</span>
+</div>
+<span class="text-[11px] text-slate-500">Arrival: 1,420 MT • Grade A</span>
+</div>
+<div class="text-right">
+<span class="font-extrabold text-emerald-800 block text-sm">₹2,480 / Q</span>
+<span class="text-[10px] font-bold text-emerald-700">+₹140 premium (Bullish)</span>
+</div>
+</div>
+<!-- Mandi 2: Anand Regional Hub -->
+<div class="p-3 bg-white rounded-xl border border-slate-200 flex justify-between items-center hover:border-slate-300">
+<div>
+<span class="font-semibold text-slate-800 block">Anand Regional Hub</span>
+<span class="text-[11px] text-slate-500">Arrival: 610 MT • Steady</span>
+</div>
+<div class="text-right">
+<span class="font-bold text-slate-800 block">₹2,445 / Q</span>
+<span class="text-[10px] font-semibold text-emerald-600">+₹105 premium</span>
+</div>
+</div>
+<!-- Mandi 3: Ahmedabad Agro Terminal -->
+<div class="p-3 bg-white rounded-xl border border-slate-200 flex justify-between items-center hover:border-slate-300">
+<div>
+<span class="font-semibold text-slate-800 block">Ahmedabad Agro Terminal</span>
+<span class="text-[11px] text-slate-500">Arrival: 890 MT • High Inflow</span>
+</div>
+<div class="text-right">
+<span class="font-bold text-slate-800 block">₹2,410 / Q</span>
+<span class="text-[10px] font-semibold text-emerald-600">+₹70 premium</span>
+</div>
+</div>
+<!-- Mandi 4: Sehore Mandi Hub -->
+<div class="p-3 bg-white rounded-xl border border-slate-200 flex justify-between items-center hover:border-slate-300">
+<div>
+<span class="font-semibold text-slate-800 block">Sehore Mandi Hub</span>
+<span class="text-[11px] text-slate-500">Arrival: 1,100 MT • Moderate</span>
+</div>
+<div class="text-right">
+<span class="font-bold text-slate-800 block">₹2,390 / Q</span>
+<span class="text-[10px] font-semibold text-slate-500">+₹50 baseline</span>
+</div>
+</div>
+</div>
+</div>
+<p class="text-[10px] text-slate-400 mt-4 leading-tight">
+              *Verified quotes exclude local statutory market cess; reflects audited trade commitments.
+            </p>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 8. SECTION 4: FARMER <-> BUYER DUAL-SIDED LIQUIDITY ARCHITECTURE -->
+<!-- ========================================================================= -->
+<section class="py-20 bg-brand-surface border-y border-brand-border" id="dual-sided" style="background-color: #f6f9f5;">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="text-center max-w-2xl mx-auto mb-12">
+<span class="text-xs font-bold uppercase tracking-widest text-emerald-700">Two-Sided Market Liquidity</span>
+<h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-800 mt-1">
+          Designed for Both Ends of the Agricultural Supply Chain
+        </h2>
+<p class="text-slate-600 text-sm sm:text-base mt-3">
+          Empowering producers with institutional bargaining power while giving corporate buyers dependable, verified
+          sourcing.
+        </p>
+</div>
+<!-- Architectural Data Flow Diagram -->
+<div class="mb-12 p-4 bg-white rounded-2xl border border-brand-border shadow-xs max-w-4xl mx-auto">
+<div class="flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left text-xs font-bold">
+<div class="flex items-center space-x-2 bg-emerald-50 text-brand-800 px-4 py-2.5 rounded-xl border border-emerald-200">
+<span class="w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="">FARMER &amp; FPO COLLECTIVES</span>
+</div>
+<div class="flex items-center space-x-1 text-slate-400">
+<span class="font-mono text-emerald-600">──────►</span>
+<div class="bg-brand-800 text-brand-mint px-3 py-1.5 rounded-lg text-[11px] font-mono shadow-xs">
+              AGRIPULSE APMC ENGINE
+            </div>
+<span class="font-mono text-emerald-600">──────►</span>
+</div>
+<div class="flex items-center space-x-2 bg-teal-50 text-brand-800 px-4 py-2.5 rounded-xl border border-teal-200">
+<span class="w-2 h-2 rounded-full bg-teal-500"></span>
+<span class="">INSTITUTIONAL VERIFIED BUYERS</span>
+</div>
+</div>
+</div>
+<!-- Two Comprehensive Cards -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+<!-- For Farmers & FPOs -->
+<div class="bg-white rounded-3xl p-8 border border-brand-border shadow-sm flex flex-col justify-between hover:border-brand-emerald transition-all duration-300">
+<div>
+<div class="flex items-center justify-between mb-5">
+<div class="w-12 h-12 rounded-xl bg-emerald-100 text-brand-800 flex items-center justify-center">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-xs font-bold uppercase tracking-wider bg-emerald-100 text-emerald-800 px-3 py-1 rounded-full">
+                Producers &amp; Collectives
+              </span>
+</div>
+<h3 class="font-heading text-2xl font-bold text-brand-800 mb-3">For Farmers &amp; FPOs</h3>
+<p class="text-slate-600 text-sm mb-6 leading-relaxed">
+              Discover better selling opportunities, create assayed produce lots, compare institutional counter-offers,
+              and protect hard-earned crop revenue without losing margins to intermediary cartels.
+            </p>
+<ul class="space-y-3 text-sm text-slate-700 mb-8">
+<li class="flex items-start space-x-3">
+<svg class="w-5 h-5 text-brand-emerald flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">Digital lot creation with moisture, foreign matter, and grade parameters.</span>
+</li>
+<li class="flex items-start space-x-3">
+<svg class="w-5 h-5 text-brand-emerald flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">Real-time price comparisons across neighboring regional APMC mandis.</span>
+</li>
+<li class="flex items-start space-x-3">
+<svg class="w-5 h-5 text-brand-emerald flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">Direct counter-offers from vetted food processors and institutional millers.</span>
+</li>
+<li class="flex items-start space-x-3">
+<svg class="w-5 h-5 text-brand-emerald flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">100% escrow-backed bank payout with dispute resolution protection.</span>
+</li>
+</ul>
+</div>
+<a class="inline-flex items-center text-sm font-bold text-brand-800 hover:text-brand-emerald group" href="farmer-login.html">
+<span class="">Explore Farmer Portal</span>
+<svg class="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+</div>
+<!-- For Institutional Buyers -->
+<div class="bg-white rounded-3xl p-8 border border-brand-border shadow-sm flex flex-col justify-between hover:border-brand-emerald transition-all duration-300">
+<div>
+<div class="flex items-center justify-between mb-5">
+<div class="w-12 h-12 rounded-xl bg-teal-100 text-brand-800 flex items-center justify-center">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<span class="text-xs font-bold uppercase tracking-wider bg-teal-100 text-teal-800 px-3 py-1 rounded-full">
+                Institutional Sourcing
+              </span>
+</div>
+<h3 class="font-heading text-2xl font-bold text-brand-800 mb-3">For Institutional Buyers</h3>
+<p class="text-slate-600 text-sm mb-6 leading-relaxed">
+              Find suitable farmer/FPO lots, verify digital quality assay certificates, and procure bulk quantities with
+              transparent logistics corridors and guaranteed delivery timelines.
+            </p>
+<ul class="space-y-3 text-sm text-slate-700 mb-8">
+<li class="flex items-start space-x-3">
+<svg class="w-5 h-5 text-brand-emerald flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">Direct procurement from aggregated FPO clusters and certified farmer networks.</span>
+</li>
+<li class="flex items-start space-x-3">
+<svg class="w-5 h-5 text-brand-emerald flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">Transparent lot testing, moisture grading, and assay documentation.</span>
+</li>
+<li class="flex items-start space-x-3">
+<svg class="w-5 h-5 text-brand-emerald flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">Streamlined logistics coordination and unalterable digital weighment slips.</span>
+</li>
+<li class="flex items-start space-x-3">
+<svg class="w-5 h-5 text-brand-emerald flex-shrink-0 mt-0.5" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+<span class="">Automated T+1 escrow payment release against confirmed delivery.</span>
+</li>
+</ul>
+</div>
+<a class="inline-flex items-center text-sm font-bold text-brand-800 hover:text-brand-emerald group" href="buyer-login.html">
+<span class="">Explore Buyer Portal</span>
+<svg class="w-4 h-4 ml-1.5 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 5l7 7-7 7" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 9. SECTION 5: WHY AGRIPULSE (4 CORE PILLARS - ZERO UNRELATED BLOAT) -->
+<!-- ========================================================================= -->
+<section class="py-20 bg-white" id="why-agripulse" style="background-color: #eef5ee;">
+<div class="p-6 rounded-2xl bg-white border border-emerald-950/10 hover:border-brand-emerald hover:shadow-lg transition-all duration-200">
+<div class="text-center max-w-2xl mx-auto mb-16">
+<span class="text-xs font-bold uppercase tracking-widest text-emerald-700">Platform Pillars</span>
+<h2 class="font-heading text-3xl sm:text-4xl font-extrabold text-brand-800 mt-1">
+          Why AgriPulse
+        </h2>
+<p class="text-slate-600 text-sm sm:text-base mt-3">
+          Dedicated strictly to market linkages, price parity, and frictionless commodity transactions.
+        </p>
+</div>
+<!-- 4 Pillars Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+<!-- Pillar 1 -->
+<div class="p-6 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-emerald hover:shadow-lg transition-all duration-200">
+<div class="w-12 h-12 rounded-xl bg-emerald-100 text-brand-800 flex items-center justify-center mb-4">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<h3 class="font-heading text-lg font-bold text-brand-800 mb-2">1. Better Price Discovery</h3>
+<p class="text-slate-600 text-sm leading-relaxed">
+            Multi-mandi comparative index eliminating informational asymmetry across district borders and APMC
+            terminals.
+          </p>
+</div>
+<!-- Pillar 2 -->
+<div class="p-6 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-emerald hover:shadow-lg transition-all duration-200">
+<div class="w-12 h-12 rounded-xl bg-emerald-100 text-brand-800 flex items-center justify-center mb-4">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<h3 class="font-heading text-lg font-bold text-brand-800 mb-2">2. Verified Counterparties</h3>
+<p class="text-slate-600 text-sm leading-relaxed">
+            100% KYC-validated FPOs, registered flour mills, and institutional food processors with checked trading
+            histories.
+          </p>
+</div>
+<!-- Pillar 3 -->
+<div class="p-6 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-emerald hover:shadow-lg transition-all duration-200">
+<div class="w-12 h-12 rounded-xl bg-emerald-100 text-brand-800 flex items-center justify-center mb-4">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2m-6 9l2 2 4-4" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</div>
+<h3 class="font-heading text-lg font-bold text-brand-800 mb-2">3. Transparent Transactions</h3>
+<p class="text-slate-600 text-sm leading-relaxed">
+            Binding digital trade pacts with assay tolerances, unalterable weighment logs, and mutual dispute
+            protection.
+          </p>
+</div>
+<!-- Pillar 4 -->
+<div class="p-6 rounded-2xl bg-brand-surface border border-brand-border hover:border-brand-emerald hover:shadow-lg transition-all duration-200">
+<div class="w-12 h-12 rounded-xl bg-emerald-100 text-brand-800 flex items-center justify-center mb-4">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24">
+<path d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" stroke-linecap="round" stroke-linejoin="round">
+</path>
+</svg>
+</div>
+<h3 class="font-heading text-lg font-bold text-brand-800 mb-2">4. Coordinated Logistics &amp; Escrow</h3>
+<p class="text-slate-600 text-sm leading-relaxed">
+            Integrated APMC e-waybill pass, scheduled farm-gate vehicle corridors, and automated bank-guaranteed funds.
+          </p>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 10. SECTION 6: FINAL CONVERSION CTA -->
+<!-- ========================================================================= -->
+<section class="py-16 bg-brand-surface" id="cta">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="relative overflow-hidden bg-brand-950 rounded-3xl p-8 sm:p-12 lg:p-16 text-white shadow-2xl border border-brand-900">
+<!-- Ambient Glowing Background Decorator -->
+<div class="absolute -right-20 -bottom-20 w-96 h-96 bg-brand-emerald/15 rounded-full blur-3xl pointer-events-none">
+</div>
+<div class="absolute -left-20 -top-20 w-80 h-80 bg-emerald-600/10 rounded-full blur-3xl pointer-events-none">
+</div>
+<div class="relative z-10 flex flex-col lg:flex-row items-center justify-between gap-10">
+<div class="max-w-2xl text-center lg:text-left">
+<div class="inline-flex items-center space-x-2 bg-emerald-500/20 border border-emerald-400/30 px-3.5 py-1.5 rounded-full text-emerald-300 text-xs font-semibold mb-5">
+<span class="">National Agricultural Mandi Corridor</span>
+</div>
+<h2 class="font-heading text-3xl sm:text-4xl lg:text-5xl font-extrabold tracking-tight leading-tight">
+              Turn Your Produce Into a Better Market Opportunity.
+            </h2>
+<p class="text-slate-300 text-sm sm:text-base mt-4 max-w-xl">
+              Join thousands of farmers, FPOs, and certified agri-buyers discovering true market value and transparent
+              trade settlement.
+            </p>
+<div class="mt-4 text-[11px] font-medium text-emerald-400/90">
+              SIH26132 Mandi Gateway Architecture • Ministry of Agriculture &amp; Farmers Welfare Compliant
+            </div>
+</div>
+<!-- CTA Buttons -->
+<div class="flex flex-col sm:flex-row items-center gap-3.5 w-full sm:w-auto flex-shrink-0">
+<a class="w-full sm:w-auto inline-flex items-center justify-center space-x-2.5 bg-brand-mint hover:bg-emerald-400 text-brand-950 font-bold px-7 py-3.5 rounded-lg text-sm transition-all shadow-lg hover:shadow-brand-mint/20 transform hover:-translate-y-0.5" href="login.html">
+<span class="">Get Started on AgriPulse</span>
+<svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewbox="0 0 24 24">
+<path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path>
+</svg>
+</a>
+<a class="w-full sm:w-auto inline-flex items-center justify-center px-6 py-3.5 rounded-lg border border-slate-700 hover:border-slate-500 bg-white/5 hover:bg-white/10 text-white font-semibold text-sm transition" href="login.html">
+<span class="">Access Role Portal</span>
+</a>
+</div>
+</div>
+</div>
+</div>
+</section>
+<!-- ========================================================================= -->
+<!-- 11. FOOTER -->
+<!-- ========================================================================= -->
+<footer class="bg-[#061e16] border-t border-emerald-900/60 py-12 text-slate-300" id="footer">
+<div class="max-w-[1440px] mx-auto px-4 sm:px-6 lg:px-8">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center pb-8 border-b border-brand-border gap-6">
+<!-- Logo & Description -->
+<div>
+<div class="flex items-center space-x-2.5">
+<div class="w-7 h-7 rounded-lg bg-[#0f382c] flex items-center justify-center text-white shadow-sm flex-shrink-0">
+<span class="material-symbols-outlined text-[18px] text-[#22c55e]">eco</span></div><span class="text-xl font-bold tracking-tight text-white">Agri<span class="text-[#22c55e]">Pulse</span></span>
+</div>
+<p class="text-xs text-emerald-100/70 mt-2 max-w-sm">
+            Connecting farmers with better markets and transparent price discovery.
+          </p>
+</div>
+<!-- Links -->
+<div class="flex flex-wrap items-center gap-6 text-xs font-semibold text-emerald-100/80">
+<a class="hover:text-brand-mint transition" href="#market-intelligence">Price Discovery</a>
+<a class="hover:text-brand-mint transition" href="#how-it-works">How It Works</a>
+<a class="hover:text-brand-mint transition" href="#market-intelligence">Mandi Intelligence</a>
+<a class="hover:text-brand-mint transition" href="buyer-login.html">Buyer Portal</a>
+<a class="hover:text-brand-mint transition" href="farmer-login.html">Farmer Portal</a>
+<a class="hover:text-brand-mint transition text-emerald-300" href="./login.html">Login</a>
+</div>
+</div>
+<!-- Copyright & SIH Metadata Bottom Bar -->
+<div class="pt-6 flex flex-col sm:flex-row items-center justify-between text-xs text-emerald-200/50 gap-3 border-t border-emerald-900/40">
+<div class="">
+          © 2026 AgriPulse. All rights reserved. • SIH26132 Mandi Gateway Architecture
+        </div>
+<div class="flex items-center space-x-2 text-[11px]">
+<span class="inline-block w-2 h-2 rounded-full bg-emerald-500"></span>
+<span class="">Market data connection</span>
+<span class="">•</span>
+<span class="">Procurement Framework</span>
+</div>
+</div>
+</div>
+</footer>
+<!-- ========================================================================= -->
+<!-- 12. JAVASCRIPT & INTERACTIONS -->
+<!-- ========================================================================= -->
+<script>
+    // 1. Drawer open & close functionality
+    const drawerToggleBtn = document.getElementById('drawerToggleBtn');
+    const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+    const sideDrawer = document.getElementById('sideDrawer');
+    const drawerOverlay = document.getElementById('drawerOverlay');
+    const drawerLinks = document.querySelectorAll('.drawer-link');
+
+    function isDrawerOpen() {
+      return !sideDrawer.classList.contains('-translate-x-full');
+    }
+
+    function openDrawer() {
+      sideDrawer.classList.remove('-translate-x-full');
+      drawerOverlay.classList.remove('opacity-0', 'pointer-events-none');
+      document.body.classList.add('overflow-hidden');
+      if (drawerToggleBtn) drawerToggleBtn.setAttribute('aria-expanded', 'true');
+    }
+
+    function closeDrawer() {
+      sideDrawer.classList.add('-translate-x-full');
+      drawerOverlay.classList.add('opacity-0', 'pointer-events-none');
+      document.body.classList.remove('overflow-hidden');
+      if (drawerToggleBtn) drawerToggleBtn.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleDrawer() {
+      if (isDrawerOpen()) {
+        closeDrawer();
+      } else {
+        openDrawer();
+      }
+    }
+
+    if (drawerToggleBtn) {
+      drawerToggleBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        toggleDrawer();
+      });
+    }
+
+    if (drawerCloseBtn) {
+      drawerCloseBtn.addEventListener('click', closeDrawer);
+    }
+
+    if (drawerOverlay) {
+      drawerOverlay.addEventListener('click', closeDrawer);
+    }
+
+    // Close on Escape key press
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && isDrawerOpen()) {
+        closeDrawer();
+      }
+    });
+
+    // Close drawer when any internal navigation link is clicked
+    drawerLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        closeDrawer();
+      });
+    });
+
+    // 2. Interactive Commodity Tabs in Market Intelligence Section
+    const commodityPills = document.querySelectorAll('.commodity-pill');
+    const kpiModalPrice = document.getElementById('kpiModalPrice');
+
+    const commodityPrices = {
+      wheat: '₹2,480 / Q',
+      rice: '₹3,420 / Q',
+      maize: '₹2,240 / Q',
+      onion: '₹2,850 / Q',
+      chana: '₹5,400 / Q'
+    };
+
+    commodityPills.forEach(pill => {
+      pill.addEventListener('click', () => {
+        commodityPills.forEach(p => {
+          p.classList.remove('bg-brand-800', 'text-white', 'shadow-xs');
+          p.classList.add('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+        });
+        pill.classList.remove('bg-white', 'text-slate-700', 'border', 'border-slate-200');
+        pill.classList.add('bg-brand-800', 'text-white', 'shadow-xs');
+
+        const crop = pill.dataset.crop;
+        if (crop && commodityPrices[crop] && kpiModalPrice) {
+          kpiModalPrice.textContent = commodityPrices[crop];
+        }
+      });
+    });
+  </script>
+<script src="assets/js/app.js"></script>
+</body>
+</html>

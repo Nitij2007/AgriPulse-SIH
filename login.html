@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+
+<html lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>AgriPulse - Login &amp; Access Portal</title>
+<script src="https://cdn.tailwindcss.com"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap" rel="stylesheet"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              DEFAULT: '#0f382c',
+              dark: '#0a271e',
+              surface: '#f9f9ff',
+              emerald: '#059669',
+              accent: '#10b981',
+              lightGreen: '#e6f4ea',
+              muted: '#4b5563',
+              border: '#e2e8f0',
+            }
+          }
+        }
+      }
+    }
+  </script>
+<style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background: radial-gradient(circle at 10% 10%, rgba(16, 185, 129, 0.05) 0%, transparent 40%),
+                  radial-gradient(circle at 90% 90%, rgba(15, 56, 44, 0.04) 0%, transparent 40%),
+                  #f8faf9;
+    }
+    .step-transition {
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .custom-shadow {
+      box-shadow: 0 10px 30px -5px rgba(15, 56, 44, 0.07), 0 4px 6px -2px rgba(15, 56, 44, 0.03);
+    }
+    .card-hover:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 28px -4px rgba(15, 56, 44, 0.1), 0 6px 12px -2px rgba(15, 56, 44, 0.04);
+    }
+  </style>
+<link href="assets/css/shared.css" rel="stylesheet"/></head>
+<body class="min-h-screen flex flex-col justify-between text-slate-800 antialiased selection:bg-emerald-100 selection:text-emerald-900">
+<!-- Top Navigation Bar -->
+<header class="w-full border-b border-slate-200/80 bg-white/90 backdrop-blur-md sticky top-0 z-30">
+<div class="max-w-6xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between">
+<!-- Logo and Back to Landing -->
+<a class="flex items-center gap-3 group focus:outline-none focus:ring-2 focus:ring-emerald-500 rounded-lg p-1" href="index.html" title="AgriPulse Home">
+<div class="w-9 h-9 rounded-lg bg-[#0f382c] flex items-center justify-center text-white shadow-sm group-hover:bg-[#124536] transition-colors">
+<span class="material-symbols-outlined text-[20px] text-emerald-400">eco</span>
+</div>
+<div class="flex flex-col">
+<div class="flex items-center gap-1.5">
+<span class="text-lg font-bold text-slate-900 tracking-tight leading-none">Agri<span class="text-emerald-700">Pulse</span></span>
+</div>
+<span class="text-[10px] font-medium text-slate-400 tracking-wider uppercase leading-tight mt-0.5">SIH26132 Mandi Gateway</span>
+</div>
+</a>
+<!-- Back to Landing Page Link -->
+<a class="inline-flex items-center gap-1.5 text-xs font-semibold text-slate-600 hover:text-emerald-700 transition-colors py-1.5 px-3 rounded-md hover:bg-slate-100" href="index.html">
+<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24">
+<path d="m15 18-6-6 6-6"></path>
+</svg>
+<span class="">Back to Landing Page</span>
+</a>
+</div>
+</header>
+<!-- Main Container -->
+<main class="flex-1 flex items-center justify-center p-4 sm:p-6 md:p-8">
+<div class="w-full max-w-xl">
+<!-- VIEW 1: ROLE SELECTION -->
+<div class="step-transition bg-white border border-slate-200/90 rounded-2xl p-6 sm:p-8 custom-shadow" id="view-role-selection">
+<!-- Header badge & title -->
+<div class="text-center mb-6">
+<div class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-emerald-50 border border-emerald-200/70 text-emerald-800 text-[11px] font-semibold mb-2.5">
+<span class="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse"></span>
+            SIH 2026 Procurement &amp; Linkage Protocol
+          </div>
+<h1 class="text-2xl sm:text-[26px] font-bold text-slate-900 tracking-tight">How would you like to continue?</h1>
+<p class="text-xs sm:text-sm text-slate-500 mt-1.5 max-w-md mx-auto">
+            Select your account role to access real-time price discovery, lot trading, or institutional crop procurement.
+          </p>
+</div>
+<!-- Role Options -->
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-4 my-6">
+<!-- Card 1: Farmer / FPO -->
+<a class="card-hover border border-slate-200 hover:border-emerald-500/70 rounded-xl p-5 bg-gradient-to-b from-white to-[#fbfdfc] flex flex-col justify-between transition-all group cursor-pointer block" href="farmer-login.html"><div><div class="flex items-center justify-between mb-3.5"><div class="w-11 h-11 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-emerald-700 group-hover:bg-emerald-600 group-hover:text-white transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M4 19a2 2 0 1 0 4 0 2 2 0 0 0-4 0"></path><circle cx="7" cy="10" r="2"></circle><path d="M9 19h5"></path><circle cx="17" cy="19" r="2"></circle><path d="M19 19v-4a2 2 0 0 0-2-2h-3l-2.5-4h-3.5"></path><path d="M6 14h6"></path></svg></div><span class="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-emerald-100/70 text-emerald-800">Producer</span></div><h2 class="text-base font-bold text-slate-900 group-hover:text-emerald-800 transition-colors">FARMER / FPO</h2><p class="text-xs text-slate-500 mt-2 leading-relaxed">Discover market prices, create produce lots, find verified buyers and manage selling opportunities.</p></div><div class="w-full mt-5 py-2.5 px-3.5 rounded-lg bg-[#0f382c] hover:bg-[#144838] active:bg-[#09241c] text-white text-xs font-semibold tracking-wide flex items-center justify-center gap-1.5 transition-all shadow-sm group-hover:shadow"><span class="">Continue as Farmer / FPO</span><svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></svg></div></a>
+<!-- Card 2: Buyer -->
+<a class="card-hover border border-slate-200 hover:border-emerald-500/70 rounded-xl p-5 bg-gradient-to-b from-white to-[#fbfdfc] flex flex-col justify-between transition-all group cursor-pointer block" href="buyer-login.html"><div><div class="flex items-center justify-between mb-3.5"><div class="w-11 h-11 rounded-lg bg-slate-100 border border-slate-200 flex items-center justify-center text-slate-700 group-hover:bg-[#0f382c] group-hover:text-white transition-colors"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M3 9h18v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V9Z"></path><path d="m3 9 2.45-4.9A2 2 0 0 1 7.24 3h9.52a2 2 0 0 1 1.8 1.1L21 9"></path><path d="M12 3v6"></path></svg></div><span class="text-[10px] font-bold tracking-wider uppercase px-2 py-0.5 rounded bg-slate-100 text-slate-700">Institutional</span></div><h2 class="text-base font-bold text-slate-900 group-hover:text-emerald-800 transition-colors">BUYER</h2><p class="text-xs text-slate-500 mt-2 leading-relaxed">Post sourcing requirements, discover suitable farmer lots and manage procurement.</p></div><div class="w-full mt-5 py-2.5 px-3.5 rounded-lg bg-slate-900 hover:bg-[#0f382c] text-white text-xs font-semibold tracking-wide flex items-center justify-center gap-1.5 transition-all shadow-sm group-hover:shadow"><span class="">Continue as Buyer</span><svg class="w-3.5 h-3.5 transition-transform group-hover:translate-x-0.5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.2" viewbox="0 0 24 24"><path d="m9 18 6-6-6-6"></path></svg></div></a>
+</div>
+<!-- Compliance note -->
+<div class="pt-4 border-t border-slate-100 flex items-center justify-center gap-2 text-[11px] text-slate-400">
+<svg class="w-3.5 h-3.5 text-emerald-600" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24">
+<path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+</svg>
+<span class="">Direct APMC Parity &amp; Escrow Protected Institutional Off-Take</span>
+</div>
+</div>
+<!-- VIEW 2: FARMER / FPO LOGIN FORM -->
+<!-- VIEW 3: BUYER LOGIN FORM -->
+</div>
+</main>
+<!-- Footer Info -->
+<!-- Interactivity Script -->
+<script>
+    const roleSelectionView = document.getElementById('view-role-selection');
+    const farmerLoginView = document.getElementById('view-farmer-login');
+    const buyerLoginView = document.getElementById('view-buyer-login');
+
+    function selectRole(role) {
+      roleSelectionView.classList.add('hidden');
+      if (role === 'farmer') {
+        farmerLoginView.classList.remove('hidden');
+        buyerLoginView.classList.add('hidden');
+        // Conceptual route update: /login/farmer
+        if (window.history.pushState) {
+          window.history.pushState({ role: 'farmer' }, 'Farmer Login - AgriPulse', '#/login/farmer');
+        }
+      } else if (role === 'buyer') {
+        buyerLoginView.classList.remove('hidden');
+        farmerLoginView.classList.add('hidden');
+        // Conceptual route update: /login/buyer
+        if (window.history.pushState) {
+          window.history.pushState({ role: 'buyer' }, 'Buyer Login - AgriPulse', '#/login/buyer');
+        }
+      }
+    }
+
+    function showRoleSelection() {
+      farmerLoginView.classList.add('hidden');
+      buyerLoginView.classList.add('hidden');
+      roleSelectionView.classList.remove('hidden');
+      if (window.history.pushState) {
+        window.history.pushState({ role: null }, 'Login - AgriPulse', '#/login');
+      }
+    }
+
+    function handleFarmerSubmit(e) {
+      e.preventDefault();
+      // Directly routes to /farmer/dashboard after successful login
+      showToast('Authenticated successfully! Redirecting to /farmer/dashboard...', 'success');
+    }
+
+    function handleBuyerSubmit(e) {
+      e.preventDefault();
+      // Directly routes to /buyer/dashboard after successful login
+      showToast('Authenticated successfully! Redirecting to /buyer/dashboard...', 'success');
+    }
+
+    // Check initial hash if any
+    window.addEventListener('load', () => {
+      if (window.location.hash === '#/login/farmer') {
+        selectRole('farmer');
+      } else if (window.location.hash === '#/login/buyer') {
+        selectRole('buyer');
+      }
+    });
+  </script>
+<script src="assets/js/app.js"></script></body></html>

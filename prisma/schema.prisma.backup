@@ -1,0 +1,262 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model User {
+  id                        String   @id @default(uuid())
+  name                      String
+  email                     String?  @unique
+  phone                     String?  @unique
+  passwordHash              String
+  role                      Role
+  isVerified                Boolean  @default(false)
+  verificationCodeHash      String?
+  verificationCodeExpiresAt DateTime?
+  createdAt                 DateTime @default(now())
+  updatedAt                 DateTime @updatedAt
+
+  farmerProfile FarmerProfile?
+  buyerProfile  BuyerProfile?
+  offers        Offer[]
+  grievances    Grievance[]
+}
+
+enum Role {
+  FARMER
+  BUYER
+  ADMIN
+}
+
+model FarmerProfile {
+  id           String   @id @default(uuid())
+  userId       String   @unique
+  user         User     @relation(fields: [userId], references: [id])
+  name         String
+  aadhaarLast4 String?
+  fpoName      String?
+  apmcCluster  String?
+  location     String?
+  state        String?
+  city         String?
+  avatarUrl    String?
+
+  lots         ProduceLot[]
+}
+
+model BuyerProfile {
+  id              String   @id @default(uuid())
+  userId          String   @unique
+  user            User     @relation(fields: [userId], references: [id])
+  companyName     String
+  gstin           String?
+  contactPerson   String?
+  procurementType String?
+  location        String?
+  state           String?
+  city            String?
+  avatarUrl       String?
+
+  requirements    BuyerRequirement[]
+}
+
+model Commodity {
+  id           String   @id @default(uuid())
+  name         String
+  category     String
+  mspPrice     Float?
+  unit         String
+
+  lots         ProduceLot[]
+  requirements BuyerRequirement[]
+  marketPrices MarketPrice[]
+}
+
+model ProduceLot {
+  id           String   @id @default(uuid())
+  farmerId     String
+  farmer       FarmerProfile @relation(fields: [farmerId], references: [id])
+  commodityId  String
+  commodity    Commodity @relation(fields: [commodityId], references: [id])
+  quantity     Float
+  unit         String
+  grade        String?
+  moisturePct  Float?
+  location     String?
+  status       LotStatus @default(LISTED)
+  listingPrice Float?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  qualityTests LotQuality[]
+  transactions Transaction[]
+  offers       Offer[]
+}
+
+enum LotStatus {
+  LISTED
+  MATCHED
+  SOLD
+  EXPIRED
+}
+
+model LotQuality {
+  id          String   @id @default(uuid())
+  lotId       String
+  lot         ProduceLot @relation(fields: [lotId], references: [id])
+  testType    String
+  parameter   String
+  value       String
+  labName     String?
+  testedAt    DateTime @default(now())
+}
+
+model BuyerRequirement {
+  id            String   @id @default(uuid())
+  buyerId       String
+  buyer         BuyerProfile @relation(fields: [buyerId], references: [id])
+  commodityId   String
+  commodity     Commodity @relation(fields: [commodityId], references: [id])
+  quantityNeeded Float
+  maxPrice      Float?
+  qualitySpecs  String?
+  locationPref  String?
+  status        ReqStatus @default(ACTIVE)
+  deadline      DateTime?
+  createdAt     DateTime @default(now())
+}
+
+enum ReqStatus {
+  ACTIVE
+  FULFILLED
+  EXPIRED
+}
+
+model Offer {
+  id           String   @id @default(uuid())
+  fromUserId   String
+  fromUser     User     @relation(fields: [fromUserId], references: [id])
+  offeredPrice Float
+  quantity     Float
+  status       OfferStatus @default(PENDING)
+  message      String?
+  createdAt    DateTime @default(now())
+  lotId        String?
+  lot          ProduceLot? @relation(fields: [lotId], references: [id])
+
+  transaction  Transaction?
+}
+
+enum OfferStatus {
+  PENDING
+  ACCEPTED
+  COUNTERED
+  REJECTED
+  EXPIRED
+}
+
+model Transaction {
+  id            String   @id @default(uuid())
+  offerId       String?  @unique
+  offer         Offer?   @relation(fields: [offerId], references: [id])
+  lotId         String
+  lot           ProduceLot @relation(fields: [lotId], references: [id])
+  agreedPrice   Float
+  totalAmount   Float
+  status        TxStatus @default(INITIATED)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+
+  logistics     Logistics?
+  payments      Payment[]
+  grievances    Grievance[]
+}
+
+enum TxStatus {
+  INITIATED
+  ESCROW_FUNDED
+  IN_TRANSIT
+  DELIVERED
+  SETTLED
+  DISPUTED
+}
+
+model Logistics {
+  id             String   @id @default(uuid())
+  transactionId  String   @unique
+  transaction    Transaction @relation(fields: [transactionId], references: [id])
+  carrierName    String?
+  vehicleNumber  String?
+  driverName     String?
+  driverPhone    String?
+  origin         String
+  destination    String
+  pickupDate     DateTime?
+  deliveryDate   DateTime?
+  status         LogisticsStatus @default(PENDING)
+  gpsLat         Float?
+  gpsLng         Float?
+}
+
+enum LogisticsStatus {
+  PENDING
+  ASSIGNED
+  IN_TRANSIT
+  DELIVERED
+}
+
+model Payment {
+  id            String   @id @default(uuid())
+  transactionId String
+  transaction   Transaction @relation(fields: [transactionId], references: [id])
+  type          PaymentType
+  amount        Float
+  paymentMethod String?
+  utrNumber     String?
+  status        PaymentStatus @default(PENDING)
+  paidAt        DateTime?
+}
+
+enum PaymentType {
+  ESCROW_DEPOSIT
+  MILESTONE
+  SETTLEMENT
+  REFUND
+}
+
+enum PaymentStatus {
+  PENDING
+  COMPLETED
+  FAILED
+}
+
+model Grievance {
+  id            String   @id @default(uuid())
+  transactionId String
+  transaction   Transaction @relation(fields: [transactionId], references: [id])
+  filedById     String
+  filedBy       User     @relation(fields: [filedById], references: [id])
+  type          String
+  description   String
+  status        String   @default("OPEN")
+  resolution    String?
+  createdAt     DateTime @default(now())
+}
+
+model MarketPrice {
+  id          String   @id @default(uuid())
+  commodityId String
+  commodity   Commodity @relation(fields: [commodityId], references: [id])
+  mandiName   String
+  state       String
+  price       Float
+  arrivalQty  Float?
+  priceDate   DateTime @default(now())
+}

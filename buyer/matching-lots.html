@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+
+<html lang="en"><head><meta charset="utf-8"/><meta content="width=device-width, initial-scale=1.0" name="viewport"/><link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" rel="stylesheet"/><link href="https://fonts.googleapis.com" rel="preconnect"/><link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&amp;family=Plus+Jakarta+Sans:wght@600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/><style>@layer base { html, body { margin: 0; padding: 0; } body { overscroll-behavior: none; } main > :first-child { margin-top: 0 !important; } main > :last-child { margin-bottom: 0 !important; } } ::-webkit-scrollbar { display: none; }</style><script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script><script id="tailwind-config">tailwind.config = {
+  darkMode: "class",
+  theme: {
+    extend: {
+      "colors": {
+        "surface-variant": "#dce2f7",
+        "secondary-fixed-dim": "#86d7b0",
+        "surface-container-low": "#f1f3ff",
+        "on-secondary-fixed": "#002114",
+        "surface-container": "#e9edff",
+        "inverse-surface": "#293040",
+        "on-primary-container": "#79a292",
+        "surface-container-lowest": "#ffffff",
+        "tertiary-fixed-dim": "#ffb77d",
+        "outline": "#717975",
+        "inverse-on-surface": "#edf0ff",
+        "secondary-container": "#9ff1c9",
+        "secondary-fixed": "#a2f3cb",
+        "on-error-container": "#93000a",
+        "on-tertiary-fixed-variant": "#6e3900",
+        "primary": "#002218",
+        "on-error": "#ffffff",
+        "on-tertiary": "#ffffff",
+        "on-tertiary-fixed": "#2f1500",
+        "primary-fixed-dim": "#a6d0be",
+        "tertiary": "#301600",
+        "on-secondary-container": "#187050",
+        "on-secondary": "#ffffff",
+        "error": "#ba1a1a",
+        "surface-bright": "#f9f9ff",
+        "primary-container": "#0f382c",
+        "tertiary-container": "#4f2700",
+        "surface-container-high": "#e1e8fd",
+        "on-tertiary-container": "#e48015",
+        "on-primary-fixed-variant": "#274e41",
+        "on-surface-variant": "#414845",
+        "surface-dim": "#d3daef",
+        "on-background": "#141b2b",
+        "primary-fixed": "#c1ecda",
+        "on-primary": "#ffffff",
+        "on-secondary-fixed-variant": "#005138",
+        "background": "#f9f9ff",
+        "on-surface": "#141b2b",
+        "surface-tint": "#3f6658",
+        "error-container": "#ffdad6",
+        "tertiary-fixed": "#ffdcc3",
+        "outline-variant": "#c1c8c3",
+        "surface": "#f9f9ff",
+        "surface-container-highest": "#dce2f7",
+        "secondary": "#116b4c",
+        "inverse-primary": "#a6d0be",
+        "on-primary-fixed": "#002117"
+      },
+      "borderRadius": {
+        "DEFAULT": "0.25rem",
+        "lg": "0.5rem",
+        "xl": "0.75rem",
+        "full": "9999px"
+      },
+      "spacing": {
+        "space-3xl": "4rem",
+        "space-xl": "2rem",
+        "space-2xs": "0.25rem",
+        "grid-margin-desktop": "2rem",
+        "space-2xl": "3rem",
+        "space-sm": "0.75rem",
+        "space-3xs": "0.125rem",
+        "space-xs": "0.5rem",
+        "space-lg": "1.5rem",
+        "space-md": "1rem",
+        "grid-margin-mobile": "1rem",
+        "grid-gutter": "1.25rem"
+      },
+      "fontFamily": {
+        "body-sm": ["Inter"],
+        "metric-mono": ["Inter"],
+        "headline-lg-mobile": ["Plus Jakarta Sans"],
+        "title-lg": ["Inter"],
+        "title-md": ["Inter"],
+        "label-sm": ["Inter"],
+        "label-md": ["Inter"],
+        "headline-lg": ["Plus Jakarta Sans"],
+        "body-lg": ["Inter"],
+        "headline-md": ["Plus Jakarta Sans"],
+        "headline-sm": ["Plus Jakarta Sans"],
+        "display-lg": ["Plus Jakarta Sans"],
+        "body-md": ["Inter"]
+      },
+      "fontSize": {
+        "body-sm": ["12px", { "lineHeight": "16px", "fontWeight": "400" }],
+        "metric-mono": ["15px", { "lineHeight": "20px", "fontWeight": "500" }],
+        "headline-lg-mobile": ["26px", { "lineHeight": "34px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+        "title-lg": ["18px", { "lineHeight": "26px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+        "title-md": ["16px", { "lineHeight": "24px", "letterSpacing": "-0.005em", "fontWeight": "600" }],
+        "label-sm": ["11px", { "lineHeight": "14px", "letterSpacing": "0.04em", "fontWeight": "600" }],
+        "label-md": ["13px", { "lineHeight": "18px", "fontWeight": "500" }],
+        "headline-lg": ["32px", { "lineHeight": "40px", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+        "body-lg": ["16px", { "lineHeight": "24px", "fontWeight": "400" }],
+        "headline-md": ["24px", { "lineHeight": "32px", "letterSpacing": "-0.015em", "fontWeight": "600" }],
+        "headline-sm": ["20px", { "lineHeight": "28px", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+        "display-lg": ["48px", { "lineHeight": "56px", "letterSpacing": "-0.025em", "fontWeight": "700" }],
+        "body-md": ["14px", { "lineHeight": "20px", "fontWeight": "400" }]
+      }
+    }
+  }
+}</script><style>*, ::before, ::after{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }::backdrop{--tw-border-spacing-x:0;--tw-border-spacing-y:0;--tw-translate-x:0;--tw-translate-y:0;--tw-rotate:0;--tw-skew-x:0;--tw-skew-y:0;--tw-scale-x:1;--tw-scale-y:1;--tw-pan-x: ;--tw-pan-y: ;--tw-pinch-zoom: ;--tw-scroll-snap-strictness:proximity;--tw-gradient-from-position: ;--tw-gradient-via-position: ;--tw-gradient-to-position: ;--tw-ordinal: ;--tw-slashed-zero: ;--tw-numeric-figure: ;--tw-numeric-spacing: ;--tw-numeric-fraction: ;--tw-ring-inset: ;--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:rgb(59 130 246 / 0.5);--tw-ring-offset-shadow:0 0 #0000;--tw-ring-shadow:0 0 #0000;--tw-shadow:0 0 #0000;--tw-shadow-colored:0 0 #0000;--tw-blur: ;--tw-brightness: ;--tw-contrast: ;--tw-grayscale: ;--tw-hue-rotate: ;--tw-invert: ;--tw-saturate: ;--tw-sepia: ;--tw-drop-shadow: ;--tw-backdrop-blur: ;--tw-backdrop-brightness: ;--tw-backdrop-contrast: ;--tw-backdrop-grayscale: ;--tw-backdrop-hue-rotate: ;--tw-backdrop-invert: ;--tw-backdrop-opacity: ;--tw-backdrop-saturate: ;--tw-backdrop-sepia: ;--tw-contain-size: ;--tw-contain-layout: ;--tw-contain-paint: ;--tw-contain-style: }/* ! tailwindcss v3.4.17 | MIT License | https://tailwindcss.com */*,::after,::before{box-sizing:border-box;border-width:0;border-style:solid;border-color:#e5e7eb}::after,::before{--tw-content:''}:host,html{line-height:1.5;-webkit-text-size-adjust:100%;-moz-tab-size:4;tab-size:4;font-family:ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";font-feature-settings:normal;font-variation-settings:normal;-webkit-tap-highlight-color:transparent}body{margin:0;line-height:inherit}hr{height:0;color:inherit;border-top-width:1px}abbr:where([title]){-webkit-text-decoration:underline dotted;text-decoration:underline dotted}h1,h2,h3,h4,h5,h6{font-size:inherit;font-weight:inherit}a{color:inherit;text-decoration:inherit}b,strong{font-weight:bolder}code,kbd,pre,samp{font-family:ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;font-feature-settings:normal;font-variation-settings:normal;font-size:1em}small{font-size:80%}sub,sup{font-size:75%;line-height:0;position:relative;vertical-align:baseline}sub{bottom:-.25em}sup{top:-.5em}table{text-indent:0;border-color:inherit;border-collapse:collapse}button,input,optgroup,select,textarea{font-family:inherit;font-feature-settings:inherit;font-variation-settings:inherit;font-size:100%;font-weight:inherit;line-height:inherit;letter-spacing:inherit;color:inherit;margin:0;padding:0}button,select{text-transform:none}button,input:where([type=button]),input:where([type=reset]),input:where([type=submit]){-webkit-appearance:button;background-color:transparent;background-image:none}:-moz-focusring{outline:auto}:-moz-ui-invalid{box-shadow:none}progress{vertical-align:baseline}::-webkit-inner-spin-button,::-webkit-outer-spin-button{height:auto}[type=search]{-webkit-appearance:textfield;outline-offset:-2px}::-webkit-search-decoration{-webkit-appearance:none}::-webkit-file-upload-button{-webkit-appearance:button;font:inherit}summary{display:list-item}blockquote,dd,dl,figure,h1,h2,h3,h4,h5,h6,hr,p,pre{margin:0}fieldset{margin:0;padding:0}legend{padding:0}menu,ol,ul{list-style:none;margin:0;padding:0}dialog{padding:0}textarea{resize:vertical}input::placeholder,textarea::placeholder{opacity:1;color:#9ca3af}[role=button],button{cursor:pointer}:disabled{cursor:default}audio,canvas,embed,iframe,img,object,svg,video{display:block;vertical-align:middle}img,video{max-width:100%;height:auto}[hidden]:where(:not([hidden=until-found])){display:none}[type='text'],input:where(:not([type])),[type='email'],[type='url'],[type='password'],[type='number'],[type='date'],[type='datetime-local'],[type='month'],[type='search'],[type='tel'],[type='time'],[type='week'],[multiple],textarea,select{-webkit-appearance:none;appearance:none;background-color:#fff;border-color:#6b7280;border-width:1px;border-radius:0px;padding-top:0.5rem;padding-right:0.75rem;padding-bottom:0.5rem;padding-left:0.75rem;font-size:1rem;line-height:1.5rem;--tw-shadow:0 0 #0000;}[type='text']:focus, input:where(:not([type])):focus, [type='email']:focus, [type='url']:focus, [type='password']:focus, [type='number']:focus, [type='date']:focus, [type='datetime-local']:focus, [type='month']:focus, [type='search']:focus, [type='tel']:focus, [type='time']:focus, [type='week']:focus, [multiple]:focus, textarea:focus, select:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:0px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow);border-color:#2563eb}input::placeholder,textarea::placeholder{color:#6b7280;opacity:1}::-webkit-datetime-edit-fields-wrapper{padding:0}::-webkit-date-and-time-value{min-height:1.5em;text-align:inherit}::-webkit-datetime-edit{display:inline-flex}::-webkit-datetime-edit,::-webkit-datetime-edit-year-field,::-webkit-datetime-edit-month-field,::-webkit-datetime-edit-day-field,::-webkit-datetime-edit-hour-field,::-webkit-datetime-edit-minute-field,::-webkit-datetime-edit-second-field,::-webkit-datetime-edit-millisecond-field,::-webkit-datetime-edit-meridiem-field{padding-top:0;padding-bottom:0}select{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 20 20'%3e%3cpath stroke='%236b7280' stroke-linecap='round' stroke-linejoin='round' stroke-width='1.5' d='M6 8l4 4 4-4'/%3e%3c/svg%3e");background-position:right 0.5rem center;background-repeat:no-repeat;background-size:1.5em 1.5em;padding-right:2.5rem;print-color-adjust:exact}[multiple],[size]:where(select:not([size="1"])){background-image:initial;background-position:initial;background-repeat:unset;background-size:initial;padding-right:0.75rem;print-color-adjust:unset}[type='checkbox'],[type='radio']{-webkit-appearance:none;appearance:none;padding:0;print-color-adjust:exact;display:inline-block;vertical-align:middle;background-origin:border-box;-webkit-user-select:none;user-select:none;flex-shrink:0;height:1rem;width:1rem;color:#2563eb;background-color:#fff;border-color:#6b7280;border-width:1px;--tw-shadow:0 0 #0000}[type='checkbox']{border-radius:0px}[type='radio']{border-radius:100%}[type='checkbox']:focus,[type='radio']:focus{outline:2px solid transparent;outline-offset:2px;--tw-ring-inset:var(--tw-empty,/*!*/ /*!*/);--tw-ring-offset-width:2px;--tw-ring-offset-color:#fff;--tw-ring-color:#2563eb;--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(2px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow)}[type='checkbox']:checked,[type='radio']:checked{border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat}[type='checkbox']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M12.207 4.793a1 1 0 010 1.414l-5 5a1 1 0 01-1.414 0l-2-2a1 1 0 011.414-1.414L6.5 9.086l4.293-4.293a1 1 0 011.414 0z'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='checkbox']:checked{-webkit-appearance:auto;appearance:auto}}[type='radio']:checked{background-image:url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3ccircle cx='8' cy='8' r='3'/%3e%3c/svg%3e");}@media (forced-colors: active) {[type='radio']:checked{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:checked:hover,[type='checkbox']:checked:focus,[type='radio']:checked:hover,[type='radio']:checked:focus{border-color:transparent;background-color:currentColor}[type='checkbox']:indeterminate{background-image:url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 16 16'%3e%3cpath stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8h8'/%3e%3c/svg%3e");border-color:transparent;background-color:currentColor;background-size:100% 100%;background-position:center;background-repeat:no-repeat;}@media (forced-colors: active) {[type='checkbox']:indeterminate{-webkit-appearance:auto;appearance:auto}}[type='checkbox']:indeterminate:hover,[type='checkbox']:indeterminate:focus{border-color:transparent;background-color:currentColor}[type='file']{background:unset;border-color:inherit;border-width:0;border-radius:0;padding:0;font-size:unset;line-height:inherit}[type='file']:focus{outline:1px solid ButtonText;outline:1px auto -webkit-focus-ring-color}.fixed{position:fixed}.absolute{position:absolute}.relative{position:relative}.inset-0{inset:0px}.left-0{left:0px}.left-3{left:0.75rem}.right-0{right:0px}.top-0{top:0px}.top-1\/2{top:50%}.z-50{z-index:50}.z-40{z-index:40}.mx-auto{margin-left:auto;margin-right:auto}.my-auto{margin-top:auto;margin-bottom:auto}.mb-1{margin-bottom:0.25rem}.mb-space-2xs{margin-bottom:0.25rem}.mb-space-3xs{margin-bottom:0.125rem}.mb-space-md{margin-bottom:1rem}.mt-0\.5{margin-top:0.125rem}.mt-1{margin-top:0.25rem}.mt-space-2xs{margin-top:0.25rem}.mt-auto{margin-top:auto}.block{display:block}.flex{display:flex}.inline-flex{display:inline-flex}.grid{display:grid}.hidden{display:none}.h-1\.5{height:0.375rem}.h-10{height:2.5rem}.h-12{height:3rem}.h-16{height:4rem}.h-2{height:0.5rem}.h-2\.5{height:0.625rem}.h-5{height:1.25rem}.h-8{height:2rem}.h-9{height:2.25rem}.h-full{height:100%}.h-px{height:1px}.max-h-\[768px\]{max-height:768px}.min-h-\[1024px\]{min-height:1024px}.w-1\.5{width:0.375rem}.w-10{width:2.5rem}.w-12{width:3rem}.w-2{width:0.5rem}.w-5{width:1.25rem}.w-72{width:18rem}.w-8{width:2rem}.w-9{width:2.25rem}.w-full{width:100%}.min-w-0{min-width:0px}.max-w-2xl{max-width:42rem}.max-w-3xl{max-width:48rem}.max-w-\[1240px\]{max-width:1240px}.max-w-md{max-width:28rem}.flex-1{flex:1 1 0%}.shrink-0{flex-shrink:0}.border-collapse{border-collapse:collapse}.-translate-y-1\/2{--tw-translate-y:-50%;transform:translate(var(--tw-translate-x), var(--tw-translate-y)) rotate(var(--tw-rotate)) skewX(var(--tw-skew-x)) skewY(var(--tw-skew-y)) scaleX(var(--tw-scale-x)) scaleY(var(--tw-scale-y))}@keyframes pulse{50%{opacity:.5}}.animate-pulse{animation:pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite}.cursor-pointer{cursor:pointer}.grid-cols-1{grid-template-columns:repeat(1, minmax(0, 1fr))}.grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.flex-col{flex-direction:column}.flex-wrap{flex-wrap:wrap}.items-start{align-items:flex-start}.items-end{align-items:flex-end}.items-center{align-items:center}.justify-end{justify-content:flex-end}.justify-center{justify-content:center}.justify-between{justify-content:space-between}.gap-space-2xl{gap:3rem}.gap-space-2xs{gap:0.25rem}.gap-space-3xs{gap:0.125rem}.gap-space-lg{gap:1.5rem}.gap-space-md{gap:1rem}.gap-space-sm{gap:0.75rem}.gap-space-xs{gap:0.5rem}.gap-space-xl{gap:2rem}.gap-x-space-lg{column-gap:1.5rem}.gap-x-space-md{column-gap:1rem}.gap-x-space-xs{column-gap:0.5rem}.gap-y-space-3xs{row-gap:0.125rem}.gap-y-space-xs{row-gap:0.5rem}.space-y-1 > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.25rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.25rem * var(--tw-space-y-reverse))}.space-y-space-sm > :not([hidden]) ~ :not([hidden]){--tw-space-y-reverse:0;margin-top:calc(0.75rem * calc(1 - var(--tw-space-y-reverse)));margin-bottom:calc(0.75rem * var(--tw-space-y-reverse))}.divide-y > :not([hidden]) ~ :not([hidden]){--tw-divide-y-reverse:0;border-top-width:calc(1px * calc(1 - var(--tw-divide-y-reverse)));border-bottom-width:calc(1px * var(--tw-divide-y-reverse))}.divide-surface-container-high > :not([hidden]) ~ :not([hidden]){--tw-divide-opacity:1;border-color:rgb(225 232 253 / var(--tw-divide-opacity, 1))}.overflow-hidden{overflow:hidden}.overflow-x-auto{overflow-x:auto}.overflow-y-auto{overflow-y:auto}.truncate{overflow:hidden;text-overflow:ellipsis;white-space:nowrap}.rounded{border-radius:0.25rem}.rounded-2xl{border-radius:1rem}.rounded-full{border-radius:9999px}.rounded-lg{border-radius:0.5rem}.rounded-xl{border-radius:0.75rem}.border{border-width:1px}.border-2{border-width:2px}.border-b{border-bottom-width:1px}.border-t{border-top-width:1px}.border-outline-variant{--tw-border-opacity:1;border-color:rgb(193 200 195 / var(--tw-border-opacity, 1))}.border-secondary{--tw-border-opacity:1;border-color:rgb(17 107 76 / var(--tw-border-opacity, 1))}.border-secondary\/20{border-color:rgb(17 107 76 / 0.2)}.border-secondary\/30{border-color:rgb(17 107 76 / 0.3)}.border-secondary\/40{border-color:rgb(17 107 76 / 0.4)}.border-surface-container-high{--tw-border-opacity:1;border-color:rgb(225 232 253 / var(--tw-border-opacity, 1))}.border-surface-container-high\/40{border-color:rgb(225 232 253 / 0.4)}.border-surface-container-high\/60{border-color:rgb(225 232 253 / 0.6)}.border-emerald-800\/40{border-color:rgb(6 95 70 / 0.4)}.border-emerald-900\/30{border-color:rgb(6 78 59 / 0.3)}.bg-\[\#0f382c\]{--tw-bg-opacity:1;background-color:rgb(15 56 44 / var(--tw-bg-opacity, 1))}.bg-background{--tw-bg-opacity:1;background-color:rgb(249 249 255 / var(--tw-bg-opacity, 1))}.bg-primary-container{--tw-bg-opacity:1;background-color:rgb(15 56 44 / var(--tw-bg-opacity, 1))}.bg-primary\/40{background-color:rgb(0 34 24 / 0.4)}.bg-secondary{--tw-bg-opacity:1;background-color:rgb(17 107 76 / var(--tw-bg-opacity, 1))}.bg-secondary-container{--tw-bg-opacity:1;background-color:rgb(159 241 201 / var(--tw-bg-opacity, 1))}.bg-secondary-container\/30{background-color:rgb(159 241 201 / 0.3)}.bg-secondary-container\/40{background-color:rgb(159 241 201 / 0.4)}.bg-surface{--tw-bg-opacity:1;background-color:rgb(249 249 255 / var(--tw-bg-opacity, 1))}.bg-surface-container{--tw-bg-opacity:1;background-color:rgb(233 237 255 / var(--tw-bg-opacity, 1))}.bg-surface-container-high\/40{background-color:rgb(225 232 253 / 0.4)}.bg-surface-container-low{--tw-bg-opacity:1;background-color:rgb(241 243 255 / var(--tw-bg-opacity, 1))}.bg-surface-container-low\/70{background-color:rgb(241 243 255 / 0.7)}.bg-surface-container-lowest{--tw-bg-opacity:1;background-color:rgb(255 255 255 / var(--tw-bg-opacity, 1))}.bg-surface-container-lowest\/90{background-color:rgb(255 255 255 / 0.9)}.bg-\[\#0a1f18\]{--tw-bg-opacity:1;background-color:rgb(10 31 24 / var(--tw-bg-opacity, 1))}.bg-emerald-400{--tw-bg-opacity:1;background-color:rgb(52 211 153 / var(--tw-bg-opacity, 1))}.bg-emerald-900\/40{background-color:rgb(6 78 59 / 0.4)}.object-cover{object-fit:cover}.p-space-lg{padding:1.5rem}.p-space-md{padding:1rem}.p-space-sm{padding:0.75rem}.p-space-xl{padding:2rem}.px-space-lg{padding-left:1.5rem;padding-right:1.5rem}.px-space-md{padding-left:1rem;padding-right:1rem}.px-space-sm{padding-left:0.75rem;padding-right:0.75rem}.px-space-xl{padding-left:2rem;padding-right:2rem}.px-space-xs{padding-left:0.5rem;padding-right:0.5rem}.py-space-3xs{padding-top:0.125rem;padding-bottom:0.125rem}.py-space-lg{padding-top:1.5rem;padding-bottom:1.5rem}.py-space-md{padding-top:1rem;padding-bottom:1rem}.py-space-sm{padding-top:0.75rem;padding-bottom:0.75rem}.py-space-xs{padding-top:0.5rem;padding-bottom:0.5rem}.px-grid-margin-desktop{padding-left:2rem;padding-right:2rem}.py-space-xl{padding-top:2rem;padding-bottom:2rem}.pb-space-sm{padding-bottom:0.75rem}.pl-9{padding-left:2.25rem}.pr-space-md{padding-right:1rem}.pt-16{padding-top:4rem}.pt-space-2xs{padding-top:0.25rem}.pt-space-md{padding-top:1rem}.pt-space-xs{padding-top:0.5rem}.text-left{text-align:left}.text-center{text-align:center}.text-right{text-align:right}.font-body-lg{font-family:Inter}.font-body-md{font-family:Inter}.font-body-sm{font-family:Inter}.font-display-lg{font-family:Plus Jakarta Sans}.font-headline-lg{font-family:Plus Jakarta Sans}.font-headline-sm{font-family:Plus Jakarta Sans}.font-label-md{font-family:Inter}.font-label-sm{font-family:Inter}.font-metric-mono{font-family:Inter}.font-title-lg{font-family:Inter}.font-title-md{font-family:Inter}.text-\[12px\]{font-size:12px}.text-\[14px\]{font-size:14px}.text-\[16px\]{font-size:16px}.text-\[18px\]{font-size:18px}.text-\[20px\]{font-size:20px}.text-\[22px\]{font-size:22px}.text-body-lg{font-size:16px;line-height:24px;font-weight:400}.text-body-md{font-size:14px;line-height:20px;font-weight:400}.text-body-sm{font-size:12px;line-height:16px;font-weight:400}.text-display-lg{font-size:48px;line-height:56px;letter-spacing:-0.025em;font-weight:700}.text-headline-lg{font-size:32px;line-height:40px;letter-spacing:-0.02em;font-weight:600}.text-headline-sm{font-size:20px;line-height:28px;letter-spacing:-0.01em;font-weight:600}.text-label-md{font-size:13px;line-height:18px;font-weight:500}.text-label-sm{font-size:11px;line-height:14px;letter-spacing:0.04em;font-weight:600}.text-metric-mono{font-size:15px;line-height:20px;font-weight:500}.text-title-lg{font-size:18px;line-height:26px;letter-spacing:-0.01em;font-weight:600}.text-title-md{font-size:16px;line-height:24px;letter-spacing:-0.005em;font-weight:600}.font-bold{font-weight:700}.font-medium{font-weight:500}.font-normal{font-weight:400}.font-semibold{font-weight:600}.uppercase{text-transform:uppercase}.italic{font-style:italic}.leading-none{line-height:1}.leading-tight{line-height:1.25}.tracking-tight{letter-spacing:-0.025em}.tracking-wider{letter-spacing:0.05em}.text-\[\#22c55e\]{--tw-text-opacity:1;color:rgb(34 197 94 / var(--tw-text-opacity, 1))}.text-on-primary{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-on-secondary{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.text-on-secondary-container{--tw-text-opacity:1;color:rgb(24 112 80 / var(--tw-text-opacity, 1))}.text-on-surface{--tw-text-opacity:1;color:rgb(20 27 43 / var(--tw-text-opacity, 1))}.text-on-surface-variant{--tw-text-opacity:1;color:rgb(65 72 69 / var(--tw-text-opacity, 1))}.text-on-tertiary-container{--tw-text-opacity:1;color:rgb(228 128 21 / var(--tw-text-opacity, 1))}.text-outline{--tw-text-opacity:1;color:rgb(113 121 117 / var(--tw-text-opacity, 1))}.text-primary{--tw-text-opacity:1;color:rgb(0 34 24 / var(--tw-text-opacity, 1))}.text-primary-container{--tw-text-opacity:1;color:rgb(15 56 44 / var(--tw-text-opacity, 1))}.text-secondary{--tw-text-opacity:1;color:rgb(17 107 76 / var(--tw-text-opacity, 1))}.text-secondary-fixed{--tw-text-opacity:1;color:rgb(162 243 203 / var(--tw-text-opacity, 1))}.text-emerald-100\/70{color:rgb(209 250 229 / 0.7)}.text-emerald-100\/80{color:rgb(209 250 229 / 0.8)}.text-emerald-200\/60{color:rgb(167 243 208 / 0.6)}.text-emerald-300\/80{color:rgb(110 231 183 / 0.8)}.text-emerald-400{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.text-primary-fixed{--tw-text-opacity:1;color:rgb(193 236 218 / var(--tw-text-opacity, 1))}.text-white{--tw-text-opacity:1;color:rgb(255 255 255 / var(--tw-text-opacity, 1))}.antialiased{-webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale}.shadow-2xl{--tw-shadow:0 25px 50px -12px rgb(0 0 0 / 0.25);--tw-shadow-colored:0 25px 50px -12px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-\[0_1px_8px_rgba\(0\2c 0\2c 0\2c 0\.04\)\]{--tw-shadow:0 1px 8px rgba(0,0,0,0.04);--tw-shadow-colored:0 1px 8px var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.shadow-sm{--tw-shadow:0 1px 2px 0 rgb(0 0 0 / 0.05);--tw-shadow-colored:0 1px 2px 0 var(--tw-shadow-color);box-shadow:var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow)}.ring-1{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.ring-surface-container-high{--tw-ring-opacity:1;--tw-ring-color:rgb(225 232 253 / var(--tw-ring-opacity, 1))}.backdrop-blur-md{--tw-backdrop-blur:blur(12px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.backdrop-blur-sm{--tw-backdrop-blur:blur(4px);-webkit-backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia);backdrop-filter:var(--tw-backdrop-blur) var(--tw-backdrop-brightness) var(--tw-backdrop-contrast) var(--tw-backdrop-grayscale) var(--tw-backdrop-hue-rotate) var(--tw-backdrop-invert) var(--tw-backdrop-opacity) var(--tw-backdrop-saturate) var(--tw-backdrop-sepia)}.transition-all{transition-property:all;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.transition-colors{transition-property:color, background-color, border-color, fill, stroke, -webkit-text-decoration-color;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke;transition-property:color, background-color, border-color, text-decoration-color, fill, stroke, -webkit-text-decoration-color;transition-timing-function:cubic-bezier(0.4, 0, 0.2, 1);transition-duration:150ms}.duration-200{transition-duration:200ms}.placeholder\:text-on-surface-variant\/70::placeholder{color:rgb(65 72 69 / 0.7)}.hover\:border-secondary:hover{--tw-border-opacity:1;border-color:rgb(17 107 76 / var(--tw-border-opacity, 1))}.hover\:bg-secondary:hover{--tw-bg-opacity:1;background-color:rgb(17 107 76 / var(--tw-bg-opacity, 1))}.hover\:bg-surface-container:hover{--tw-bg-opacity:1;background-color:rgb(233 237 255 / var(--tw-bg-opacity, 1))}.hover\:bg-surface-container-high:hover{--tw-bg-opacity:1;background-color:rgb(225 232 253 / var(--tw-bg-opacity, 1))}.hover\:bg-surface-container-low\/50:hover{background-color:rgb(241 243 255 / 0.5)}.hover\:text-on-surface:hover{--tw-text-opacity:1;color:rgb(20 27 43 / var(--tw-text-opacity, 1))}.hover\:text-primary:hover{--tw-text-opacity:1;color:rgb(0 34 24 / var(--tw-text-opacity, 1))}.hover\:text-emerald-400:hover{--tw-text-opacity:1;color:rgb(52 211 153 / var(--tw-text-opacity, 1))}.focus\:outline-none:focus{outline:2px solid transparent;outline-offset:2px}.focus\:ring-1:focus{--tw-ring-offset-shadow:var(--tw-ring-inset) 0 0 0 var(--tw-ring-offset-width) var(--tw-ring-offset-color);--tw-ring-shadow:var(--tw-ring-inset) 0 0 0 calc(1px + var(--tw-ring-offset-width)) var(--tw-ring-color);box-shadow:var(--tw-ring-offset-shadow), var(--tw-ring-shadow), var(--tw-shadow, 0 0 #0000)}.focus\:ring-primary-container:focus{--tw-ring-opacity:1;--tw-ring-color:rgb(15 56 44 / var(--tw-ring-opacity, 1))}@media (min-width: 640px){.sm\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.sm\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.sm\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.sm\:flex-row{flex-direction:row}.sm\:text-left{text-align:left}}@media (min-width: 768px){.md\:flex{display:flex}.md\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.md\:grid-cols-3{grid-template-columns:repeat(3, minmax(0, 1fr))}.md\:flex-row{flex-direction:row}.md\:items-center{align-items:center}.md\:justify-between{justify-content:space-between}.md\:text-right{text-align:right}}@media (min-width: 1024px){.lg\:col-span-2{grid-column:span 2 / span 2}.lg\:grid-cols-2{grid-template-columns:repeat(2, minmax(0, 1fr))}.lg\:grid-cols-4{grid-template-columns:repeat(4, minmax(0, 1fr))}.lg\:grid-cols-6{grid-template-columns:repeat(6, minmax(0, 1fr))}.lg\:flex-row{flex-direction:row}.lg\:items-center{align-items:center}.lg\:pt-0{padding-top:0px}}</style><link href="../assets/css/shared.css" rel="stylesheet"/></head><body class="bg-background font-body-md text-on-surface antialiased min-h-[1024px] flex flex-col" data-mode="connect" data-stitch-vh="min-h-[1024px]===min-h-screen"><header class="fixed top-0 left-0 right-0 h-16 z-50 bg-surface-container-lowest/90 backdrop-blur-md shadow-[0_1px_8px_rgba(0,0,0,0.04)]"><a class="w-full h-16 px-space-xl flex items-center justify-between gap-space-md cursor-pointer hover:opacity-90 transition" href="../index.html"><div class="w-full h-16 px-space-xl flex items-center justify-between gap-space-md"><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-xs"><div class="w-8 h-8 rounded-lg bg-[#0f382c] flex items-center justify-center text-[#22c55e]"><svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" viewbox="0 0 24 24"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg></div><span class="font-headline-sm text-headline-sm text-primary tracking-tight font-semibold">AgriPulse</span></div><span class="inline-flex items-center px-space-xs py-space-3xs rounded-full font-label-sm text-label-sm bg-secondary-container text-on-secondary-container font-medium">BUYER PORTAL</span></div><div class="hidden md:flex items-center gap-space-sm"><div class="inline-flex items-center gap-space-xs px-space-sm py-space-3xs rounded-full bg-surface-container-low text-on-surface-variant"><span class="w-2 h-2 rounded-full bg-secondary animate-pulse"></span><span class="font-label-md text-label-md font-medium text-on-surface">Market Network Connected</span></div><div class="inline-flex items-center gap-space-xs px-space-sm py-space-3xs rounded-full bg-surface-container text-on-surface-variant"><span class="material-symbols-outlined text-[16px] text-secondary">hub</span><span class="font-label-md text-label-md font-medium text-on-surface">Gujarat &amp; MP Central</span></div></div><div class="flex items-center gap-space-md"><div class="flex items-center gap-space-sm text-right"><div class="flex flex-col items-end"><span class="font-title-md text-title-md text-on-surface leading-tight font-semibold buyer-display-name">User</span><div class="inline-flex items-center gap-space-3xs text-secondary"><span class="material-symbols-outlined text-[14px]">check_circle</span><span class="font-label-sm text-label-sm font-medium text-secondary">Buyer</span></div></div><img alt="Profile" class="w-8 h-8 rounded-full object-cover shadow-sm ring-1 ring-surface-container-high" src="../assets/images/buyer-avatar.jpg"/></div></div></div></a></header><div class="flex-1 flex pt-16 w-full"><aside class="w-72 bg-surface-container-low/70 flex flex-col justify-between shrink-0"><div class="p-space-lg flex flex-col gap-space-md"><div class="px-space-xs font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Institutional Procurement</div><nav class="flex flex-col gap-space-2xs"><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="buyer-dashboard" href="dashboard.html"><span class="material-symbols-outlined text-[20px]">space_dashboard</span><span class="">Dashboard</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="buyer-requirements" href="procurement-requirements.html"><span class="material-symbols-outlined text-[20px]">assignment_add</span><span class="">Requirements</span></a><a aria-current="page" class="flex items-center gap-space-sm px-space-md py-space-sm transition-colors bg-primary-container text-on-primary font-medium rounded-lg shadow-sm" data-path="buyer-matching-lots" href="matching-lots.html"><span class="material-symbols-outlined text-[20px] text-on-primary">inventory_2</span><span class="">Matching Lots</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="buyer-offers" href="offers-transactions.html"><span class="material-symbols-outlined text-[20px]">handshake</span><span class="">Offers &amp; Transactions</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="buyer-logistics" href="logistics-storage.html"><span class="material-symbols-outlined text-[20px]">local_shipping</span><span class="">Logistics &amp; Storage</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-lg text-on-surface-variant hover:bg-surface-container-high hover:text-on-surface transition-colors font-body-md text-body-md" data-path="buyer-payments" href="payments.html"><span class="material-symbols-outlined text-[20px]">account_balance_wallet</span><span class="">Payments</span></a><a class="flex items-center gap-space-sm px-space-md py-space-sm rounded-xl text-rose-600 hover:bg-rose-50/80 hover:text-rose-800 transition-all duration-200 ease-in-out cursor-pointer mt-4 border-t border-rose-100" onclick="window.logout()">
+<span class="material-symbols-outlined text-[20px]">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</nav></div></aside><main class="flex-1 bg-surface min-w-0 p-space-xl"><div class="flex flex-col w-full">
+<div class="max-w-[1240px] w-full mx-auto flex flex-col gap-space-2xl">
+<!-- CONFIRMATION BANNER (HIDDEN INITIALLY, SHOWN UPON OFFER SUBMISSION) -->
+<div class="hidden bg-secondary-container/40 border border-secondary p-space-md rounded-xl flex items-center justify-between gap-space-md shadow-sm" id="offerSuccessBanner">
+<div class="flex items-center gap-space-sm">
+<div class="w-8 h-8 rounded-full bg-secondary text-on-secondary flex items-center justify-center shrink-0">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</div>
+<div>
+<p class="font-title-md text-title-md font-semibold text-primary">Offer #OFF-2026-031 submitted successfully!</p>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Your offer has been sent to the farmer/FPO for review with institutional Platform backing.</p>
+</div>
+</div>
+<div class="flex items-center gap-space-xs">
+<a class="px-space-md py-space-xs rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-semibold hover:bg-secondary transition-colors" data-path="buyer-offers" href="javascript:void(0)">View Offer</a>
+<button class="px-space-sm py-space-xs rounded-lg text-on-surface-variant hover:text-on-surface text-label-md font-medium" onclick="document.getElementById('offerSuccessBanner').classList.add('hidden')">Dismiss</button>
+</div>
+</div>
+<!-- 2. PAGE HEADER & PRIMARY ACTIONS -->
+<div class="flex flex-col md:flex-row md:items-center md:justify-between gap-space-lg bg-surface-container-lowest p-space-xl rounded-xl shadow-sm">
+<div class="flex flex-col gap-space-2xs">
+<div class="flex items-center gap-space-xs">
+<h1 class="font-headline-lg text-headline-lg text-primary tracking-tight">Matching Lots</h1>
+</div>
+<p class="font-body-lg text-body-lg text-on-surface-variant">Discover farmer and FPO produce lots that match your procurement requirements.</p>
+</div>
+<div class="flex items-center gap-space-sm shrink-0">
+<a class="inline-flex items-center gap-space-xs px-space-md py-space-sm rounded-lg bg-surface-container text-primary font-title-md text-title-md hover:bg-surface-container-high transition-colors" data-path="buyer-requirements" href="procurement-requirements.html">
+<span class="material-symbols-outlined text-[18px]">format_list_bulleted</span>
+<span class="">My Requirements</span>
+</a>
+<a class="inline-flex items-center gap-space-xs px-space-lg py-space-sm rounded-lg bg-primary-container text-on-primary font-title-md text-title-md hover:bg-secondary transition-all shadow-sm" data-path="buyer-requirements" href="procurement-requirements.html">
+<span class="material-symbols-outlined text-[20px]">add_circle</span>
+<span class=""> Post Requirement</span>
+</a>
+</div>
+</div>
+<!-- 3. MATCHING OVERVIEW (4 SUMMARY KPI CARDS) -->
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-lg">
+<!-- Card 1 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">Available Matching Lots</span>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-primary-container">
+<span class="material-symbols-outlined text-[22px]">inventory_2</span>
+</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-primary font-bold leading-none mb-space-2xs" id="kpi-total-matches">0</div>
+<div class="flex items-center gap-space-3xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="w-1.5 h-1.5 rounded-full bg-secondary"></span>
+<span class="">Across 4 active requirements</span>
+</div>
+</div>
+</div>
+<!-- Card 2 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">Highly Matched Lots</span>
+<div class="w-10 h-10 rounded-lg bg-secondary-container flex items-center justify-center text-on-secondary-container">
+<span class="material-symbols-outlined text-[22px]">auto_awesome</span>
+</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-primary font-bold leading-none mb-space-2xs" id="kpi-highly-matched">0</div>
+<div class="flex items-center gap-space-3xs text-secondary font-body-sm text-body-sm font-medium">
+<span class="material-symbols-outlined text-[14px]">bolt</span>
+<span class="">90%+ compatibility</span>
+</div>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">Matching Lots</span>
+<div class="w-10 h-10 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[22px]">check_circle</span>
+</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-primary font-bold leading-none mb-space-2xs" id="kpi-matching-lots">0</div>
+<div class="flex items-center gap-space-3xs text-on-surface-variant font-body-sm text-body-sm">
+<span class="">Farmer/FPO listings</span>
+</div>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface-container-lowest p-space-lg rounded-xl shadow-sm flex flex-col justify-between gap-space-md">
+<div class="flex items-center justify-between">
+<span class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider font-semibold">Available Quantity</span>
+<div class="w-10 h-10 rounded-lg bg-surface-container-low flex items-center justify-center text-secondary">
+<span class="material-symbols-outlined text-[22px]">scale</span>
+</div>
+</div>
+<div>
+<div class="font-display-lg text-display-lg text-secondary font-bold leading-none mb-space-2xs" id="kpi-available-quantity">0 Q</div>
+<div class="flex items-center gap-space-3xs text-on-surface font-body-sm text-body-sm font-semibold">
+<span class="material-symbols-outlined text-[14px] text-secondary">check_circle</span>
+<span class="">Available quantity</span>
+</div>
+</div>
+</div>
+</div>
+<div class="flex flex-col gap-space-2xl w-full" id="dynamic-matching-root"></div>
+<!-- 8. SIDE-BY-SIDE COMPARISON VIEW -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm flex flex-col gap-space-md border border-surface-container-high">
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-space-2xs">
+<div>
+<div class="flex items-center gap-space-xs">
+<span class="material-symbols-outlined text-[20px] text-secondary">compare_arrows</span>
+<h3 class="font-title-lg text-title-lg font-bold text-primary">Compare Selected Lots</h3>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Compare based on your procurement priorities, not price alone.</p>
+</div>
+<span class="font-label-sm text-label-sm text-secondary font-semibold bg-secondary-container/40 px-space-sm py-space-3xs rounded-full">Top 3 Candidates</span>
+</div>
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="border-b border-surface-container-high bg-surface-container-low font-label-sm text-label-sm text-on-surface-variant uppercase">
+<th class="py-space-sm px-space-md">Lot ID</th>
+<th class="py-space-sm px-space-md">Farmer / FPO</th>
+<th class="py-space-sm px-space-md">Quantity</th>
+<th class="py-space-sm px-space-md">Quality Specs</th>
+<th class="py-space-sm px-space-md">Expected Price</th>
+<th class="py-space-sm px-space-md">Distance</th>
+<th class="py-space-sm px-space-md">Availability</th>
+<th class="py-space-sm px-space-md">Match %</th>
+<th class="py-space-sm px-space-md">Verification</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-surface-container-high text-body-sm" id="comparisonTableBody">
+<tr class="hover:bg-surface-container-low/50 transition-colors">
+<td class="py-space-sm px-space-md text-center text-on-surface-variant" colspan="9">No comparison available</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- 9. SUPPLY AVAILABILITY INSIGHT & PRICE CONTEXT -->
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-space-lg">
+<!-- Indicative Supply Context -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm border border-surface-container-high flex flex-col gap-space-md">
+<div class="flex items-center justify-between">
+<div>
+<h4 class="font-title-lg text-title-lg font-bold text-primary">Indicative Supply Context</h4>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Indicative regional volume: 420 Q</p>
+</div>
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">map</span>
+</div>
+</div>
+<div class="space-y-space-sm">
+<div>
+<div class="flex items-center justify-between text-body-sm font-medium mb-1">
+<span class="text-primary font-semibold">Vadodara APMC Region</span>
+<span class="text-secondary font-bold">170 Q (3 lots)</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 40%;"></div>
+</div>
+</div>
+<div>
+<div class="flex items-center justify-between text-body-sm font-medium mb-1">
+<span class="text-primary font-semibold">Bharuch District</span>
+<span class="text-secondary font-bold">100 Q (1 lot)</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 24%;"></div>
+</div>
+</div>
+<div>
+<div class="flex items-center justify-between text-body-sm font-medium mb-1">
+<span class="text-primary font-semibold">Anand Aggregation Center</span>
+<span class="text-secondary font-bold">80 Q (1 lot)</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 19%;"></div>
+</div>
+</div>
+<div>
+<div class="flex items-center justify-between text-body-sm font-medium mb-1">
+<span class="text-primary font-semibold">Kheda Mandi Basin</span>
+<span class="text-secondary font-bold">70 Q (1 lot)</span>
+</div>
+<div class="w-full h-2 bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-secondary rounded-full" style="width: 17%;"></div>
+</div>
+</div>
+</div>
+</div>
+<!-- Price Context Card -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm border border-surface-container-high flex flex-col justify-between gap-space-md">
+<div class="flex flex-col gap-space-2xs">
+<div class="flex items-center justify-between">
+<h4 class="font-title-lg text-title-lg font-bold text-primary">Indicative Price Context</h4>
+<div class="w-9 h-9 rounded-lg bg-surface-container flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">currency_rupee</span>
+</div>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Benchmark against Market price context.</p>
+</div>
+<div class="grid grid-cols-2 gap-space-sm text-body-sm">
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="text-outline text-label-sm block">Current Market Range</span>
+<span class="text-title-md font-bold text-primary">₹2,650 – ₹2,780 / Q</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="text-outline text-label-sm block">Your Target Price</span>
+<span class="text-title-md font-bold text-secondary">₹2,700 / Q</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="text-outline text-label-sm block">Matching Lots Range</span>
+<span class="text-title-md font-bold text-primary">₹2,660 – ₹2,750 / Q</span>
+</div>
+<div class="p-space-sm rounded-lg bg-surface-container-low">
+<span class="text-outline text-label-sm block">Best Available Offer</span>
+<span class="text-title-md font-bold text-secondary">₹2,660 / Q (Kheda)</span>
+</div>
+</div>
+<p class="font-label-sm text-label-sm text-outline italic">Note: Prices indicative. Actual offer pricing is finalized through platform offers.</p>
+</div>
+</div>
+<!-- 10. BUY WITH GREATER CONFIDENCE (4 TRUST PILLARS) -->
+<div class="bg-surface-container-lowest p-space-xl rounded-xl shadow-sm border border-surface-container-high flex flex-col gap-space-lg">
+<div class="flex flex-col gap-space-3xs text-center sm:text-left">
+<h3 class="font-headline-sm text-headline-sm font-bold text-primary">Buy with Greater Confidence</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Platform features that support the transaction workflow.</p>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">check_circle</span>
+</div>
+<span class="font-title-md text-title-md font-semibold text-primary">Farmers &amp; FPOs</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Registered institutional and farmer accounts with platform history.</p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">biotech</span>
+</div>
+<span class="font-title-md text-title-md font-semibold text-primary">Lot Information</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Quality parameters recorded prior to listing.</p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">handshake</span>
+</div>
+<span class="font-title-md text-title-md font-semibold text-primary">Transparent Offers</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Offers are recorded on the platform with clear price details.</p>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<div class="w-8 h-8 rounded-lg bg-primary-container text-on-primary flex items-center justify-center">
+<span class="material-symbols-outlined text-[18px]">shield</span>
+</div>
+<span class="font-title-md text-title-md font-semibold text-primary">Transaction Records</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Every offer is logged on an audit trail and managed securely through the platform.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- INTERACTIVE MODAL 1: LOT DETAIL VIEW (Dynamic) -->
+<div class="fixed inset-0 z-50 hidden flex items-center justify-center bg-primary/40 backdrop-blur-sm p-space-md overflow-y-auto" id="lotDetailModal">
+<div class="bg-surface-container-lowest w-full max-w-3xl rounded-2xl shadow-2xl border border-surface-container-high overflow-hidden my-auto animate-in fade-in zoom-in duration-200">
+<!-- Header -->
+<div class="px-space-xl py-space-lg bg-surface-container-low flex items-center justify-between border-b border-surface-container-high">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[22px]">inventory_2</span>
+</div>
+<div>
+<div class="flex items-center gap-space-xs">
+<span id="modalLotId" class="font-metric-mono text-metric-mono font-bold text-primary"></span>
+<span class="px-space-xs py-space-3xs rounded-full bg-secondary text-on-secondary font-label-sm text-label-sm font-semibold">96% Compatibility Match</span>
+<span class="px-space-xs py-space-3xs rounded-full bg-secondary-container text-on-secondary-container font-label-sm text-label-sm font-medium flex items-center gap-space-3xs">
+<span class="material-symbols-outlined text-[12px]">check_circle</span> Matched Lot
+            </span>
+</div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-semibold">Wheat (Sharbati) • 50 Quintals</h2>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors cursor-pointer" id="closeLotDetailBtn">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<!-- Body -->
+<div class="p-space-xl flex flex-col gap-space-lg max-h-[768px] overflow-y-auto" data-stitch-vh="max-h-[768px]===max-h-[75vh]">
+<!-- Match explanation -->
+<div class="p-space-md rounded-xl bg-secondary-container/30 border border-secondary/30 flex items-start gap-space-sm">
+<span class="material-symbols-outlined text-[20px] text-secondary shrink-0 mt-0.5">auto_awesome</span>
+<div>
+<span class="font-title-md text-title-md font-semibold text-primary">Why this lot matches your requirement</span>
+<p class="font-body-sm text-body-sm text-on-surface-variant mt-1">96% Match • This lot meets your exact produce and quality requirements (Grade A, moisture ≤12%), is priced right at your target of ₹2,700/Q, and is located just 18 km from your Vadodara delivery dock.</p>
+</div>
+</div>
+<!-- Produce, Quality & Pricing Details -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-space-md">
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Produce Details</span>
+<div class="font-title-md text-title-md font-semibold text-primary">Wheat (Sharbati)</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm space-y-1">
+<p class=""><span class="text-outline">Quantity:</span> 50 Quintals</p>
+<p class=""><span class="text-outline">Produce Season:</span> Rabi 2026</p>
+<p class=""><span class="text-outline">Harvest Date:</span> 3 Sep 2026</p>
+<p class=""><span class="text-outline">Available From:</span> 6 Sep 2026</p>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Quality Information</span>
+<div class="font-title-md text-title-md font-semibold text-primary">Grade A (AGMARK)</div>
+<div class="text-on-surface-variant font-body-sm text-body-sm space-y-1">
+<p class=""><span class="text-outline">Moisture:</span> 11.4% (Req: ≤ 12%)</p>
+<p class=""><span class="text-outline">Foreign Matter:</span> 0.6% (Req: ≤ 1%)</p>
+<p class=""><span class="text-outline">Grain Hardness:</span> High</p>
+<p class="text-secondary font-medium">Quality Parameters Available</p>
+</div>
+</div>
+<div class="p-space-md rounded-xl bg-surface-container-low flex flex-col gap-space-xs">
+<span class="font-label-sm text-label-sm uppercase tracking-wider text-on-surface-variant font-semibold">Pricing &amp; Valuation</span>
+<div class="font-title-md text-title-md font-bold text-primary">₹2,700 <span class="font-body-sm text-body-sm font-normal text-on-surface-variant">/ Q Expected</span></div>
+<div class="text-on-surface-variant font-body-sm text-body-sm space-y-1">
+<p class=""><span class="text-outline">Total Value:</span> ₹1,35,000</p>
+<p class=""><span class="text-outline">Your Target:</span> ₹2,700 / Q</p>
+<p class=""><span class="text-outline">Parity:</span> Exactly at Target Price</p>
+<p class="text-secondary font-medium">Platform eligible</p>
+</div>
+</div>
+</div>
+<!-- Seller Trust Profile & Logistics -->
+<div class="p-space-md rounded-xl bg-surface-container-lowest border border-surface-container-high flex flex-col md:flex-row items-start md:items-center justify-between gap-space-md">
+<div class="flex items-center gap-space-sm">
+<div class="w-12 h-12 rounded-xl bg-surface-container flex items-center justify-center text-primary font-bold text-title-lg">
+            VF
+          </div>
+<div>
+<div class="flex items-center gap-space-3xs">
+<span class="font-title-md text-title-md font-bold text-primary">Vadodara Grain FPO</span>
+<span class="material-symbols-outlined text-[16px] text-secondary">check_circle</span>
+</div>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Registered FPO • Member of Gujarat APMC Fed • 42 Transactions Fulfilled</p>
+<span class="text-label-sm text-secondary font-medium">Identity &amp; License Verified • Direct institutional trading profile</span>
+</div>
+</div>
+<div class="text-left md:text-right text-body-sm">
+<span class="text-outline text-label-sm block">Location &amp; Haul</span>
+<span class="font-semibold text-primary">Vadodara Mandi Hub Bay 2</span>
+<span class="block text-secondary font-medium">18 km to your Vadodara facility</span>
+</div>
+</div>
+</div>
+<!-- Footer Actions -->
+<div class="px-space-xl py-space-md bg-surface-container-low flex items-center justify-between border-t border-surface-container-high">
+<button class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors font-label-md text-label-md font-semibold cursor-pointer" id="cancelLotDetailBtn">
+        Close
+      </button>
+<div class="flex items-center gap-space-xs">
+<button class="px-space-lg py-space-xs rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-semibold hover:bg-secondary transition-colors shadow-sm cursor-pointer" id="proceedOfferFromDetailBtn" onclick="window.location.href='offers-transactions.html'">
+          Make Offer for this Lot
+        </button>
+</div>
+</div>
+</div>
+</div>
+<!-- INTERACTIVE MODAL 2: MAKE AN OFFER -->
+<div class="fixed inset-0 z-50 hidden flex items-center justify-center bg-primary/40 backdrop-blur-sm p-space-md overflow-y-auto" id="makeOfferModal">
+<div class="bg-surface-container-lowest w-full max-w-2xl rounded-2xl shadow-2xl border border-surface-container-high overflow-hidden my-auto animate-in fade-in zoom-in duration-200">
+<div class="px-space-xl py-space-lg bg-surface-container-low flex items-center justify-between border-b border-surface-container-high">
+<div class="flex items-center gap-space-sm">
+<div class="w-10 h-10 rounded-lg bg-primary-container text-on-primary flex items-center justify-center font-bold">
+<span class="material-symbols-outlined text-[22px]">handshake</span>
+</div>
+<div>
+<h2 class="font-headline-sm text-headline-sm text-primary font-semibold">Make an Offer</h2>
+<p class="font-body-sm text-body-sm text-on-surface-variant">Binding institutional offer secured by AgriPulse Platform.</p>
+</div>
+</div>
+<button class="w-8 h-8 rounded-full flex items-center justify-center text-on-surface-variant hover:bg-surface-container hover:text-on-surface transition-colors cursor-pointer" id="closeOfferModalBtn">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<form class="p-space-xl flex flex-col gap-space-md max-h-[768px] overflow-y-auto" data-stitch-vh="max-h-[768px]===max-h-[75vh]" id="offerForm">
+<!-- Summary Selected Lot Banner -->
+<div class="p-space-sm rounded-lg bg-surface-container-low border border-surface-container-high flex items-center justify-between">
+<div>
+<span id="offerModalLotId" class="font-metric-mono text-label-sm font-bold text-primary"></span>
+<span class="font-title-md text-title-md font-semibold text-primary block">Wheat (Sharbati) • Grade A</span>
+<span class="text-body-sm text-on-surface-variant">Seller: Vadodara Grain FPO • Asking: ₹2,700 / Q</span>
+</div>
+<div class="text-right">
+<span class="font-label-sm text-label-sm text-outline block">Available</span>
+<span class="font-title-md text-title-md font-bold text-primary">50 Q</span>
+</div>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-space-3xs">Quantity to Procure (Quintals)</label>
+<input class="w-full rounded-lg border border-outline-variant bg-surface px-space-sm py-space-xs text-on-surface font-body-md text-body-md focus:ring-1 focus:ring-primary-container" id="offerQtyInput" max="50" min="1" type="number" value="50"/>
+<span class="text-label-sm text-outline">Max available in lot: 50 Q</span>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-space-3xs">Offered Price (₹ / Quintal)</label>
+<input class="w-full rounded-lg border border-outline-variant bg-surface px-space-sm py-space-xs text-on-surface font-body-md text-body-md focus:ring-1 focus:ring-primary-container" id="offerPriceInput" type="number" value="2700"/>
+<span class="text-label-sm text-secondary">Target: ₹2,700 / Q</span>
+</div>
+</div>
+<!-- Live Calculation Box -->
+<div class="p-space-md rounded-xl bg-surface-container-high/40 flex items-center justify-between">
+<span class="font-title-md text-title-md font-semibold text-primary">Total Offer Value</span>
+<span class="font-headline-sm text-headline-sm font-bold text-primary" id="totalOfferVal">₹1,35,000</span>
+</div>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-space-md">
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-space-3xs">Logistics &amp; Transport</label>
+<select class="w-full rounded-lg border border-outline-variant bg-surface px-space-sm py-space-xs text-on-surface font-body-md text-body-md focus:ring-1 focus:ring-primary-container">
+<option>Buyer Arranged (Vadodara Fleet)</option>
+<option>Seller Arranged Delivery</option>
+<option>Flexible / APMC Mandi Logistics</option>
+</select>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-space-3xs">Offer Validity Until</label>
+<input class="w-full rounded-lg border border-outline-variant bg-surface px-space-sm py-space-xs text-on-surface font-body-md text-body-md focus:ring-1 focus:ring-primary-container" type="date" value="2026-09-08"/>
+</div>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-space-3xs">Terms / Notes for Seller</label>
+<textarea class="w-full rounded-lg border border-outline-variant bg-surface p-space-sm text-on-surface font-body-sm text-body-sm focus:ring-1 focus:ring-primary-container" id="offerMessageInput" rows="2">Quality to be confirmed at receiving facility before final settlement.</textarea>
+</div>
+<div class="pt-space-md flex items-center justify-end gap-space-xs border-t border-surface-container-high">
+<button class="px-space-md py-space-xs rounded-lg text-on-surface-variant hover:bg-surface-container font-label-md text-label-md font-semibold cursor-pointer" id="cancelOfferModalBtn" type="button">
+          Cancel
+        </button>
+<button class="px-space-lg py-space-xs rounded-lg bg-primary-container text-on-primary font-label-md text-label-md font-semibold hover:bg-secondary transition-colors shadow-sm cursor-pointer" type="submit">
+          Submit Offer
+        </button>
+</div>
+</form>
+</div>
+</div>
+</main></div><footer class="w-full z-40 bg-[#0a1f18] text-white border-t border-emerald-900/30 py-space-xl px-grid-margin-desktop mt-auto"><div class="w-full flex flex-col gap-space-xl"><div class="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-space-lg"><div class="flex flex-col gap-space-xs max-w-md"><div class="flex items-center gap-space-xs"><div class="w-9 h-9 rounded-lg bg-[#0f382c] flex items-center justify-center shadow-sm border border-emerald-800/40"><span class="material-symbols-outlined text-primary-fixed">eco</span></div><div class="flex items-center"><span class="font-headline-sm text-headline-sm font-bold text-white tracking-tight">Agri</span><span class="font-headline-sm text-headline-sm font-bold text-emerald-400 tracking-tight">Pulse</span></div></div><p class="font-body-sm text-body-sm text-emerald-100/70">Connecting farmers with markets and transparent price discovery.</p></div><div class="flex flex-wrap items-center gap-x-space-lg gap-y-space-xs font-label-md text-label-md text-emerald-100/80"><a class="hover:text-emerald-400 transition-colors" href="../farmer/market-intelligence.html">Price Discovery</a><a class="hover:text-emerald-400 transition-colors" href="../index.html#how-it-works">How It Works</a><a class="hover:text-emerald-400 transition-colors" href="../farmer/market-intelligence.html">Mandi Intelligence</a><a class="hover:text-emerald-400 transition-colors text-emerald-400 font-semibold" href="dashboard.html">Buyer Portal</a><a class="hover:text-emerald-400 transition-colors" href="../farmer/dashboard.html">Farmer Portal</a><a class="hover:text-emerald-400 transition-colors" href="../login.html">Login</a></div></div><div class="w-full h-px bg-emerald-900/40"></div><div class="flex flex-col sm:flex-row items-center justify-between gap-space-sm font-label-sm text-label-sm text-emerald-200/60"><div class="flex flex-wrap items-center gap-x-space-xs gap-y-space-3xs"><span class="">© 2026 AgriPulse. All rights reserved.</span><span class="">•</span><span class="">SIH26132 Mandi Gateway Architecture</span></div><div class="flex flex-wrap items-center gap-x-space-md gap-y-space-3xs text-emerald-300/80"><span class="inline-flex items-center gap-space-3xs"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Market data connection</span><span class="inline-flex items-center gap-space-3xs"><span class="w-1.5 h-1.5 rounded-full bg-emerald-400"></span>Procurement Framework</span></div></div></div></footer>
+<script src="../assets/js/app.js"></script><script src="../assets/js/dynamic-data.js"></script><script src="../assets/js/matching-lots-dynamic.js"></script>
+</body></html>
