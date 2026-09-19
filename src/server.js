@@ -49,6 +49,9 @@ app.get('/api/commodities', getCommodities);
 // Serve the existing static frontend
 // ---------------------------------------------------------------------------
 const publicDir = path.join(__dirname, '..');  // project root
+app.use('/assets', express.static(path.join(__dirname, '../assets')));
+app.use('/buyer', express.static(path.join(__dirname, '../buyer'), { extensions: ['html'] }));
+app.use('/farmer', express.static(path.join(__dirname, '../farmer'), { extensions: ['html'] }));
 app.use(express.static(publicDir, { extensions: ['html'] }));
 
 // Clean URL support: /buyer/dashboard  →  buyer/dashboard.html
