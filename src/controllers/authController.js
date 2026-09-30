@@ -166,14 +166,13 @@ exports.resendOtp = async (req, res) => {
 
 exports.login = async (req, res) => {
   try {
-    const { email, phone, password, name, role } = req.body;
+    const { email, password, name, role } = req.body;
 
-    const identifier = email || phone;
     let user = null;
     
-    if (identifier) {
+    if (email) {
       user = await prisma.user.findFirst({
-        where: { OR: [{ email: identifier }, { phone: identifier }] }
+        where: { email: email }
       });
     }
 
