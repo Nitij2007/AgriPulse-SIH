@@ -81,3 +81,162 @@
     transform: translateY(0);
   }
 }
+
+/* Mobile Responsiveness Improvements */
+@media (max-width: 768px) {
+  /* 1. Mobile Sidebar / Navigation */
+  aside {
+    position: fixed !important;
+    top: 64px !important;
+    left: -100% !important;
+    bottom: 0 !important;
+    height: calc(100vh - 64px) !important;
+    width: 280px !important;
+    z-index: 9999 !important;
+    transition: left 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    overflow-y: auto !important;
+  }
+  
+  aside.mobile-drawer-open {
+    left: 0 !important;
+  }
+
+  /* 2. Mobile Header Layout */
+  header {
+    height: 64px !important;
+    padding: 0 !important;
+  }
+  
+  header .px-grid-margin-desktop {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  /* Prevent overlapping in header */
+  header > a > div, header > div {
+    gap: 0.5rem !important;
+  }
+
+  /* Hide elements on mobile header to fit logo and icons */
+  .hidden.lg\:flex, #user-location-display {
+    display: none !important;
+  }
+
+  header .farmer-display-name, header .buyer-display-name, header .sm\\:inline-flex {
+    display: none !important;
+  }
+  
+  /* 3. Dashboards & Layout Containers */
+  .flex-1 > main, main {
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+    padding-top: 1rem !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    box-sizing: border-box !important;
+    min-width: 0 !important; /* Prevent flex blowout */
+  }
+  
+  /* Prevent flexbox blowout for all layout containers */
+  div, section, article, form {
+    min-width: 0 !important;
+  }
+
+  /* Force grids to single column on mobile */
+  .grid {
+    grid-template-columns: minmax(0, 1fr) !important;
+  }
+
+  /* Fix elements with fixed widths that overflow mobile viewports (e.g., 320px screens) */
+  main [class*="w-"], main [class*="min-w-"] {
+    max-width: 100% !important;
+  }
+
+  /* 4. Tables */
+  /* Remove display: block to maintain proper table column rendering. 
+     Rely on existing .overflow-x-auto wrappers for scrolling. */
+  table {
+    width: 100% !important;
+    white-space: nowrap !important;
+  }
+  
+  .overflow-x-auto {
+    width: 100% !important;
+    max-width: 100% !important;
+    -webkit-overflow-scrolling: touch;
+  }
+
+  /* 5. Forms */
+  input, select, textarea {
+    max-width: 100% !important;
+  }
+
+  /* 6. Modals / Popups */
+  .modal-container, [role="dialog"] > div, dialog > div {
+    width: 90% !important;
+    max-width: 90% !important;
+    margin: 1rem auto !important;
+    max-height: 90vh !important;
+    overflow-y: auto !important;
+    min-width: 0 !important;
+  }
+
+  /* Fix flex containers that don't wrap and cause overflow */
+  section.flex-row, div.flex-row {
+    flex-direction: column !important;
+    align-items: stretch !important;
+  }
+  
+  /* Allow toolbar and header items to wrap instead of overflowing */
+  main .flex:not(.flex-col) {
+    flex-wrap: wrap !important;
+  }
+  
+  /* Except for specific small UI components like buttons and badges which should stay in row */
+  button.flex, a.flex, .badge.flex, span.flex {
+    flex-wrap: nowrap !important;
+  }
+
+  /* Hide desktop specific span styles if necessary to prevent layout breakage */
+  .lg\:col-span-7, .lg\:col-span-5 {
+    grid-column: span 1 / span 1 !important;
+  }
+}
+
+/* Overlay styling for mobile sidebar */
+#mobileDrawerOverlay {
+  position: fixed;
+  top: 64px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9998;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease-in-out;
+}
+#mobileDrawerOverlay.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* Hamburger button styling */
+#mobileHamburgerBtn {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  color: var(--color-brand-primary);
+  background: transparent;
+  cursor: pointer;
+  border: none;
+  margin-right: 8px;
+}
+@media (max-width: 768px) {
+  #mobileHamburgerBtn {
+    display: flex;
+  }
+}

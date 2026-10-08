@@ -202,7 +202,6 @@
               const data = await res.json();
               if (res.ok) {
                 sessionStorage.setItem('token', data.token);
-                sessionStorage.setItem('agripulse_user_name', data.user.name);
                 sessionStorage.setItem('agripulse_user_role', 'Farmer / FPO');
                 sessionStorage.setItem('agripulse_user_avatar', 'farmer-avatar.jpg');
                 window.location.href = 'farmer/dashboard.html';
@@ -239,7 +238,7 @@
 <div class="flex items-center tracking-tight font-bold text-xl leading-none">
 <span class="text-[#0f382c]">Agri</span><span class="text-[#22c55e]">Pulse</span>
 </div>
-<span class="text-[10px] text-slate-600 font-semibold tracking-wider mt-0.5">SIH26132 MANDI GATEWAY</span>
+<span class="text-[10px] text-slate-600 font-semibold tracking-wider mt-0.5">MANDI GATEWAY</span>
 </div>
 </a>
 <div class="flex items-center gap-4">
@@ -316,7 +315,21 @@
 <!-- Verification Notice -->
 <div class="p-3 bg-emerald-50/70 border border-emerald-100 rounded-xl flex items-start gap-2.5 text-xs text-emerald-900">
 <span class="material-symbols-outlined text-emerald-600 text-base shrink-0 mt-0.5">verified_user</span>
-<span>Secured via SIH26132 Mandi Gateway. Logging in gives direct access to your verified produce lots and mandi bids.</span>
+<span>Secured via Mandi Gateway. Logging in gives direct access to your verified produce lots and mandi bids.</span>
+</div>
+
+<!-- SIH Demo Access -->
+<div class="p-3 bg-[#0f382c]/5 border border-[#0f382c]/10 rounded-xl text-sm text-slate-700">
+<div class="font-bold text-[#0f382c] mb-1">SIH Demo Access</div>
+<p class="text-xs text-slate-500 mb-2">For testing/demo purposes, use the credentials below.</p>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-semibold w-16">Email:</span>
+<code class="bg-white px-2 py-0.5 rounded border border-slate-200 select-all text-emerald-800">farmer@test.com</code>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-semibold w-16">Password:</span>
+<code class="bg-white px-2 py-0.5 rounded border border-slate-200 select-all text-emerald-800">pass123</code>
+</div>
 </div>
 <!-- Submit Button -->
 <div class="pt-2 flex flex-col gap-2">

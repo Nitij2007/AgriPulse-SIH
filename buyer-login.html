@@ -185,7 +185,7 @@
             const email = document.getElementById('buyer-email').value.trim();
             const password = document.getElementById('buyer-password').value;
             
-            const payload = { name, email, password, role: 'BUYER' };
+            const payload = { email, password, role: 'BUYER' };
       
             const btn = document.getElementById('btn-login');
             const originalHtml = btn.innerHTML;
@@ -202,16 +202,33 @@
               const data = await res.json();
               if (res.ok) {
                 sessionStorage.setItem('token', data.token);
-                sessionStorage.setItem('agripulse_user_name', data.user.name);
                 sessionStorage.setItem('agripulse_user_role', 'Institutional Buyer');
                 sessionStorage.setItem('agripulse_user_avatar', 'buyer-avatar.jpg');
+
+                // If user entered a name AND they are the demo account (or we allow it generally), update profile
+                if (name && email.toLowerCase() === 'buyer@test.com') {
+                  try {
+                    await fetch('/api/auth/profile', {
+                      method: 'PUT',
+                      headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + data.token
+                      },
+                      body: JSON.stringify({ name })
+                    });
+                  } catch (e) {
+                    console.error('Failed to update demo profile name', e);
+                  }
+                }
+
                 window.location.href = 'buyer/dashboard.html';
               } else {
-                // If the account does not exist, show clear message.
-                if (data.error && data.error.includes('Invalid credentials')) {
-                  showToast('Login failed: Account not found or incorrect password.', 'error');
+                if (data.error && data.error.includes('Account not found')) {
+                  showToast('Account not found. Please click "Register New Account" to create one.', 'error');
+                } else if (data.error && data.error.includes('Invalid credentials')) {
+                  showToast('Login failed: Incorrect password.', 'error');
                 } else {
-                  showToast(data.error || 'Account not found', 'error');
+                  showToast(data.error || 'Login failed', 'error');
                 }
                 btn.disabled = false;
                 btn.innerHTML = originalHtml;
@@ -241,7 +258,7 @@
 <div class="flex items-center tracking-tight font-bold text-xl leading-none">
 <span class="text-[#0f382c]">Agri</span><span class="text-[#22c55e]">Pulse</span>
 </div>
-<span class="text-[10px] text-slate-600 font-semibold tracking-wider mt-0.5">SIH26132 MANDI GATEWAY</span>
+<span class="text-[10px] text-slate-600 font-semibold tracking-wider mt-0.5">MANDI GATEWAY</span>
 </div>
 </a>
 <div class="flex items-center gap-4">
@@ -274,13 +291,13 @@
 <!-- Field 0: Display Name -->
 <div>
 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5" for="buyer-name">
-            Display Name <span class="text-rose-500">*</span>
+            Display Name <span class="text-slate-400 font-normal normal-case">(Optional - Updates Demo Profile)</span>
 </label>
 <div class="relative">
 <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-600">
 <span class="material-symbols-outlined text-lg">person</span>
 </div>
-<input class="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-medium text-slate-900 focus:outline-none focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all placeholder:text-slate-600" id="buyer-name" name="name" placeholder="e.g. Rajesh Patel" required="" type="text"/>
+<input class="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-medium text-slate-900 focus:outline-none focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all placeholder:text-slate-600" id="buyer-name" name="name" placeholder="e.g. Aman Sharma" type="text"/>
 </div>
 </div>
 <!-- Field 1: Email Address -->
@@ -318,7 +335,21 @@
 <!-- Verification Notice -->
 <div class="p-3 bg-emerald-50/70 border border-emerald-100 rounded-xl flex items-start gap-2.5 text-xs text-emerald-900">
 <span class="material-symbols-outlined text-emerald-600 text-base shrink-0 mt-0.5">verified_user</span>
-<span>Secured via SIH26132 Mandi Gateway. Logging in gives direct access to your verified produce lots and mandi bids.</span>
+<span>Secured via Mandi Gateway. Logging in gives direct access to your verified produce lots and mandi bids.</span>
+</div>
+
+<!-- SIH Demo Access -->
+<div class="p-3 bg-[#0f382c]/5 border border-[#0f382c]/10 rounded-xl text-sm text-slate-700">
+<div class="font-bold text-[#0f382c] mb-1">SIH Demo Access</div>
+<p class="text-xs text-slate-500 mb-2">For testing/demo purposes, use the credentials below.</p>
+<div class="flex items-center gap-2 mb-1">
+<span class="font-semibold w-16">Email:</span>
+<code class="bg-white px-2 py-0.5 rounded border border-slate-200 select-all text-emerald-800">buyer@test.com</code>
+</div>
+<div class="flex items-center gap-2">
+<span class="font-semibold w-16">Password:</span>
+<code class="bg-white px-2 py-0.5 rounded border border-slate-200 select-all text-emerald-800">pass123</code>
+</div>
 </div>
 <!-- Submit Button -->
 <div class="pt-2 flex flex-col gap-2">

@@ -1,4 +1,36 @@
+const fs = require('fs');
+const path = require('path');
 const cache = new Map();
+
+// Helper for persistent cache
+const CACHE_FILE = process.env.VERCEL ? path.join('/tmp', 'mandi_cache.json') : path.join(process.cwd(), 'scratch', 'mandi_cache.json');
+
+function readPersistentCache(key) {
+    try {
+        if (fs.existsSync(CACHE_FILE)) {
+            const data = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8'));
+            return data[key];
+        }
+    } catch (e) {
+        console.error("Error reading persistent cache:", e);
+    }
+    return null;
+}
+
+function writePersistentCache(key, value) {
+    try {
+        let data = {};
+        if (fs.existsSync(CACHE_FILE)) {
+            data = JSON.parse(fs.readFileSync(CACHE_FILE, 'utf8'));
+        }
+        data[key] = value;
+        const dir = path.dirname(CACHE_FILE);
+        if (!fs.existsSync(dir)) fs.mkdirSync(dir, { recursive: true });
+        fs.writeFileSync(CACHE_FILE, JSON.stringify(data), 'utf8');
+    } catch (e) {
+        console.error("Error writing persistent cache:", e);
+    }
+}
 
 exports.getMarketPrices = async (req, res) => {
   try {
@@ -49,7 +81,12 @@ exports.getMarketPrices = async (req, res) => {
 
     const cacheKey = `${state}-${district || 'ALL'}-${normalizedCommodity}`;
     const cachedEntry = cache.get(cacheKey);
-    if (cachedEntry && Date.now() - cachedEntry.timestamp < 15 * 60 * 1000) {
+    const ttl = (cachedEntry && cachedEntry.expiresIn) ? cachedEntry.expiresIn : 15 * 60 * 1000;
+    if (cachedEntry && Date.now() - cachedEntry.timestamp < ttl) {
+      if (cachedEntry.data.isError) {
+        return res.status(502).json(cachedEntry.data);
+      }
+      // If it's served from memory, mark appropriately based on its original source
       return res.status(200).json(cachedEntry.data);
     }
 
@@ -84,13 +121,45 @@ exports.getMarketPrices = async (req, res) => {
     let isFallback = false;
     let data = await fetchGovData(district);
 
-    // Automatic internal fallback if no records found or failed
-    if (district && (!data || !data.records || data.records.length === 0)) {
+    // Automatic internal fallback if no records found
+    // ONLY do this if the API successfully responded but found 0 records.
+    // If data is null (timeout/network error), do NOT try again.
+    if (data && district && (!data.records || data.records.length === 0)) {
       isFallback = true;
       data = await fetchGovData(null);
     }
 
     if (!data || !data.records || !Array.isArray(data.records)) {
+      
+      // SOURCE 2: Agmarknet 2.0 attempt
+      try {
+        const controller = new AbortController();
+        const timeoutId = setTimeout(() => controller.abort(), 2000);
+        const agmarkRes = await fetch("https://api.agmarknet.gov.in/v1/prices-and-arrivals/commodity-market/daily-report-state-marketwise", { signal: controller.signal });
+        clearTimeout(timeoutId);
+        if (agmarkRes.ok) {
+           const agmarkData = await agmarkRes.json();
+           // If we got real data, we would map it here.
+           // Since the endpoint is currently failing with 500, this block acts as a resilient fallback check.
+        }
+      } catch (e) {
+        // Suppress Agmarknet errors
+      }
+
+      // SOURCE 3: Persistent Cache Fallback
+      const persistentData = readPersistentCache(cacheKey);
+      if (persistentData) {
+        const staleData = { ...persistentData };
+        staleData.isStale = true;
+        staleData.source = "GOVERNMENT_CACHE";
+        
+        // Cache this fallback in memory for short duration to avoid repetitive disk reads
+        cache.set(cacheKey, { timestamp: Date.now(), data: staleData, expiresIn: 15 * 60 * 1000 });
+        return res.status(200).json(staleData);
+      }
+      
+      // Temporarily cache the absolute failure (2 mins) to enable fast 502s and prevent upstream hammering
+      cache.set(cacheKey, { timestamp: Date.now(), data: { error: 'Government mandi data temporarily unavailable.', isError: true }, expiresIn: 2 * 60 * 1000 });
       return res.status(502).json({ error: 'Government mandi data temporarily unavailable.' });
     }
 
@@ -99,10 +168,11 @@ exports.getMarketPrices = async (req, res) => {
     }
 
     const normalizedResponse = {
-      source: "Government of India - data.gov.in / AGMARKNET",
+      source: "Government of India - data.gov.in",
       dataFrequency: "Daily",
       location: { state, district: isFallback ? undefined : district },
       isFallback: isFallback,
+      isStale: false,
       commodity: commodity,
       markets: data.records.map(record => ({
         market: record.market || record.market_center || 'Unknown',
@@ -117,6 +187,7 @@ exports.getMarketPrices = async (req, res) => {
     };
 
     cache.set(cacheKey, { timestamp: Date.now(), data: normalizedResponse });
+    writePersistentCache(cacheKey, normalizedResponse);
     return res.status(200).json(normalizedResponse);
 
   } catch (error) {

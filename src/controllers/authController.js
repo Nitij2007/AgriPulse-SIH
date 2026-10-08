@@ -290,3 +290,44 @@ exports.updateLocation = async (req, res) => {
     res.status(500).json({ error: 'Internal server error' });
   }
 };
+
+exports.updateProfile = async (req, res) => {
+  try {
+    const authHeader = req.headers.authorization;
+    if (!authHeader || !authHeader.startsWith('Bearer ')) {
+      return res.status(401).json({ error: 'No token provided' });
+    }
+
+    const token = authHeader.split(' ')[1];
+    const decoded = jwt.verify(token, JWT_SECRET);
+
+    const { name } = req.body;
+    if (!name) {
+      return res.status(400).json({ error: 'name is required' });
+    }
+
+    // Update User model
+    await prisma.user.update({
+      where: { id: decoded.id },
+      data: { name }
+    });
+
+    // Update corresponding profile
+    if (decoded.role === 'FARMER') {
+      await prisma.farmerProfile.update({
+        where: { userId: decoded.id },
+        data: { name }
+      });
+    } else if (decoded.role === 'BUYER') {
+      await prisma.buyerProfile.update({
+        where: { userId: decoded.id },
+        data: { companyName: name }
+      });
+    }
+
+    res.status(200).json({ message: 'Profile updated successfully', name });
+  } catch (err) {
+    console.error('Update profile error:', err);
+    res.status(500).json({ error: 'Internal server error' });
+  }
+};

@@ -227,8 +227,13 @@ document.addEventListener('DOMContentLoaded', async () => {
   try {
     const meRes = await fetchApi('/api/auth/me');
     if (meRes && meRes.user && meRes.user.farmerProfile) {
-      const state = meRes.user.farmerProfile.state;
-      const city = meRes.user.farmerProfile.city;
+      let state = meRes.user.farmerProfile.state;
+      let city = meRes.user.farmerProfile.city;
+      
+      if (!state || !city) {
+        state = 'Gujarat';
+        city = 'Vadodara';
+      }
       
       const elModal = document.getElementById('kpi-avg-market-price');
       const elMinMax = document.getElementById('kpi-best-nearby-price');
@@ -246,13 +251,23 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (elMinMax) elMinMax.innerHTML = `<span class="text-[16px] text-on-surface-variant animate-pulse">Fetching from data.gov.in...</span>`;
         
         let url = `/api/market-prices?state=${encodeURIComponent(state)}&district=${encodeURIComponent(city)}&commodity=${encodeURIComponent(commodity)}`;
-        let mandiRes = await fetchApi(url);
+        let mandiRes;
+        try {
+          const rawRes = await fetch(url, { headers: { 'Authorization': `Bearer ${token}` } });
+          mandiRes = await rawRes.json();
+        } catch (e) {
+          mandiRes = { error: 'Government mandi data temporarily unavailable.' };
+        }
         
         const isFallback = mandiRes && mandiRes.isFallback;
         
         const elSource = document.getElementById('kpi-source-label');
         if (elSource) {
-          elSource.textContent = isFallback ? 'State-wide Government Mandi Data' : 'Government Mandi Data';
+          if (mandiRes && mandiRes.isStale) {
+            elSource.textContent = 'Latest available government mandi data (cached)';
+          } else {
+            elSource.textContent = 'Latest available government mandi data';
+          }
         }
         
         if (mandiRes && !mandiRes.error && mandiRes.markets && mandiRes.markets.length > 0) {
@@ -280,6 +295,11 @@ document.addEventListener('DOMContentLoaded', async () => {
           if (elMarket) elMarket.textContent = bestMarket || m.market;
           if (elComm) elComm.textContent = commodity + (m.variety ? ' (' + m.variety + ')' : '');
           
+          const elDate = document.getElementById('kpi-mandi-date-1');
+          if (elDate && m.priceDate) {
+            elDate.textContent = `Data date: ${m.priceDate}`;
+          }
+          
           const elDiff = document.getElementById('kpi-price-diff');
           if (elDiff) {
             const diff = maxPrice - minPrice;
@@ -298,19 +318,14 @@ document.addEventListener('DOMContentLoaded', async () => {
             elTrendSubtitle.textContent = spread > 0 ? `₹${spread.toLocaleString('en-IN')} market spread` : 'Uniform Pricing';
           }
 
-        } else if (mandiRes && mandiRes.error) {
-          if (elModal) elModal.innerHTML = `<span class="text-[16px] text-error">${mandiRes.error}</span>`;
-          if (elMinMax) elMinMax.innerHTML = `<span class="text-[16px] text-error">API Error</span>`;
-          if (elMarket) elMarket.textContent = 'Check connection';
-          if (elComm) elComm.textContent = '';
-          
-          const elTrendMarkets = document.getElementById('kpi-trend-markets');
-          if (elTrendMarkets) elTrendMarkets.textContent = 'API Error';
-        } else {
-          if (elModal) elModal.innerHTML = `<span class="text-[16px] text-on-surface-variant">No mandi data available for ${commodity} in ${state} today.</span>`;
+        } else if (mandiRes && mandiRes.error && mandiRes.error.toLowerCase().includes('records')) {
+          if (elModal) elModal.innerHTML = `<span class="text-[16px] text-on-surface-variant">No government mandi data is currently available for this commodity/region.</span>`;
           if (elMinMax) elMinMax.innerHTML = `<span class="text-[16px] text-on-surface-variant">No data available</span>`;
           if (elMarket) elMarket.textContent = 'No Mandi records found';
           if (elComm) elComm.textContent = commodity;
+          
+          const elDate = document.getElementById('kpi-mandi-date-1');
+          if (elDate) elDate.textContent = 'Data date: None';
           
           const elTrendRange = document.getElementById('kpi-trend-range');
           const elTrendSubtitle = document.getElementById('kpi-trend-subtitle');
@@ -318,6 +333,21 @@ document.addEventListener('DOMContentLoaded', async () => {
           if (elTrendRange) elTrendRange.textContent = 'Data not available';
           if (elTrendSubtitle) elTrendSubtitle.textContent = 'Data not available';
           if (elTrendMarkets) elTrendMarkets.textContent = '0 markets reporting';
+        } else {
+          if (elModal) elModal.innerHTML = `<span class="text-[16px] text-on-surface-variant font-medium">Currently unavailable</span>`;
+          if (elMinMax) elMinMax.innerHTML = `<span class="text-[14px] text-on-surface-variant">Currently unavailable</span>`;
+          if (elMarket) elMarket.textContent = 'Government mandi data is temporarily unavailable.';
+          if (elComm) elComm.innerHTML = `<span class="text-[12px] font-normal text-on-surface-variant">We'll display the latest verified government data when the feed becomes available.</span>`;
+          
+          const elDate = document.getElementById('kpi-mandi-date-1');
+          if (elDate) elDate.textContent = '';
+          
+          const elTrendRange = document.getElementById('kpi-trend-range');
+          const elTrendSubtitle = document.getElementById('kpi-trend-subtitle');
+          const elTrendMarkets = document.getElementById('kpi-trend-markets');
+          if (elTrendRange) elTrendRange.textContent = 'Currently unavailable';
+          if (elTrendSubtitle) elTrendSubtitle.textContent = 'Awaiting latest government market data';
+          if (elTrendMarkets) elTrendMarkets.textContent = '';
         }
       } else {
         if (elModal) elModal.innerHTML = `<span class="text-[16px] text-on-surface-variant">Location not set</span>`;

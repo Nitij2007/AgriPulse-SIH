@@ -107,18 +107,19 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (mandiRes && !mandiRes.error && mandiRes.markets && mandiRes.markets.length > 0) {
       let html = '';
       let latestDate = mandiRes.markets[0]?.priceDate || 'Unknown Date';
+      let sourceLabel = mandiRes.isStale ? 'Latest available government mandi data (cached)' : 'Latest available government mandi data';
       if (isFallback) {
         html += `<div class="mb-space-sm p-space-xs rounded bg-surface-container text-[12px] font-medium text-on-surface-variant flex flex-col gap-space-3xs">
           <div class="flex items-center gap-space-2xs">
             <span class="material-symbols-outlined text-[16px]">info</span>
             Showing State-wide Government Mandi Data for ${state}
           </div>
-          <div class="text-emerald-700 font-semibold pl-[22px]">Latest available market data: ${latestDate}</div>
+          <div class="text-emerald-700 font-semibold pl-[22px]">${sourceLabel}: ${latestDate}</div>
         </div>`;
       } else {
         html += `<div class="mb-space-sm p-space-xs rounded bg-surface-container text-[12px] font-medium text-on-surface-variant flex items-center gap-space-2xs">
           <span class="material-symbols-outlined text-[16px]">event</span>
-          <span class="text-emerald-700 font-semibold">Latest available market data: ${latestDate}</span>
+          <span class="text-emerald-700 font-semibold">${sourceLabel}: ${latestDate}</span>
         </div>`;
       }
       
@@ -194,8 +195,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         emptyHtml = `
           <div class="p-space-lg text-center flex flex-col items-center justify-center bg-white rounded-xl border border-emerald-900/10 shadow-sm min-h-[250px]">
             <span class="material-symbols-outlined text-[48px] text-orange-400 mb-space-sm">cloud_off</span>
-            <p class="font-title-md text-title-md text-primary font-semibold mb-1">Government mandi data is temporarily unavailable.</p>
-            <p class="font-body-sm text-body-sm text-on-surface-variant">Please try again shortly.</p>
+            <p class="font-title-md text-title-md text-primary font-semibold mb-1">Government Mandi Data Temporarily Unavailable</p>
+            <p class="font-body-sm text-body-sm text-on-surface-variant max-w-md">The latest verified mandi feed is currently unavailable. Market data will appear automatically when the government feed becomes available.</p>
           </div>
         `;
       } else {

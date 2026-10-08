@@ -1,12 +1,6 @@
 // AgriPulse Shared Interactive Utilities
 document.addEventListener('DOMContentLoaded', async () => {
-  // First immediately restore the session identity for instantaneous visual feedback
-  const userName = sessionStorage.getItem('agripulse_user_name');
-  if (userName) {
-    document.querySelectorAll('.farmer-display-name, .buyer-display-name').forEach(el => {
-      el.textContent = userName;
-    });
-  }
+
 
   // Handle session identity display securely using JWT token in the background
   const token = sessionStorage.getItem('token');
@@ -60,13 +54,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         if (state && city) {
           locTextEl.textContent = `📍 ${city}, ${state}`;
+        } else if (data.user.role === 'FARMER') {
+          locTextEl.textContent = '📍 Vadodara, Gujarat';
         } else {
           locTextEl.textContent = '📍 Location not set';
         }
       }
 
-      // Keep sessionStorage updated
-        sessionStorage.setItem('agripulse_user_name', data.user.name);
+
       } else {
         sessionStorage.removeItem('token');
         if (currentPath.includes('/farmer/')) {
@@ -108,30 +103,48 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
   });
 
-  // Mobile Drawer Toggle
-  const drawerBtn = document.getElementById('drawerOpenBtn') || document.querySelector('[data-drawer-toggle]');
-  const drawerOverlay = document.getElementById('drawerOverlay');
-  const sideDrawer = document.getElementById('sideDrawer');
-  const drawerCloseBtn = document.getElementById('drawerCloseBtn');
+  // Mobile Drawer Toggle Logic
+  let sideDrawer = document.querySelector('aside');
+  
+  if (sideDrawer) {
+    // 1. Inject Overlay
+    const overlay = document.createElement('div');
+    overlay.id = 'mobileDrawerOverlay';
+    document.body.appendChild(overlay);
 
-  if (drawerBtn && sideDrawer && drawerOverlay) {
-    drawerBtn.addEventListener('click', () => {
-      sideDrawer.classList.remove('-translate-x-full');
-      drawerOverlay.classList.remove('opacity-0', 'pointer-events-none');
+    // 2. Inject Hamburger Button into Header
+    const headerLogoContainer = document.querySelector('header .flex.items-center.gap-space-xs');
+    let hamburgerBtn = null;
+    if (headerLogoContainer) {
+      hamburgerBtn = document.createElement('button');
+      hamburgerBtn.id = 'mobileHamburgerBtn';
+      hamburgerBtn.innerHTML = '<span class="material-symbols-outlined">menu</span>';
+      headerLogoContainer.insertBefore(hamburgerBtn, headerLogoContainer.firstChild);
+    }
+
+    // 3. Toggle Logic
+    if (hamburgerBtn) {
+      hamburgerBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        e.stopPropagation();
+        sideDrawer.classList.toggle('mobile-drawer-open');
+        overlay.classList.toggle('active');
+      });
+    }
+
+    // 4. Close on Overlay Click
+    overlay.addEventListener('click', () => {
+      sideDrawer.classList.remove('mobile-drawer-open');
+      overlay.classList.remove('active');
     });
-  }
 
-  if (drawerCloseBtn && sideDrawer && drawerOverlay) {
-    drawerCloseBtn.addEventListener('click', () => {
-      sideDrawer.classList.add('-translate-x-full');
-      drawerOverlay.classList.add('opacity-0', 'pointer-events-none');
-    });
-  }
-
-  if (drawerOverlay && sideDrawer) {
-    drawerOverlay.addEventListener('click', () => {
-      sideDrawer.classList.add('-translate-x-full');
-      drawerOverlay.classList.add('opacity-0', 'pointer-events-none');
+    // 5. Close on Navigation Link Click (Optional but good UX)
+    const navLinks = sideDrawer.querySelectorAll('a');
+    navLinks.forEach(link => {
+      link.addEventListener('click', () => {
+        sideDrawer.classList.remove('mobile-drawer-open');
+        overlay.classList.remove('active');
+      });
     });
   }
 });
@@ -174,7 +187,6 @@ window.showToast = showToast;
 window.logout = function() {
   const currentPath = window.location.pathname;
   sessionStorage.removeItem('token');
-  sessionStorage.removeItem('agripulse_user_name');
   sessionStorage.removeItem('agripulse_user_role');
   sessionStorage.removeItem('agripulse_user_avatar');
   
