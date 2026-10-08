@@ -185,7 +185,7 @@
             const email = document.getElementById('farmer-email').value.trim();
             const password = document.getElementById('farmer-password').value;
             
-            const payload = { name, email, password, role: 'FARMER' };
+            const payload = { email, password, role: 'FARMER' };
       
             const btn = document.getElementById('btn-login');
             const originalHtml = btn.innerHTML;
@@ -204,13 +204,30 @@
                 sessionStorage.setItem('token', data.token);
                 sessionStorage.setItem('agripulse_user_role', 'Farmer / FPO');
                 sessionStorage.setItem('agripulse_user_avatar', 'farmer-avatar.jpg');
+
+                if (name && email.toLowerCase() === 'farmer@test.com') {
+                  try {
+                    await fetch('/api/auth/profile', {
+                      method: 'PUT',
+                      headers: {
+                        'Content-Type': 'application/json',
+                        'Authorization': 'Bearer ' + data.token
+                      },
+                      body: JSON.stringify({ name })
+                    });
+                  } catch (e) {
+                    console.error('Failed to update demo profile name', e);
+                  }
+                }
+
                 window.location.href = 'farmer/dashboard.html';
               } else {
-                // If the account does not exist, show clear message.
-                if (data.error && data.error.includes('Invalid credentials')) {
-                  showToast('Login failed: Account not found or incorrect password.', 'error');
+                if (data.error && data.error.includes('Account not found')) {
+                  showToast('Account not found. Please click "Register New Account" to create one.', 'error');
+                } else if (data.error && data.error.includes('Invalid credentials')) {
+                  showToast('Login failed: Incorrect password.', 'error');
                 } else {
-                  showToast(data.error || 'Account not found', 'error');
+                  showToast(data.error || 'Login failed', 'error');
                 }
                 btn.disabled = false;
                 btn.innerHTML = originalHtml;
@@ -271,13 +288,13 @@
 <!-- Field 0: Display Name -->
 <div>
 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider mb-1.5" for="farmer-name">
-            Display Name <span class="text-rose-500">*</span>
+            Display Name <span class="text-slate-400 font-normal normal-case">(Optional - Updates Demo Profile)</span>
 </label>
 <div class="relative">
 <div class="absolute inset-y-0 left-0 pl-3.5 flex items-center pointer-events-none text-slate-600">
 <span class="material-symbols-outlined text-lg">person</span>
 </div>
-<input class="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-medium text-slate-900 focus:outline-none focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all placeholder:text-slate-600" id="farmer-name" name="name" placeholder="e.g. Rajesh Patel" required="" type="text"/>
+<input class="w-full pl-10 pr-3.5 py-2.5 bg-slate-50 border border-slate-300 rounded-xl text-sm font-medium text-slate-900 focus:outline-none focus:bg-white focus:ring-2 focus:ring-emerald-500/20 focus:border-emerald-600 transition-all placeholder:text-slate-600" id="farmer-name" name="name" placeholder="e.g. Rajesh Patel" type="text"/>
 </div>
 </div>
 <!-- Field 1: Email Address -->
